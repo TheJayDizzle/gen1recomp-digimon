@@ -28,7 +28,8 @@ of the current release.
 
 ## Installation
 
-Copy the `gen1recomp-digimon` folder into Gen1Recomp's `mods` directory. Open
+Copy the `gen1recomp-digimon` folder into Gen1Recomp's `mods` directory or drag the
+downloaded .zip file into the launcher. Open
 the mod manager and enable **Digimon in Kanto**. Start a new save for the
 intended experience.
 
