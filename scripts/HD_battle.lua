@@ -465,7 +465,7 @@ return function(mod)
     return true
   end
 
-  local function withoutMenuPaperAndSprite(menu, fn)
+  local function withoutMenuPaperAndSprite(menu, fn, suppressDexFrame)
     local g = love.graphics
     local rectangle, draw = g.rectangle, g.draw
     g.rectangle = function(mode, x, y, w, h, ...)
@@ -478,6 +478,18 @@ return function(mod)
     end
     g.draw = function(drawable, ...)
       if drawable == menu.sprite then return end
+      if suppressDexFrame and drawable and drawable.getDimensions then
+        local dw, dh = drawable:getDimensions()
+        if dw == 24 and dh == 48 then
+          local args = { ... }
+          local hasQuad = type(args[1]) ~= "number"
+          local x = hasQuad and args[2] or args[1]
+          local y = hasQuad and args[3] or args[2]
+          local outerHorizontal = y == 0 or y == 136
+          local outerVertical = (x == 0 or x == 152) and y ~= 72
+          if outerHorizontal or outerVertical then return end
+        end
+      end
       return draw(drawable, ...)
     end
     local ok, result = pcall(fn)
@@ -514,7 +526,7 @@ return function(mod)
       self.letterboxWhite = false
       return withoutMenuPaperAndSprite(self, function()
         return originalDexDraw(self, unpackArgs(args))
-      end)
+      end, true)
     end
   end
 
