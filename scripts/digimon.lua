@@ -76,6 +76,9 @@
 -- SORCERMON 67
 -- RAREMON 68
 -- MOJYAMON 69
+-- SUNRIZAMON 70
+-- TORTAMON 71
+-- DRIMOGEMON 72
 
 return function(mod)
 
@@ -219,7 +222,7 @@ mod.content.pokemon:register("TANEMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BUBBLEBEAM",
     "MEGA_DRAIN",
@@ -285,7 +288,7 @@ mod.content.pokemon:register("PALMON", {
     { level = 59, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "SWORDS_DANCE",
     "TOXIC",
     "BODY_SLAM",
@@ -361,7 +364,7 @@ mod.content.pokemon:register("TOGEMON", {
     { level = 66, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "MEGA_PUNCH",
     "SWORDS_DANCE",
     "TOXIC",
@@ -438,7 +441,7 @@ mod.content.pokemon:register("KOROMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "RAGE",
@@ -504,7 +507,7 @@ mod.content.pokemon:register("AGUMON", {
     { level = 60, move = "FIRE_BLAST" },
   },
 
-  tms = {
+  tmhm = {
     "MEGA_PUNCH",
     "TOXIC",
     "BODY_SLAM",
@@ -580,7 +583,7 @@ mod.content.pokemon:register("GREYMON", {
     { level = 60, move = "THRASH" },
   },
 
-  tms = {
+  tmhm = {
     "MEGA_PUNCH",
     "TOXIC",
     "BODY_SLAM",
@@ -654,7 +657,7 @@ mod.content.pokemon:register("BUKAMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BUBBLEBEAM",
     "WATER_GUN",
@@ -722,7 +725,7 @@ mod.content.pokemon:register("GOMAMON", {
     { level = 59, move = "HYDRO_PUMP" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -800,7 +803,7 @@ mod.content.pokemon:register("IKKAKUMON", {
     { level = 66, move = "HORN_DRILL" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -876,7 +879,7 @@ mod.content.pokemon:register("MINOMON", {
     { level = 25, move = "PIN_MISSILE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BIDE",
     "REST",
@@ -938,7 +941,7 @@ mod.content.pokemon:register("WORMMON", {
       { level = 46, move = "AGILITY" },
     },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "MEGA_DRAIN",
     "SOLARBEAM",
@@ -1007,7 +1010,7 @@ mod.content.pokemon:register("STINGMON", {
     { level = 60, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "MEGA_PUNCH",
     "SWORDS_DANCE",
     "TOXIC",
@@ -1086,7 +1089,7 @@ mod.content.pokemon:register("KUNEMON", {
     { level = 62, move = "THUNDER" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "THUNDERBOLT",
     "THUNDER",
@@ -1157,7 +1160,7 @@ mod.content.pokemon:register("FLYMON", {
     { level = 60, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "RAZOR_WIND",
     "TAKE_DOWN",
@@ -1225,7 +1228,7 @@ mod.content.pokemon:register("TSUNOMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "DOUBLE_TEAM",
@@ -1291,7 +1294,7 @@ mod.content.pokemon:register("GABUMON", {
     { level = 59, move = "BLIZZARD" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -1365,7 +1368,7 @@ mod.content.pokemon:register("GARURUMON", {
     { level = 66, move = "BLIZZARD" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -1424,7 +1427,7 @@ mod.content.pokemon:register("MOTIMON", {
         { level = 15, move = "CONFUSION" },
         { level = 21, move = "BUBBLEBEAM"},
       },
-      tms = {
+      tmhm = {
         "CUT",
         "FLASH",
         "BODY_SLAM",
@@ -1479,7 +1482,7 @@ mod.content.pokemon:register("TENTOMON", {
         { level = 52, move = "AGILITY"},
         { level = 59, move = "THUNDER"}
       },
-      tms = {
+      tmhm = {
         "CUT",
         "FLASH",
         "BODY_SLAM",
@@ -1550,7 +1553,7 @@ mod.content.pokemon:register("KABUTERIMON", {
         { level = 61, move = "THUNDER" },
         { level = 69, move = "HORN_DRILL" },
       },
-      tms = {
+      tmhm = {
         "CUT",
         "FLY",
         "FLASH",
@@ -1623,7 +1626,7 @@ mod.content.pokemon:register("KUWAGAMON", {
         { level = 59, move = "TAKE_DOWN"},
         { level = 69, move = "GUILLOTINE"}
       },
-      tms = {
+      tmhm = {
         "CUT",
         "FLY",
         "STRENGTH",
@@ -1696,7 +1699,7 @@ mod.content.pokemon:register("GOBURIMON", {
           { level = 52, move = "ROAR" },
           { level = 59, move = "COUNTER" },
       },
-      tms = {
+      tmhm = {
         "TOXIC",
         "RAZOR_WIND",
         "STRENGTH",
@@ -1766,7 +1769,7 @@ mod.content.pokemon:register("OGREMON", {
         { level = 64, move = "COUNTER" },
         { level = 70, move = "HYPER_BEAM" }
       },
-      tms = {
+      tmhm = {
         "MEGA_PUNCH",
         "SWORDS_DANCE",
         "TOXIC",
@@ -1779,7 +1782,7 @@ mod.content.pokemon:register("OGREMON", {
         "DOUBLE_TEAM",
         "BIDE",
         "METRONOME",
-        "SELF_DESTRUCT",
+        "SELFDESTRUCT",
         "REST",
         "SUBMISSION",
         "SEISMIC_TOSS",
@@ -1827,7 +1830,7 @@ mod.content.pokemon:register("TOKOMON", {
     { level = 15, move = "BITE" },
     { level = 21, move = "BUBBLEBEAM"},
   },
-  tms = {
+  tmhm = {
     "FLASH",
     "BODY_SLAM",
     "REST",
@@ -1883,7 +1886,7 @@ mod.content.pokemon:register("PATAMON", {
         { level = 52, move = "PSYBEAM" },
         { level = 59, move = "SKY_ATTACK" },
       },
-      tms = {
+      tmhm = {
         "FLASH",
         "FLY",
         "WHIRLWIND",
@@ -1957,7 +1960,7 @@ mod.content.pokemon:register("ANGEMON", {
     { level = 59, move = "COUNTER" },
   },
 
-  tms = {
+  tmhm = {
     "FLASH",
     "FLY",
     "RAZOR_WIND",
@@ -1966,7 +1969,7 @@ mod.content.pokemon:register("ANGEMON", {
     "TAKE_DOWN",
     "DOUBLE_EDGE",
     "REFLECT",
-    "PSYCHIC",
+    "PSYCHIC_M",
     "MIMIC",
     "DOUBLE_TEAM",
     "BIDE",
@@ -2037,7 +2040,7 @@ mod.content.pokemon:register("AIRDRAMON", {
     { level = 59, move = "SKY_ATTACK" },
   },
 
-  tms = {
+  tmhm = {
     "FLY",
     "WHIRLWIND",
     "TOXIC",
@@ -2113,7 +2116,7 @@ mod.content.pokemon:register("SNIMON", {
     { level = 61, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "CUT",
     "SWORDS_DANCE",
     "TOXIC",
@@ -2173,7 +2176,7 @@ mod.content.pokemon:register("GESOMON", {
         { level = 42, move = "SLUDGE" },
         { level = 48, move = "HYDRO_PUMP" },
       },
-      tms = {
+      tmhm = {
         "TOXIC",
         "BODY_SLAM",
         "TAKE_DOWN",
@@ -2238,7 +2241,7 @@ mod.content.pokemon:register("FRIGIMON", {
         {level = 42, move = "ICE_BEAM"},
         {level = 48, move = "BLIZZARD"},
       },
-      tms = {
+      tmhm = {
         "TOXIC",
         "BODY_SLAM",
         "TAKE_DOWN",
@@ -2310,7 +2313,7 @@ mod.content.pokemon:register("YOKOMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BUBBLEBEAM",
     "DOUBLE_TEAM",
@@ -2377,7 +2380,7 @@ mod.content.pokemon:register("BIYOMON", {
     { level = 59, move = "SKY_ATTACK" },
   },
 
-  tms = {
+  tmhm = {
     "FLY",
     "TOXIC",
     "RAZOR_WIND",
@@ -2448,7 +2451,7 @@ mod.content.pokemon:register("BIRDRAMON", {
     { level = 60, move = "SKY_ATTACK" },
   },
 
-  tms = {
+  tmhm = {
     "FLY",
     "TOXIC",
     "RAZOR_WIND",
@@ -2516,7 +2519,7 @@ mod.content.pokemon:register("NYAROMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "DOUBLE_TEAM",
@@ -2579,7 +2582,7 @@ mod.content.pokemon:register("SALAMON", {
     { level = 61, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -2653,7 +2656,7 @@ mod.content.pokemon:register("GATOMON", {
     { level = 66, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "MEGA_PUNCH",
     "MEGA_KICK",
     "TOXIC",
@@ -2724,7 +2727,7 @@ mod.content.pokemon:register("LEOMON", {
         { level = 55, move = "COUNTER" },
         { level = 62, move = "DOUBLE_EDGE" },
       },
-      tms = {
+      tmhm = {
         "MEGA_PUNCH",
         "SWORDS_DANCE",
         "BODY_SLAM",
@@ -2801,7 +2804,7 @@ mod.content.pokemon:register("BETAMON", {
     { level = 59, move = "THUNDER" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -2880,7 +2883,7 @@ mod.content.pokemon:register("SEADRAMON", {
     { level = 66, move = "HYPER_BEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -2954,7 +2957,7 @@ mod.content.pokemon:register("PAGUMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "RAGE",
@@ -3022,7 +3025,7 @@ mod.content.pokemon:register("DEMIDEVIMON", {
     { level = 59, move = "HAZE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "DOUBLE_EDGE",
@@ -3095,7 +3098,7 @@ mod.content.pokemon:register("DEVIMON", {
     { level = 59, move = "HAZE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "DOUBLE_EDGE",
@@ -3169,7 +3172,7 @@ mod.content.pokemon:register("GOTSUMON", {
     { level = 59, move = "EXPLOSION" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3248,7 +3251,7 @@ mod.content.pokemon:register("MONOCHROMON", {
     { level = 66, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3322,7 +3325,7 @@ mod.content.pokemon:register("UPAMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "BIDE",
@@ -3391,7 +3394,7 @@ mod.content.pokemon:register("ARMADILLOMON", {
     { level = 59, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3468,7 +3471,7 @@ mod.content.pokemon:register("MUSHROOMON", {
     { level = 53, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3541,7 +3544,7 @@ mod.content.pokemon:register("WOODMON", {
     { level = 59, move = "REST" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3618,7 +3621,7 @@ mod.content.pokemon:register("VEGIEMON", {
     { level = 59, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3696,7 +3699,7 @@ mod.content.pokemon:register("GAZIMON", {
     { level = 59, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3770,7 +3773,7 @@ mod.content.pokemon:register("CHUUMON", {
     { level = 57, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3843,7 +3846,7 @@ mod.content.pokemon:register("SUKAMON", {
     { level = 59, move = "EXPLOSION" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -3919,7 +3922,7 @@ mod.content.pokemon:register("MUCHOMON", {
     { level = 58, move = "MIRROR_MOVE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "RAZOR_WIND",
     "TAKE_DOWN",
@@ -3995,7 +3998,7 @@ mod.content.pokemon:register("KOKATORIMON", {
     { level = 66, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "RAZOR_WIND",
     "BODY_SLAM",
@@ -4066,7 +4069,7 @@ mod.content.pokemon:register("KAPURIMON", {
     { level = 21, move = "BUBBLEBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "BODY_SLAM",
     "BUBBLEBEAM",
     "BIDE",
@@ -4135,7 +4138,7 @@ mod.content.pokemon:register("HAGURUMON", {
     { level = 59, move = "EXPLOSION" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4214,7 +4217,7 @@ mod.content.pokemon:register("GUARDROMON", {
     { level = 59, move = "EXPLOSION" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4294,7 +4297,7 @@ mod.content.pokemon:register("GIZAMON", {
     { level = 58, move = "DOUBLE_EDGE" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4370,7 +4373,7 @@ mod.content.pokemon:register("LALAMON", {
     { level = 52, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "MEGA_DRAIN",
@@ -4443,7 +4446,7 @@ mod.content.pokemon:register("SUNFLOWMON", {
     { level = 59, move = "HYPER_BEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "MEGA_DRAIN",
@@ -4517,7 +4520,7 @@ mod.content.pokemon:register("FLORAMON", {
     { level = 52, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4591,7 +4594,7 @@ mod.content.pokemon:register("KIWIMON", {
     { level = 64, move = "SOLARBEAM" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4668,7 +4671,7 @@ mod.content.pokemon:register("OTAMAMON", {
     { level = 51, move = "REST" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "BUBBLEBEAM",
@@ -4742,7 +4745,7 @@ mod.content.pokemon:register("GEKOMON", {
     { level = 50, move = "REST" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -4821,7 +4824,7 @@ mod.content.pokemon:register("IMPMON", {
     { level = 58, move = "FIRE_BLAST" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "DOUBLE_EDGE",
@@ -4896,7 +4899,7 @@ mod.content.pokemon:register("WIZARDMON", {
     { level = 57, move = "FIRE_BLAST" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "THUNDERBOLT",
@@ -4973,7 +4976,7 @@ mod.content.pokemon:register("SORCERMON", {
     { level = 57, move = "BLIZZARD" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "TAKE_DOWN",
     "ICE_BEAM",
@@ -5049,7 +5052,7 @@ mod.content.pokemon:register("RAREMON", {
     { level = 57, move = "SELFDESTRUCT" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "BODY_SLAM",
     "TAKE_DOWN",
@@ -5122,7 +5125,7 @@ mod.content.pokemon:register("MOJYAMON", {
     { level = 57, move = "BLIZZARD" },
   },
 
-  tms = {
+  tmhm = {
     "TOXIC",
     "MEGA_PUNCH",
     "MEGA_KICK",
@@ -5149,6 +5152,242 @@ mod.content.pokemon:register("MOJYAMON", {
   spriteBack = mod.assets:path("assets/mojyamonb.png"),
   icon = {
     image = mod.assets:path("assets/icons/mojyamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Sunarizamon 70
+
+SunarizaDex = "It buries itself in\nsand to hide. Its\nrough skin blends in\nwith the ground."
+mod.content.text:register("_SunarizamonDexEntry", SunarizaDex)
+mod.content.pokemon:register("SUNARIZAMON", {
+  id = "SUNARIZAMON", name = "SUNARIZAMON",
+  dex = 70,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 31,
+    text = "_SunarizamonDexEntry"
+  },
+
+  types = { "GROUND" },
+
+  baseStats = {
+    hp = 55,
+    attack = 65,
+    defense = 75,
+    speed = 60,
+    special = 35
+  },
+
+  catchRate = 190,
+  baseExp = 105,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "SCRATCH",
+    "SAND_ATTACK"
+  },
+
+  learnset = {
+    { level = 6,  move = "DEFENSE_CURL" },
+    { level = 10, move = "ROCK_THROW" },
+    { level = 14, move = "DIG" },
+    { level = 19, move = "BITE" },
+    { level = 25, move = "HEADBUTT" },
+    { level = 31, move = "SLASH" },
+    { level = 37, move = "ROCK_SLIDE" },
+    { level = 44, move = "EARTHQUAKE" },
+    { level = 51, move = "TAKE_DOWN" },
+    { level = 58, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/sunarizamon.png"),
+  spriteBack = mod.assets:path("assets/sunarizamonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/sunarizamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Tortamon 71
+
+TortaDex = "Its rocky shell is\nhard as a mountain.\nIt can endure even\npowerful attacks."
+mod.content.text:register("_TortamonDexEntry", TortaDex)
+mod.content.pokemon:register("TORTAMON", {
+  id = "TORTAMON", name = "TORTAMON",
+  dex = 71,
+
+  dexEntry = {
+    heightFt = 6,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 397,
+    text = "_TortamonDexEntry"
+  },
+
+  types = { "GROUND", "ROCK" },
+
+  baseStats = {
+    hp = 100,
+    attack = 90,
+    defense = 125,
+    speed = 30,
+    special = 80
+  },
+
+  catchRate = 60,
+  baseExp = 180,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "TACKLE",
+    "DEFENSE_CURL"
+  },
+
+  learnset = {
+    { level = 7,  move = "ROCK_THROW" },
+    { level = 12, move = "BIDE" },
+    { level = 17, move = "DIG" },
+    { level = 22, move = "HEADBUTT" },
+    { level = 27, move = "ROCK_SLIDE" },
+    { level = 32, move = "BODY_SLAM" },
+    { level = 38, move = "EARTHQUAKE" },
+    { level = 44, move = "HARDEN" },
+    { level = 50, move = "SKULL_BASH" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SKULL_BASH",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/tortamon.png"),
+  spriteBack = mod.assets:path("assets/tortamonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/tortamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Drimogemon 72
+
+DrimogeDex = "It digs deep tunnels\nwith its huge drill.\nIts claws can break\nthrough solid rock."
+mod.content.text:register("_DrimogemonDexEntry", DrimogeDex)
+mod.content.pokemon:register("DRIMOGEMON", {
+  id = "DRIMOGEMON", name = "DRIMOGEMON",
+  dex = 72,
+
+  dexEntry = {
+    heightFt = 6,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 254,
+    text = "_DrimogemonDexEntry"
+  },
+
+  types = { "GROUND" },
+
+  baseStats = {
+    hp = 85,
+    attack = 120,
+    defense = 90,
+    speed = 75,
+    special = 55
+  },
+
+  catchRate = 50,
+  baseExp = 185,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "SCRATCH",
+    "SAND_ATTACK"
+  },
+
+  learnset = {
+    { level = 7,  move = "FURY_SWIPES" },
+    { level = 12, move = "DIG" },
+    { level = 17, move = "HORN_ATTACK" },
+    { level = 22, move = "SLASH" },
+    { level = 27, move = "ROCK_SLIDE" },
+    { level = 32, move = "TAKE_DOWN" },
+    { level = 38, move = "EARTHQUAKE" },
+    { level = 44, move = "SWORDS_DANCE" },
+    { level = 50, move = "HORN_DRILL" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SWORDS_DANCE",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/drimogemon.png"),
+  spriteBack = mod.assets:path("assets/drimogemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/drimogemons.png"),
     frames = 1,
   },
   frontSize = 1,

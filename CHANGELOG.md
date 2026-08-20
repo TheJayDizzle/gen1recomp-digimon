@@ -2,6 +2,15 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.4
+
+- Added new Digimon: Sunarizamon, Tortamon and Drimogemon
+- Added digivolution paths and requirements for the newly introduced Digimon.
+- Edited trainer battles on Route 11
+- Edites encounter tables of Diglett's cave abd Route 11
+- Corrected the code of every digimon's TM learnset, since they were not able to learn TMs or HMs
+- Corrected spelling errors in movesets of Angemon and Ogremon
+
 ## 0.1.3
 
 - Added new Digimon: Lalamon, Sunflowmon, Floramon, Kiwimon, Otamamon, Gekomon,

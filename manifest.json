@@ -1,7 +1,7 @@
 {
   "id": "gen1recomp-digimon",
   "name": "Digimon in Kanto",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "api": 2,
   "entry": "main.lua",
   "assets_transforms": "transforms.lua",

@@ -36,8 +36,7 @@ return function(mod)
     "I'm getting my\nMUCHOMON to fly a\fletter to SAFFRON\nin the north!")
   
   
-  -- This nPC was placed in Vermilion City with the map editor. It guards
-  -- the path immediately south of its tile and marks the end of the demo.
+  -- Place the demo guard at the city-side entrance of the long harbor bridge.
   mod.content.maps:patch("VERMILION_CITY", {
     objects = {
       __append = {
@@ -45,11 +44,11 @@ return function(mod)
           index = 7,
           movement = "STAY",
           name = "VERMILIONCITY_DEMO_GUARD",
-          range = "DOWN",
+          range = "UP",
           sprite = "SPRITE_AGATHA",
           text = npc_text,
-          x = 26,
-          y = 14,
+          x = 30,
+          y = 16,
         },
       },
     },
@@ -72,8 +71,8 @@ return function(mod)
       },
     },
     onStep = function(game, ow, x, y)
-      -- Trigger only from the tile directly below the guard.
-      if x ~= 26 or y ~= 15 then return false end
+      -- Trigger from the tile immediately to the right of the guard.
+      if x ~= 31 or y ~= 16 then return false end
       if ow.runner:isRunning() or #ow.scriptMoves > 0 then return false end
 
       local TextBox = require("src.render.TextBox")
@@ -83,8 +82,8 @@ return function(mod)
         game.data.text[dialogue]
           or "This is where the\nDIGIMON demo ends!\fMore content is\ncoming soon!",
         function()
-          ow.player.facing = "left"
-          ow:scriptMove(ow.player, "left", 1)
+          ow.player.facing = "up"
+          ow:scriptMove(ow.player, "up", 1)
         end))
       return true
     end,

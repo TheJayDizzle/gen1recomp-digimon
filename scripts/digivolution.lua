@@ -110,6 +110,7 @@ return function(mod)
     NYAROMON = {
       { target = "SALAMON", requirement="LVL MIN 14", unlocked=function(mon) return (mon.level or 1) >= 14 end },
       { target = "CHUUMON", requirement="ATK 15", unlocked=function(mon) return (mon.stats.attack or 1) >= 15 end },
+      { target = "SUNARIZAMON", requirement="DEF 25", unlocked=function(mon) return (mon.stats.defense or 1) >= 25 end },
     },
     SALAMON = {
       { target = "GATOMON", requirement="LVL MIN 31", unlocked=function(mon) return (mon.level or 1) >= 31 end },
@@ -144,10 +145,12 @@ return function(mod)
       { target = "ARMADILLOMON", requirement={"LVL MIN 18"}, unlocked=function(mon) return (mon.level or 1) >= 18 end },
       { target = "WORMMON", requirement={"LVL MIN 12"}, unlocked=function(mon) return (mon.level or 1) >= 12 end },
       { target = "GAZIMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
+      { target = "SUNARIZAMON", requirement="DEF 25", unlocked=function(mon) return (mon.stats.defense or 1) >= 25 end },
     },
     ARMADILLOMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
       { target = "GREYMON", requirement={" ATK 45"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 45 end },
+      { target = "DRIMOGEMON", requirement={"LVL MIN 33"}, unlocked=function(mon) return (mon.level or 0) >= 33 end },
       -- Golemon
       -- Eggvolutions
     },
@@ -201,9 +204,13 @@ return function(mod)
     },
     IMPMON = {
       { target = "WIZARDMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
-      { target = "SORCERMON", requirement={"LVL MIN 36", "SPC 50"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.special) >=  50 end },
-      { target = "DEVIMON", requirement={"SPD 40", "SPC 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 40 and (mon.stats.special) >= 45 end },
+      { target = "SORCERMON", requirement={"LVL MIN 36", "SPC 50"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.special or 0) >=  50 end },
+      { target = "DEVIMON", requirement={"SPD 40", "SPC 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 40 and (mon.stats.special or 0) >= 45 end },
       -- Bakemon
+    },
+     SUNARIZAMON = {
+      { target = "TORTAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
+      { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
     },
   }
 

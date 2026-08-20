@@ -1,5 +1,18 @@
 return function(mod)
 
+  mod.content.encounters:patch("DIGLETTS_CAVE", {
+    grass = { rate = 20, slots = {
+      { level = 27, species = "SUNARIZAMON" }, { level = 29, species = "SUNARIZAMON" },
+      { level = 31, species = "SUNARIZAMON" }, { level = 28, species = "SUNARIZAMON" },
+      { level = 30, species = "SUNARIZAMON" }, { level = 21, species = "SUNARIZAMON" },
+      { level = 24, species = "SUNARIZAMON" }, { level = 33, species = "TORTAMON" },
+      { level = 25, species = "SUNARIZAMON" }, { level = 37, species = "TORTAMON" },
+    } },
+    source = "ROM:03:55B1",
+    -- avg lvl 28.5  })
+  })
+
+
   -- MT MOON: Gotsumon, Pagumon, Goburimon, Mushmon, Gazimon, DemiDevimon, Upamon
   mod.content.encounters:patch("MT_MOON_1F", {
     grass = { rate = 10, slots = {
@@ -47,6 +60,18 @@ return function(mod)
     } },
     source = "ROM:03:50DF",
     -- avg lvl 3.2
+  })
+
+    mod.content.encounters:patch("ROUTE_11", {
+    grass = { rate = 25, slots = {
+      { level = 20, species = "FLYMON" }, { level = 19, species = "PAGUMON" },
+      { level = 22, species = "PAGUMON" }, { level = 21, species = "MUCHOMON" },
+      { level = 19, species = "TENTOMON" }, { level = 20, species = "FLYMON" },
+      { level = 20, species = "IMPMON" }, { level = 21, species = "MUCHOMON" },
+      { level = 22, species = "TENTOMON" }, { level = 23, species = "IMPMON" },
+    } },
+    source = "ROM:03:5213",
+    -- avg lvl 20.7
   })
 
 
@@ -97,7 +122,7 @@ return function(mod)
         { level = 14, species = "MUSHROOMON"}, { level = 13, species = "VEGIEMON"},
       },
     },
-    source = "ROM:03:51A5",
+    source = "ROM:03:51BB",
     -- avg lvl 14.1
   })
 

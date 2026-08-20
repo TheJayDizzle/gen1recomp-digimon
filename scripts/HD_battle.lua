@@ -86,6 +86,7 @@ return function(mod)
     WIZARDMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
     SORCERMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
     MOYJAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    SUNARIZAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
 
   }
 
@@ -111,6 +112,8 @@ return function(mod)
     GEKOMON = { left = 12, bottom = 96, maxSize = 70, scale = 0.9},
     WIZARDMON = { left = 0, bottom = 96, maxSize = 70, scale = 0.9},
     IMPMON = { left = 6, bottom = 96, maxSize = 70, scale = 0.75},
+    SUNARIZAMON = { left = 6, bottom = 96, maxSize = 70, scale = 1},
+    TORTAMON = { left = 12, bottom = 96, maxSize = 64, scale = 1},
   }
 
   local stageCanvas

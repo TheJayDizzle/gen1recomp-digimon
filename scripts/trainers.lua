@@ -32,6 +32,31 @@ mod.content.trainers:patch("OPP_BUG_CATCHER", {
      }, 
 })
 
+
+
+mod.content.trainers:patch("OPP_ENGINEER", { 
+    parties = {
+      -- 
+      { { level = 24, species = "TENTOMON" }, { level = 24, species = "HAGURUMON" }, },
+      -- Route 11
+      { { level = 26, species = "HAGURUMON" }, },
+      { { level = 24, species = "HAGURUMON" }, { level = 24, species = "HAGURUMON" }, { level = 26, species = "HAGURUMON" }, },
+    },
+  })
+
+mod.content.trainers:patch("OPP_GAMBLER", { 
+    parties = {
+      -- Route 11
+      { { level = 24, species = "OTAMAMON" },{ level = 24, species = "HAGURUMON" }, },
+      { { level = 24, species = "SUNFLOWMON" }, { level = 24, species = "WOODMON"}, },
+      { { level = 24, species = "TENTOMON" }, { level = 24, species = "HAGURUMON"}, },
+      { { level = 24, species = "IMPMON" }, { level = 24, species = "LEOMON" }, },
+      -- 
+      { { level = 22, species = "POLIWAG" }, { level = 22, species = "POLIWAG" }, { level = 22, species = "POLIWHIRL" }, },
+      { { level = 22, species = "ONIX" }, { level = 22, species = "GEODUDE" }, { level = 22, species = "GRAVELER" }, },
+      { { level = 24, species = "GROWLITHE" }, { level = 24, species = "VULPIX" }, },
+    },
+})
 mod.content.trainers:patch("OPP_HIKER", {
   parties = {
     -- Mt. Moon
@@ -293,10 +318,12 @@ mod.content.trainers:patch("OPP_YOUNGSTER", {
     { { level = 19, species = "MUSHROOMON" }, { level = 21, species = "ARMADILLOMON" } },
     --
     { { level = 21, species = "NIDORAN_M" } },
-    { { level = 21, species = "EKANS" } },
-    { { level = 19, species = "SANDSHREW" }, { level = 19, species = "ZUBAT" } },
-    { { level = 17, species = "RATTATA" }, { level = 17, species = "RATTATA" }, { level = 17, species = "RATICATE" } },
-    { { level = 18, species = "NIDORAN_M" }, { level = 18, species = "NIDORINO" } },
+    -- Route 11
+    { { level = 25, species = "KIWIMON" } },
+    { { level = 23, species = "ARMADILLOMON" }, { level = 24, species = "DEMIDEVIMON" } },
+    { { level = 23, species = "CHUUMON" }, { level = 23, species = "CHUUMON" }, { level = 25, species = "SUKAMON" } },
+    { { level = 24, species = "IMPMON" }, { level = 26, species = "WIZARDMON" } },
+    --
     { { level = 17, species = "SPEAROW" }, { level = 17, species = "RATTATA" }, { level = 17, species = "RATTATA" }, { level = 17, species = "SPEAROW" } },
   },
 })
