@@ -65,16 +65,28 @@ return function(mod)
     UPAMON = { centerX = 124, bottom = 46, maxSize = 52, scale = 0.6},
     MONOCHROMON = { centerX = 124, bottom = 46, maxSize = 54, scale = 0.9},
     ARMADILLOMON = { centerX = 124, bottom = 54, maxSize = 70, scale = 1},
-    MUSHROOMON = { centerX = 124, bottom = 54, maxSize = 70, scale = 0.8},
+    MUSHROOMON = { centerX = 124, bottom = 46, maxSize = 70, scale = 0.75},
     VEGIEMON = { centerX = 124, bottom = 54, maxSize = 70, scale = 0.9},
     GAZIMON = { centerX = 124, bottom = 46, maxSize = 58, scale = 0.9},
-    CHUUMON = { centerX = 124, bottom = 46, maxSize = 58, scale = 0.7},
+    CHUUMON = { centerX = 124, bottom = 46, maxSize = 58, scale = 0.6},
     SUKAMON = { centerX = 124, bottom = 46, maxSize = 58, scale = 0.8},
     MUCHOMON = { centerX = 124, bottom = 46, maxSize = 58, scale = 0.75},
     KOKATORIMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.95},
-    KAPURIMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.8},
-    HAGURUMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.8},
+    KAPURIMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.65},
+    HAGURUMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.8},
     GUARDROMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.8},
+    GIZAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.8},
+    LALAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.6},
+    SUNFLOWMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    FLORAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    KIWIMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    OTAMAMON = { centerX = 124, bottom = 46, maxSize = 46, scale = 0.66},
+    GEKOMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    IMPMON = { centerX = 124, bottom = 46, maxSize = 70, scale = 0.75},
+    WIZARDMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    SORCERMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    MOYJAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+
   }
 
   -- Per-species layout for the player's back-facing battle sprite. These
@@ -82,6 +94,7 @@ return function(mod)
   -- Use `left` to position from the left edge, or replace it with `centerX`
   -- when centering is more convenient. `bottom` remains the feet/baseline.
   local PLAYER_SPECIES_LAYOUT = {
+    AGUMON = { left = 12, bottom = 96, maxSize = 45, scale = 1},
     -- GREYMON = { centerX = 36, bottom = 96, maxSize = 78, scale = 0.6 },
     GARURUMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
     PAGUMON = { left = 0, bottom = 96, maxSize = 78, scale = 0.85},
@@ -91,6 +104,13 @@ return function(mod)
     CHUUMON = { left = 12, bottom = 96, maxSize = 70, scale = 0.8},
     GAZIMON = { left = 6, bottom = 96, maxSize = 70, scale = 0.9},
     SUKAMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
+    SUNFLOWMON = { left = 0, bottom = 96, maxSize = 78, scale = 1},
+    FLORAMON = { left = 6, bottom = 96, maxSize = 56, scale = 0.9},
+    KIWIMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
+    OTAMAMON = { left = 12, bottom = 96, maxSize = 52, scale = 1},
+    GEKOMON = { left = 12, bottom = 96, maxSize = 70, scale = 0.9},
+    WIZARDMON = { left = 0, bottom = 96, maxSize = 70, scale = 0.9},
+    IMPMON = { left = 6, bottom = 96, maxSize = 70, scale = 0.75},
   }
 
   local stageCanvas
@@ -501,16 +521,70 @@ return function(mod)
   if ok_summary and SummaryMenu and not SummaryMenu.digimonStageSpriteHooked then
     SummaryMenu.digimonStageSpriteHooked = true
     local originalSummaryDraw = SummaryMenu.draw
+    local PaletteFX = require("src.render.PaletteFX")
+    local summaryGreenShader
+
+    local function drawSummaryStatProgress(menu)
+      if menu.page ~= 1 or not (menu.mon and menu.mon.stats) then return end
+      local g = love.graphics
+      local oldR, oldG, oldB, oldA = g.getColor()
+      local oldShader = g.getShader and g.getShader() or nil
+      local bonusStats = menu.mon.digivolutionBonus or {}
+      local rows = {
+        { key="attack", y=80 }, { key="defense", y=96 },
+        { key="speed", y=112 }, { key="special", y=128 },
+      }
+
+      if summaryGreenShader == nil and g.newShader then
+        local ok, shader = pcall(g.newShader, [[
+          vec4 effect(vec4 color, Image texture, vec2 uv, vec2 screen) {
+            vec4 pixel = Texel(texture, uv);
+            return vec4(color.rgb, pixel.a * color.a);
+          }
+        ]])
+        summaryGreenShader = ok and shader or false
+      end
+
+      for _, row in ipairs(rows) do
+        local total = tonumber(menu.mon.stats[row.key]) or 0
+        local bonus = tonumber(bonusStats[row.key]) or 0
+        local base = total - bonus
+        local bonusText = bonus < 100 and ("+" .. bonus) or tostring(bonus)
+
+        -- Replace the native total-only row with base, accumulated bonus,
+        -- and final total. Each column is three characters wide.
+        g.setColor(1,1,1,1)
+        g.rectangle("fill",8,row.y,72,8)
+        g.setColor(0,0,0,1)
+        Font.draw(("%3d"):format(base),8,row.y)
+
+        if summaryGreenShader then g.setShader(summaryGreenShader) end
+        g.setColor(0,0.72,0,1)
+        Font.draw(("%3s"):format(bonusText),32,row.y)
+        if summaryGreenShader then g.setShader(oldShader) end
+        PaletteFX.markTrueColor(32,row.y,24,8)
+
+        g.setColor(0,0,0,1)
+        Font.draw(("%3d"):format(total),56,row.y)
+      end
+      if summaryGreenShader then g.setShader(oldShader) end
+      g.setColor(oldR,oldG,oldB,oldA)
+    end
+
     SummaryMenu.draw = function(self, ...)
       local args, unpackArgs = { ... }, table.unpack or unpack
       if not submitMenuSpriteStage(self, true, 56) then
-        return originalSummaryDraw(self, unpackArgs(args))
+        local result = originalSummaryDraw(self, unpackArgs(args))
+        drawSummaryStatProgress(self)
+        return result
       end
       love.graphics.clear(0, 0, 0, 0)
       self.letterboxWhite = false
-      return withoutMenuPaperAndSprite(self, function()
+      local result = withoutMenuPaperAndSprite(self, function()
         return originalSummaryDraw(self, unpackArgs(args))
       end)
+      drawSummaryStatProgress(self)
+      return result
     end
   end
 

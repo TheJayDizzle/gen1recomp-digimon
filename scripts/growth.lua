@@ -4,7 +4,7 @@ return function()
   if Growth.digimonCurveScaleApplied then return end
   Growth.digimonCurveScaleApplied = true
 
-  local EXP_SCALE = 0.60
+  local EXP_SCALE = 0.80
   for id, original in pairs(Growth.CURVES) do
     local curve = original
     Growth.CURVES[id] = function(level)

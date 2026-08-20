@@ -19,14 +19,17 @@ return function(mod)
     TANEMON = {
       { target = "PALMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "MUSHROOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "LALAMON", requirement={"LVL MIN 16","SPC 33"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.special or 0) >= 33 end },
     },
     PALMON = {
       { target = "TOGEMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
+      { target = "KIWIMON", requirement="ATK 44", unlocked=function(mon) return (mon.stats.attack or 1) >= 44 end },
       { target = "VEGIEMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
     },
     KOROMON = {
       { target = "AGUMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "BETAMON", requirement={ "LVL MIN 16", "SPD 30" }, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.speed or 0) > 29 end },
+      { target = "OTAMAMON", requirement={"LVL MIN 16", "ATK 20"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.attack) >= 20 end },
     },    
     AGUMON = {
       { target = "GREYMON", requirement="LVL 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
@@ -35,12 +38,14 @@ return function(mod)
     },
     BUKAMON = {
       { target = "GOMAMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "OTAMAMON", requirement={"LVL MIN 16", "ATK 20"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.attack) >= 20 end },
       { target = "GIZAMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
     },
     GOMAMON = {
       { target = "IKKAKUMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
       { target = "GESOMON", requirement={"LVL MIN 28","SPC 35"}, unlocked=function(mon) return (mon.level or 1) >= 28 and (mon.stats.special) >= 35 end },
-      { target = "SEADRAMON", requirement={"HP 75", "SPC 40"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 75 and (mon.stats.special or 0) >= 40 end },
+      { target = "SEADRAMON", requirement={"HP 55", "SPC 40"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 55 and (mon.stats.special or 0) >= 40 end },
+      { target = "RAREMON", requirement={"HP 75"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 75 end },
     },
     MINOMON = {
       { target = "WORMMON", requirement = "LVL MIN 9", unlocked=function(mon) return (mon.level or 1) >= 9 end },
@@ -67,7 +72,7 @@ return function(mod)
     },
     MOTIMON = {
       { target = "TENTOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
-      { target = "KUNEMON", requirement="LVL MIN 10", unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "KUNEMON", requirement="LVL MIN 10", unlocked=function(mon) return (mon.level or 1) >= 10 end },
       { target = "HAGURUMON", requirement="DEF 35", unlocked=function(mon) return (mon.stats.defense or 0) >= 35 end },
     },
     TENTOMON = {
@@ -78,6 +83,7 @@ return function(mod)
     GOBURIMON = {
       { target = "OGREMON", requirement="LVL MIN 28", unlocked=function(mon) return (mon.level or 1) >= 28 end },
       { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
+      { target = "WIZARDMON", requirement={"LVL MIN 35","SPC 40"}, unlocked=function(mon) return (mon.level or 1) >= 35 and (mon.stats.special or 0) >=  40 end },
       -- Bakemon
     },
     TOKOMON = {
@@ -93,9 +99,11 @@ return function(mod)
     YOKOMON = {
       { target = "BIYOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "MUCHOMON", requirement="LVL MIN 13", unlocked=function(mon) return (mon.level or 1) >= 13 end },
+      { target = "FLORAMON", requirement={"LVL MIN 15","SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 13 and (mon.stats.special) >= 25 end },
     },
     BIYOMON = {
       { target = "BIRDRAMON", requirement="LVL MIN 35", unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "WIZARDMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 1) >= 40 end },
       { target = "KOKATORIMON", requirement="ATK 35", unlocked=function(mon) return (mon.stats.attack or 1) >= 35 end },
       -- Meramon
     },
@@ -112,11 +120,15 @@ return function(mod)
       { target = "SEADRAMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
       { target = "AIRDRAMON", requirement="ATK 28", unlocked=function(mon) return (mon.stats.attack or 1) >= 28 end },
       { target = "GESOMON", requirement="SPC 35", unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
+      { target = "GEKOMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.stats.level or 1) >= 25 end },
+            { target = "DEVIMON", requirement={"ATK 40","SPC 50"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 and (mon.stats.special or 0) >= 50 end },
+
     },
     PAGUMON = {
       { target = "DEMIDEVIMON", requirement={"LVL MIN 19","SPC 30"}, unlocked=function(mon) return (mon.level or 1) >= 19 and (mon.stats.special or 0) >= 30 end },
       { target = "GOBURIMON", requirement={"LVL MIN 13","ATK 30"}, unlocked=function(mon) return (mon.level or 1) >= 13 and (mon.stats.attack or 0) >= 30 end },
       { target = "GAZIMON", requirement={"LVL MIN 15"}, unlocked=function(mon) return (mon.level or 1) >= 15 end },
+      { target = "IMPMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
     },
     DEMIDEVIMON = {
       { target = "DEVIMON", requirement="LVL MIN 40", unlocked=function(mon) return (mon.level or 1) >= 34 end },
@@ -132,7 +144,6 @@ return function(mod)
       { target = "ARMADILLOMON", requirement={"LVL MIN 18"}, unlocked=function(mon) return (mon.level or 1) >= 18 end },
       { target = "WORMMON", requirement={"LVL MIN 12"}, unlocked=function(mon) return (mon.level or 1) >= 12 end },
       { target = "GAZIMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
-
     },
     ARMADILLOMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
@@ -148,10 +159,13 @@ return function(mod)
     GAZIMON = {
       { target = "GARURUMON", requirement={"SPC 40"}, unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
       { target = "LEOMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
+      { target = "SORCERMON", requirement={"LVL MIN 32", "SPC 36"}, unlocked=function(mon) return (mon.level or 1) >= 32 and (mon.stats.special or 0) >= 36 end },
     },
     CHUUMON = {
       { target = "SUKAMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
       { target = "OGREMON", requirement={"ATK 55"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 55 end },
+      { target = "RAREMON", requirement={"HP 65"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 65 end },
+      { target = "MOJYAMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1) >= 30 end },
       -- Monzaemon
       -- Numemon?
     },    
@@ -171,6 +185,26 @@ return function(mod)
       { target = "IKKAKUMON", requirement={"LVL 32"}, unlocked=function(mon) return (mon.level or 1) >= 32 end },
       -- more steel mons necessary
     },
+    LALAMON = {
+      { target = "SUNFLOWMON", requirement={"LVL MIN 32"}, unlocked=function(mon) return (mon.level or 1 ) >= 32 end },
+      { target = "KIWIMON", requirement={"SPD 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 45 end },
+      { target = "WOODMON", requirement={"DEF 50"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 50 end },
+    },
+    FLORAMON = {
+      { target = "KIWIMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
+      { target = "VEGIEMON", requirement={"SPC 38"}, unlocked=function(mon) return (mon.stats.special or 0) >= 38 end },
+    },
+    OTAMAMON = {
+      { target = "GEKOMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 end },
+      { target = "RAREMON", requirement={"HP 75"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 75 end },
+      { target = "IKKAKUMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
+    },
+    IMPMON = {
+      { target = "WIZARDMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
+      { target = "SORCERMON", requirement={"LVL MIN 36", "SPC 50"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.special) >=  50 end },
+      { target = "DEVIMON", requirement={"SPD 40", "SPC 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 40 and (mon.stats.special) >= 45 end },
+      -- Bakemon
+    },
   }
 
     local EXTRA_DEVOLUTION_ROUTES = {
@@ -178,6 +212,7 @@ return function(mod)
     SNIMON = { "WORMMON", "KUNEMON" },
     -- SALAMON = {"WANYAMON"},
     WOODMON = { "PALMON" },
+    -- MOJYAMON = {"RENAMON"},
 
   }
 
@@ -353,18 +388,37 @@ return function(mod)
   end
 
   local Menu={}; Menu.__index=Menu; Menu.isOpaque=true
+  local VISIBLE_PATHS=4
   Menu.digimonHDIcons=true
   function Menu.new(game,mon)
     bind(mon)
     local paths={evolve=evolutionPaths(mon.species),devolve=devolutionPaths(mon.species)}
     return setmetatable({game=game,mon=mon,paths=paths,
-      mode=#paths.evolve>0 and "evolve" or "devolve",indices={evolve=1,devolve=1}},Menu)
+      mode=#paths.evolve>0 and "evolve" or "devolve",
+      indices={evolve=1,devolve=1},first={evolve=1,devolve=1}},Menu)
   end
   function Menu:list() return self.paths[self.mode] end
   function Menu:selectedRoute() return self:list()[self.indices[self.mode]] end
   function Menu:switchMode()
     self.mode=self.mode=="evolve" and "devolve" or "evolve"
-    if #self:list()>0 then self.indices[self.mode]=math.max(1,math.min(self.indices[self.mode],#self:list())) end
+    local list=self:list()
+    if #list>0 then
+      self.indices[self.mode]=math.max(1,math.min(self.indices[self.mode],#list))
+      self.first[self.mode]=math.max(1,math.min(self.first[self.mode],
+        math.max(1,#list-VISIBLE_PATHS+1)))
+    end
+  end
+  function Menu:moveSelection(direction)
+    local list,index=self:list(),self.indices[self.mode]
+    if #list==0 then return end
+    if direction<0 then index=index>1 and index-1 or #list
+    else index=index<#list and index+1 or 1 end
+    local first=self.first[self.mode] or 1
+    if index<first then first=index
+    elseif index>first+VISIBLE_PATHS-1 then first=index-VISIBLE_PATHS+1 end
+    self.indices[self.mode]=index
+    self.first[self.mode]=math.max(1,math.min(first,
+      math.max(1,#list-VISIBLE_PATHS+1)))
   end
   function Menu:chooseEvolution(route)
     if not route.unlocked(self.mon) then show(self.game,requirementText(route)); return end
@@ -387,8 +441,8 @@ return function(mod)
   function Menu:update()
     local input,list=self.game.input,self:list()
     if input:wasPressed("left") or input:wasPressed("right") then Sound.play(self.game.data,"Press_AB"); self:switchMode()
-    elseif input:wasPressed("up") and #list>0 then local i=self.indices[self.mode]; self.indices[self.mode]=i>1 and i-1 or #list
-    elseif input:wasPressed("down") and #list>0 then local i=self.indices[self.mode]; self.indices[self.mode]=i<#list and i+1 or 1
+    elseif input:wasPressed("up") and #list>0 then self:moveSelection(-1)
+    elseif input:wasPressed("down") and #list>0 then self:moveSelection(1)
     elseif input:wasPressed("b") then Sound.play(self.game.data,"Press_AB"); self.game.stack:pop()
     elseif input:wasPressed("a") then Sound.play(self.game.data,"Press_AB"); self:chooseRoute() end
   end
@@ -401,10 +455,10 @@ return function(mod)
     local def=self.game.data.pokemon[self.mon.species]
     Font.draw(self.mon.nickname or (def and def.name) or self.mon.species,8,24)
     Font.draw(Strings("Lv.%d",self.mon.level or 1),112,24)
-    local list,index,max=self:list(),self.indices[self.mode],4
-    local first=math.max(1,math.min(index,math.max(1,#list-max+1)))
+    local list,index,max=self:list(),self.indices[self.mode],VISIBLE_PATHS
+    local first=self.first[self.mode] or 1
     for i=first,math.min(#list,first+max-1) do
-      local route,y=list[i],44+(i-first)*16
+      local route,y=list[i],44+(i-first)*18
       local target=self.game.data.pokemon[route.target]
       local name=(target and target.name) or route.target
       love.graphics.setColor(1,1,1,1)
@@ -416,6 +470,14 @@ return function(mod)
         if route.unlocked(self.mon) then outline(6,y-1,w,17,0,0,0) else outline(6,y-1,w,17,0.85,0,0) end
       end
     end
+    if first>1 then
+      love.graphics.push()
+      love.graphics.translate(152,44)
+      love.graphics.rotate(math.pi)
+      Font.drawCode(Theme.moreArrow,0,0)
+      love.graphics.pop()
+    end
+    if first+max-1<#list then Font.drawCode(Theme.moreArrow,144,104) end
     if #list==0 then Font.draw(Strings("No known paths."),16,60) end
     local selected=self:selectedRoute()
     if selected then

@@ -120,6 +120,21 @@ return function(mod)
     },
   })
 
+  mod.content.moves:register("POWDER_SNOW", {
+    id = "POWDER_SNOW",
+    name = "POWDER SNOW",
+    type = "ICE",
+    power = 40,
+    accuracy = 100,
+    pp = 25,
+    effect = "FREEZE_SIDE_EFFECT1",
+    anim = {
+      pitch = 64,
+      sound = "Battle_28",
+      tempo = 128,
+    },
+  })
+
   -- New moves will use known assets for now,
 
 
@@ -174,6 +189,22 @@ return function(mod)
         sound = "METAL_SOUND",
         subanim = 18,
         tileset = 1,
+      },
+    },
+  })
+
+  mod.content.battle_anims:register("POWDER_SNOW", {
+    seq = {
+      {
+        delay = 3,
+        sound = "POWDER_SNOW",
+        subanim = 46,
+        tileset = 0,
+      },
+      {
+        delay = 16,
+        subanim = 47,
+        tileset = 0,
       },
     },
   })

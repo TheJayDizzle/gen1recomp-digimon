@@ -20,10 +20,12 @@ mod.content.trainers:patch("OPP_BUG_CATCHER", {
         -- Mt. Moon
         { { level = 12, species = "MINOMON", }, { level = 12, species = "TENTOMON", }, },
         { { level = 12, species = "KUNEMON", }, { level = 12, species = "WORMMON", }, { level = 13, species = "KUNEMON", }, },
+        -- Nugget Bridge / Route 24
+        { { level = 16, species = "KUNEMON", }, { level = 18, species = "WORMMON", }, },
+        -- Route 6
+        { { level = 23, species = "MINOMON", }, { level = 21, species = "KUNEMON", }, { level = 23, species = "TENTOMON", }, },
+        { { level = 25, species = "KUWAGAMON", }, },
         --
-        { { level = 14, species = "KUNEMON", }, { level = 14, species = "MINOMON", }, },
-        { { level = 16, species = "MINOMON", }, { level = 16, species = "KUNEMON", }, { level = 16, species = "MINOMON", }, },
-        { { level = 20, species = "KUWAGAMON", }, },
         { { level = 18, species = "WORMMON", }, { level = 18, species = "KUNEMON", }, { level = 18, species = "SNIMON", }, },
         { { level = 19, species = "FLYMON", }, { level = 19, species = "FLYMON", }, },
         { { level = 20, species = "KUNEMON", }, { level = 20, species = "MINOMON", }, { level = 20, species = "SNIMON", }, },
@@ -34,10 +36,11 @@ mod.content.trainers:patch("OPP_HIKER", {
   parties = {
     -- Mt. Moon
     { { level = 13, species = "PAGUMON" }, { level = 12, species = "UPAMON" }, { level = 12, species = "GOTSUMON" } },
-    --
-    { { level = 15, species = "MACHOP" }, { level = 15, species = "GEODUDE" } },
-    { { level = 13, species = "GEODUDE" }, { level = 13, species = "GEODUDE" }, { level = 13, species = "MACHOP" }, { level = 13, species = "GEODUDE" } },
-    { { level = 17, species = "ONIX" } },
+    -- Route 25
+    { { level = 19, species = "MOJYAMON" }, { level = 20, species = "ARMADILLOMON" } },
+    { { level = 18, species = "GOTSUMON" }, { level = 17, species = "GOTSUMON" }, { level = 18, species = "MOJYAMON" }, { level = 19, species = "GOTSUMON" } },
+    { { level = 22, species = "MONOCHROMON" } },
+    -- 
     { { level = 21, species = "GEODUDE" }, { level = 21, species = "ONIX" } },
     { { level = 20, species = "GEODUDE" }, { level = 20, species = "MACHOP" }, { level = 20, species = "GEODUDE" } },
     { { level = 21, species = "GEODUDE" }, { level = 21, species = "ONIX" } },
@@ -55,9 +58,10 @@ mod.content.trainers:patch("OPP_JR_TRAINER_F", {
   parties = {
     -- Misty Gym
     { { level = 19, species = "GIZAMON" } },
-    --
-    { { level = 16, species = "RATTATA" }, { level = 16, species = "PIKACHU" } },
-    { { level = 16, species = "PIDGEY" }, { level = 16, species = "PIDGEY" }, { level = 16, species = "PIDGEY" } },
+    -- Route 6
+    { { level = 22, species = "CHUUMON" }, { level = 24, species = "GATOMON" } },
+    { { level = 21, species = "MUCHOMON" }, { level = 21, species = "MUCHOMON" }, { level = 21, species = "MUCHOMON" } },
+    -- 
     { { level = 22, species = "BULBASAUR" } },
     { { level = 18, species = "ODDISH" }, { level = 18, species = "BELLSPROUT" }, { level = 18, species = "ODDISH" }, { level = 18, species = "BELLSPROUT" } },
     { { level = 23, species = "MEOWTH" } },
@@ -86,11 +90,13 @@ mod.content.trainers:patch("OPP_JR_TRAINER_M", {
   parties = {
     -- Brock Gym
     { { level = 12, species = "UPAMON" }, { level = 13, species = "ARMADILLOMON" } },
+    -- Nugget Brdige
+    { { level = 18, species = "CHUUMON" }, { level = 17, species = "AIRDRAMON" } },
+    { { level = 20, species = "MOJYAMON" } },
+    -- Route 6
+    { { level = 25, species = "FRIGIMON" } },
+    { { level = 23, species = "IMPMON" }, { level = 16, species = "SUKAMON" } },
     --
-    { { level = 14, species = "RATTATA" }, { level = 14, species = "EKANS" } },
-    { { level = 18, species = "MANKEY" } },
-    { { level = 20, species = "SQUIRTLE" } },
-    { { level = 16, species = "SPEAROW" }, { level = 16, species = "RATICATE" } },
     { { level = 18, species = "DIGLETT" }, { level = 18, species = "DIGLETT" }, { level = 18, species = "SANDSHREW" } },
     { { level = 21, species = "GROWLITHE" }, { level = 21, species = "CHARMANDER" } },
     { { level = 19, species = "RATTATA" }, { level = 19, species = "DIGLETT" }, { level = 19, species = "EKANS" }, { level = 19, species = "SANDSHREW" } },
@@ -109,11 +115,13 @@ mod.content.trainers:patch("OPP_LASS", {
     -- Mt. Moon
     { { level = 11, species = "PALMON" }, { level = 11, species = "SALAMON" } },
     { { level = 14, species = "BIYOMON" } },
+    -- Nugget Bridge / Route 24
+    { { level = 18, species = "MUCHOMON" }, { level = 18, species = "SALAMON" } },
+    { { level = 17, species = "GAZIMON" }, { level = 19, species = "KIWIMON" } },
+    -- Route 25
+    { { level = 20, species = "FLORAMON" }, { level = 21, species = "SALAMON" } },
+    { { level = 19, species = "LALAMON" }, { level = 20, species = "MUCHOMON" }, { level = 21, species = "LALAMON" } },
     -- 
-    { { level = 16, species = "PIDGEY" }, { level = 16, species = "NIDORAN_F" } },
-    { { level = 14, species = "PIDGEY" }, { level = 14, species = "NIDORAN_F" } },
-    { { level = 15, species = "NIDORAN_M" }, { level = 15, species = "NIDORAN_F" } },
-    { { level = 13, species = "ODDISH" }, { level = 13, species = "PIDGEY" }, { level = 13, species = "ODDISH" } },
     { { level = 18, species = "PIDGEY" }, { level = 18, species = "NIDORAN_F" } },
     { { level = 18, species = "RATTATA" }, { level = 18, species = "PIKACHU" } },
     { { level = 23, species = "NIDORAN_F" }, { level = 23, species = "NIDORINA" } },
@@ -127,7 +135,7 @@ mod.content.trainers:patch("OPP_LASS", {
 
 mod.content.trainers:patch("OPP_MISTY",{
   parties = {
-    {{ level = 19, species = "GOMAMON"}, {level = 21, species = "SEADRAMON"}}
+    {{ level = 22, species = "GOMAMON"}, {level = 24, species = "SEADRAMON"}}
   }
 })
 
@@ -188,7 +196,9 @@ mod.content.trainers:patch("OPP_ROCKET", {
     { { level = 18, species = "SUKAMON" } },
     --
     { { level = 17, species = "MACHOP" }, { level = 17, species = "DROWZEE" } },
-    { { level = 15, species = "EKANS" }, { level = 15, species = "ZUBAT" } },
+    -- Nugget Bridge / Route 24
+    { { level = 17, species = "GOBURIMON" }, { level = 19, species = "VEGIEMON" } },
+    -- 
     { { level = 20, species = "RATICATE" }, { level = 20, species = "ZUBAT" } },
     { { level = 21, species = "DROWZEE" }, { level = 21, species = "MACHOP" } },
     { { level = 21, species = "RATICATE" }, { level = 21, species = "RATICATE" } },
@@ -275,11 +285,13 @@ mod.content.trainers:patch("OPP_YOUNGSTER", {
     { { level = 16, species = "BIYOMON" } },
     -- Mt. Moon
     { { level = 14, species = "CHUUMON" }, { level = 14, species = "CHUUMON" }, { level = 14, species = "PAGUMON" } },
+    -- Nugget Bridge / Route 24
+    { { level = 17, species = "GAZIMON" }, { level = 17, species = "MUSHROOMON" }, { level = 18, species = "PAGUMON" } },
+    -- Route 25
+    { { level = 18, species = "CHUUMON" }, { level = 17, species = "MUCHOMON" } },
+    { { level = 22, species = "GEKOMON" } },
+    { { level = 19, species = "MUSHROOMON" }, { level = 21, species = "ARMADILLOMON" } },
     --
-    { { level = 14, species = "RATTATA" }, { level = 14, species = "EKANS" }, { level = 14, species = "ZUBAT" } },
-    { { level = 15, species = "RATTATA" }, { level = 15, species = "SPEAROW" } },
-    { { level = 17, species = "SLOWPOKE" } },
-    { { level = 14, species = "EKANS" }, { level = 14, species = "SANDSHREW" } },
     { { level = 21, species = "NIDORAN_M" } },
     { { level = 21, species = "EKANS" } },
     { { level = 19, species = "SANDSHREW" }, { level = 19, species = "ZUBAT" } },

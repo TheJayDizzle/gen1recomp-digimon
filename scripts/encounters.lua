@@ -3,35 +3,38 @@ return function(mod)
   -- MT MOON: Gotsumon, Pagumon, Goburimon, Mushmon, Gazimon, DemiDevimon, Upamon
   mod.content.encounters:patch("MT_MOON_1F", {
     grass = { rate = 10, slots = {
-      { level = 8, species = "PAGUMON" }, { level = 7, species = "PAGUMON" },
-      { level = 9, species = "PAGUMON" }, { level = 8, species = "GOTSUMON" },
-      { level = 6, species = "MUSHROOMON" }, { level = 10, species = "PAGUMON" },
-      { level = 9, species = "GOTSUMON" }, { level = 8, species = "GOBURIMON" },
-      { level = 11, species = "DEMIDEVIMON" }, { level = 8, species = "UPAMON" },
+      { level = 11, species = "PAGUMON" }, { level = 9, species = "PAGUMON" },
+      { level = 10, species = "PAGUMON" }, { level = 10, species = "GOTSUMON" },
+      { level = 10, species = "MUSHROOMON" }, { level = 12, species = "PAGUMON" },
+      { level = 11, species = "GOTSUMON" }, { level = 10, species = "GOBURIMON" },
+      { level = 11, species = "DEMIDEVIMON" }, { level = 11, species = "MUSHROOMON" },
     } },
     source = "ROM:03:514D",
+    -- avg lvl 10.5
   })
 
   mod.content.encounters:patch("MT_MOON_B1F", {
     grass = { rate = 10, slots = {
-      { level = 8, species = "PAGUMON" }, { level = 7, species = "PAGUMON" },
-      { level = 7, species = "GOTSUMON" }, { level = 8, species = "GOTSUMON" },
-      { level = 9, species = "PAGUMON" }, { level = 10, species = "MUSHROOMON" },
-      { level = 10, species = "PAGUMON" }, { level = 10, species = "GOBURIMON" },
-      { level = 9, species = "DEMIDEVIMON" }, { level = 9, species = "MUSHROOMON" },
+      { level = 12, species = "PAGUMON" }, { level = 11, species = "PAGUMON" },
+      { level = 12, species = "GOTSUMON" }, { level = 11, species = "GOTSUMON" },
+      { level = 10, species = "PAGUMON" }, { level = 12, species = "MUSHROOMON" },
+      { level = 11, species = "PAGUMON" }, { level = 11, species = "GOBURIMON" },
+      { level = 10, species = "DEMIDEVIMON" }, { level = 8, species = "UPAMON" },
     } },
     source = "ROM:03:5163",
+    -- avg lvl 10.8
   })
 
   mod.content.encounters:patch("MT_MOON_B2F", {
     grass = { rate = 10, slots = {
-      { level = 9, species = "PAGUMON" }, { level = 9, species = "GOTSUMON" },
-      { level = 10, species = "MUSHROOMON" }, { level = 10, species = "GOTSUMON" },
-      { level = 11, species = "MUSHROOMON" }, { level = 10, species = "GOBURIMON" },
+      { level = 12, species = "PAGUMON" }, { level = 11, species = "GOTSUMON" },
+      { level = 11, species = "MUSHROOMON" }, { level = 10, species = "GOTSUMON" },
+      { level = 12, species = "MUSHROOMON" }, { level = 10, species = "GOBURIMON" },
       { level = 12, species = "GOBURIMON" }, { level = 10, species = "DEMIDEVIMON" },
-      { level = 12, species = "DEMIDEVIMON" }, { level = 12, species = "UPAMON" },
+      { level = 12, species = "DEMIDEVIMON" }, { level = 10, species = "UPAMON" },
     } },
     source = "ROM:03:5179",
+    -- avg lvl 11
   })
 
   mod.content.encounters:patch("ROUTE_1", {
@@ -43,54 +46,115 @@ return function(mod)
       { level = 4, species = "MUCHOMON" }, { level = 5, species = "MUCHOMON" },
     } },
     source = "ROM:03:50DF",
+    -- avg lvl 3.2
   })
 
 
   mod.content.encounters:patch("ROUTE_2", {
     grass = { rate = 25, slots = {
-      { level = 3, species = "CHUUMON" }, { level = 3, species = "MUCHOMON" },
-      { level = 4, species = "MUCHOMON" }, { level = 4, species = "CHUUMON" },
-      { level = 5, species = "MUCHOMON" }, { level = 3, species = "MINOMON" },
-      { level = 2, species = "CHUUMON" }, { level = 5, species = "CHUUMON" },
-      { level = 2, species = "MINOMON" }, { level = 3, species = "MUCHOMON" },
+      { level = 6, species = "CHUUMON" }, { level = 4, species = "MUCHOMON" },
+      { level = 7, species = "MUCHOMON" }, { level = 8, species = "CHUUMON" },
+      { level = 5, species = "MUCHOMON" }, { level = 4, species = "MINOMON" },
+      { level = 5, species = "CHUUMON" }, { level = 7, species = "CHUUMON" },
+      { level = 5, species = "MINOMON" }, { level = 6, species = "MUCHOMON" },
     },},
     source = "ROM:03:50F5",
+    -- avg lvl 5.7
   })
 
   mod.content.encounters:patch("ROUTE_22", {
     grass = { rate = 25, slots = {
-        { level = 3, species = "CHUUMON" }, { level = 3, species = "MUCHOMON"},
-        { level = 4, species = "CHUUMON" }, { level = 4, species = "MUCHOMON"},
-        { level = 2, species = "CHUUMON" }, { level = 2, species = "KUNEMON"},
+        { level = 4, species = "CHUUMON" }, { level = 3, species = "MUCHOMON"},
+        { level = 5, species = "CHUUMON" }, { level = 4, species = "MUCHOMON"},
+        { level = 3, species = "CHUUMON" }, { level = 6, species = "KUNEMON"},
         { level = 3, species = "PAGUMON" }, { level = 5, species = "PAGUMON"},
         { level = 3, species = "MUCHOMON"}, { level = 4, species = "GOTSUMON"},
       },
     },
     source = "ROM:03:510B",
+    -- avg lvl 4
   })
+
+  mod.content.encounters:patch("ROUTE_24", {
+    grass = { rate = 25, slots = {
+        { level = 13, species = "CHUUMON" }, { level = 13, species = "MUCHOMON"},
+        { level = 13, species = "LALAMON" }, { level = 15, species = "LALAMON"},
+        { level = 14, species = "KUNEMON" }, { level = 14, species = "FLORAMON"},
+        { level = 13, species = "CHUUMON" }, { level = 11, species = "GIZAMON"},
+        { level = 15, species = "MUCHOMON"}, { level = 15, species = "FLORAMON"},
+      },
+    },
+    source = "ROM:03:51A5",
+    -- avg lvl 13.6
+  })
+
+  mod.content.encounters:patch("ROUTE_25", {
+    grass = { rate = 25, slots = {
+        { level = 13, species = "MINOMON" }, { level = 14, species = "MINOMON"},
+        { level = 14, species = "KAPURIMON" }, { level = 15, species = "FLORAMON"},
+        { level = 15, species = "LALAMON" }, { level = 13, species = "LALAMON"},
+        { level = 13, species = "FLORAMON" }, { level = 14, species = "GIZAMON"},
+        { level = 14, species = "MUSHROOMON"}, { level = 13, species = "VEGIEMON"},
+      },
+    },
+    source = "ROM:03:51A5",
+    -- avg lvl 14.1
+  })
+
+
 
   mod.content.encounters:patch("ROUTE_3", {
     grass = { rate = 20, slots = { 
-      { level = 6, species = "MUCHOMON" }, { level = 5, species = "MINOMON"},
-      { level = 7, species = "MUCHOMON" }, { level = 6, species = "CHUUMON"},
+      { level = 9, species = "MUCHOMON" }, { level = 9, species = "MINOMON"},
+      { level = 7, species = "MUCHOMON" }, { level = 9, species = "CHUUMON"},
       { level = 7, species = "CHUUMON" }, { level = 8, species = "MUCHOMON"},
-      { level = 8, species = "CHUUMON"}, { level = 3, species = "KAPURIMON"},
-      { level = 5, species = "KAPURIMON" }, { level = 7, species = "KAPURIMON"},
+      { level = 8, species = "CHUUMON"}, { level = 8, species = "KAPURIMON"},
+      { level = 9, species = "KAPURIMON" }, { level = 10, species = "KAPURIMON"},
       },
     },
     source = "ROM:03:5137",
+    -- avg lvl 8.4
   })
 
     mod.content.encounters:patch("ROUTE_4", {
     grass = { rate = 20, slots = { 
-      { level = 10, species = "CHUUMON" }, { level = 10, species = "MUCHOMON"},
-      { level = 8, species = "CHUUMON" }, { level = 6, species = "MUSHROOMON"},
-      { level = 8, species = "GIZAMON" }, { level = 10, species = "MUCHOMON"},
-      { level = 12, species = "GIZAMON"}, { level = 12, species = "KAPURIMON"},
-      { level = 8, species = "KAPURIMON" }, { level = 12, species = "KAPURIMON"},
+      { level = 13, species = "CHUUMON" }, { level = 12, species = "MUCHOMON"},
+      { level = 10, species = "CHUUMON" }, { level = 10, species = "MUSHROOMON"},
+      { level = 11, species = "GIZAMON" }, { level = 11, species = "MUCHOMON"},
+      { level = 12, species = "GIZAMON"}, { level = 13, species = "KAPURIMON"},
+      { level = 11, species = "KAPURIMON" }, { level = 12, species = "KAPURIMON"},
       },
     },
     source = "ROM:03:518F",
+    -- avg lvl 11.5
+  })
+
+
+    mod.content.encounters:patch("ROUTE_5", {
+    grass = { rate = 20, slots = { 
+      { level = 18, species = "GIZAMON" }, { level = 18, species = "MUCHOMON"},
+      { level = 19, species = "SUKAMON" }, { level = 17, species = "HAGURUMON"},
+      { level = 20, species = "GIZAMON" }, { level = 18, species = "MUCHOMON"},
+      { level = 15, species = "OTAMAMON"}, { level = 19, species = "OTAMAMON"},
+      { level = 17, species = "HAGURUMON" }, { level = 20, species = "FLYMON"},
+      },
+    },
+    source = "ROM:03:51BB",
+    -- AVG 18.1
+  })
+
+
+    mod.content.encounters:patch("ROUTE_6", {
+    grass = { rate = 20, slots = { 
+      { level = 19, species = "LALAMON" }, { level = 17, species = "FLORAMON"},
+      { level = 20, species = "WORMMON" }, { level = 16, species = "CHUUMON"},
+      { level = 20, species = "GAZIMON" }, { level = 18, species = "LALAMON"},
+      { level = 18, species = "FLORAMON"}, { level = 18, species = "WORMMON"},
+      { level = 19, species = "CHUUMON" }, { level = 20, species = "NYAROMON"},
+      },
+    },
+    source = "ROM:03:51BB",
+    -- AVG 18.5
   })
 
 
