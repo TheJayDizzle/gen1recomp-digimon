@@ -134,7 +134,8 @@ return function(mod)
     DEMIDEVIMON = {
       { target = "DEVIMON", requirement="LVL MIN 40", unlocked=function(mon) return (mon.level or 1) >= 34 end },
       { target = "ANGEMON", requirement={"LVL MIN 40","ATK 50"}, unlocked=function(mon) return (mon.level or 1) >= 34 and (mon.stats.attack or 0) >= 50 end },
-      -- BAKEMON
+      { target = "BAKEMON", requirement={"LVL MIN 33","SPC 47"}, unlocked=function(mon) return (mon.level or 1) >= 33 and (mon.stats.special or 0) >= 47 end },
+      
     },
     GOTSUMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
@@ -168,9 +169,9 @@ return function(mod)
       { target = "SUKAMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
       { target = "OGREMON", requirement={"ATK 55"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 55 end },
       { target = "RAREMON", requirement={"HP 65"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 65 end },
-      { target = "MOJYAMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1) >= 30 end },
+      { target = "NUMEMON", requirement={"LVL MIN 20"}, unlocked=function(mon) return (mon.level or 1) >= 20 end },
+      
       -- Monzaemon
-      -- Numemon?
     },    
     MUCHOMON = {
       { target = "KOKATORIMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
@@ -199,7 +200,7 @@ return function(mod)
     },
     OTAMAMON = {
       { target = "GEKOMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 end },
-      { target = "RAREMON", requirement={"HP 75"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 75 end },
+      { target = "RAREMON", requirement={"LVL MIN 30", "HP 75"}, unlocked=function(mon) return (mon.level) >= 30 and (mon.stats.hp or 0) >= 75 end },
       { target = "IKKAKUMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
     },
     IMPMON = {
@@ -208,10 +209,19 @@ return function(mod)
       { target = "DEVIMON", requirement={"SPD 40", "SPC 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 40 and (mon.stats.special or 0) >= 45 end },
       -- Bakemon
     },
-     SUNARIZAMON = {
+    SUNARIZAMON = {
+    --  { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
       { target = "TORTAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
-      { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
     },
+    VEEMON = {
+    --  { target = "LIGHDRAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
+      { target = "DRIMOGEMON", requirement={"HP 60"}, unlocked=function(mon) return (mon.stats.hp or 0 ) >= 60 end },
+    },
+    HAWKMON = {
+      { target = "KOKATORIMON", requirement={"LVL MIN 30","ATK 35"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.attack) >= 35 end },
+      { target = "KIWIMON", requirement={"SPD 45"}, unlocked=function(mon) return (mon.stats.speed or 0 ) >= 45 end },
+    },
+
   }
 
     local EXTRA_DEVOLUTION_ROUTES = {
@@ -244,6 +254,16 @@ return function(mod)
     if type(mon) ~= "table" then return end
     mon.digivolutionBonus = mon.digivolutionBonus or {}
     if type(mon.dvs) == "table" then bonusByDVs[mon.dvs] = mon.digivolutionBonus end
+  end
+
+  local function recordDigivolution(mon, source, target)
+    mon.digivolutionHistory = type(mon.digivolutionHistory) == "table"
+      and mon.digivolutionHistory or {}
+    local history = mon.digivolutionHistory
+    if #history == 0 or history[#history] ~= source then
+      history[#history + 1] = source
+    end
+    history[#history + 1] = target
   end
   local function bindSave(save)
     if type(save) ~= "table" then return end
@@ -327,14 +347,30 @@ return function(mod)
   end
 
   local Confirm = {}; Confirm.__index=Confirm; Confirm.isOpaque=true
+  local function baseStatExtremes(def)
+    local base = def and def.baseStats or {}
+    local lowest, highest
+    for _, key in ipairs(KEYS) do
+      local value = tonumber(base[key]) or 0
+      lowest = lowest == nil and value or math.min(lowest, value)
+      highest = highest == nil and value or math.max(highest, value)
+    end
+    return lowest, highest
+  end
+
   function Confirm.new(game, menu, route)
     local mon = menu.mon
     local target = assert(game.data.pokemon[route.target],
-      "unknown Devolution target "..tostring(route.target))
-    -- Preview the actual target species at level 1. Stats.calc also includesbonuses earned on earlier cycles; this devolution's award is added in the final column below.
+      "unknown Digivolution target "..tostring(route.target))
+    -- Preview the actual target species at level 1. Stats.calc also includes
+    -- bonuses earned on earlier cycles. A new award is added only when
+    -- devolving.
     local targetStats = Stats.calc(target, 1, mon.dvs or {}, mon.statExp)
+    local lowestBaseStat, highestBaseStat = baseStatExtremes(target)
     return setmetatable({ game=game, menu=menu, mon=mon, route=route,
-      award=devolutionAward(mon), targetStats=targetStats, yes=true }, Confirm)
+      award=route.kind=="devolve" and devolutionAward(mon) or {},
+      targetStats=targetStats, lowestBaseStat=lowestBaseStat,
+      highestBaseStat=highestBaseStat, yes=true }, Confirm)
   end
   function Confirm:update()
     local input = self.game.input
@@ -346,28 +382,35 @@ return function(mod)
       Sound.play(self.game.data,"Press_AB")
       if not self.yes then self.game.stack:pop(); return end
       local oldLevel = self.mon.level
+      local oldSpecies = self.mon.species
       self.game.stack:pop()
       self.mon.level=1
       Evolution.evolve(self.game,self.mon,self.route.target,function()
         if self.mon.species ~= self.route.target then self.mon.level=oldLevel; return end
         bind(self.mon)
-        for _,key in ipairs(KEYS) do
-          self.mon.digivolutionBonus[key]=(tonumber(self.mon.digivolutionBonus[key]) or 0)
-            +(self.award[key] or 0)
+        recordDigivolution(self.mon, oldSpecies, self.route.target)
+        if self.route.kind == "devolve" then
+          for _,key in ipairs(KEYS) do
+            self.mon.digivolutionBonus[key]=(tonumber(self.mon.digivolutionBonus[key]) or 0)
+              +(self.award[key] or 0)
+          end
         end
         resetMon(self.game,self.mon)
         self.game.stack:pop()
-      end,"DEVOLUTION")
+      end,self.route.kind=="devolve" and "DEVOLUTION" or "DIGIVOLUTION")
     end
   end
   function Confirm:draw()
     love.graphics.setColor(1,1,1,1); love.graphics.rectangle("fill",0,0,160,144)
     love.graphics.setColor(0,0,0,1)
     local target=self.game.data.pokemon[self.route.target]
-    Font.draw(Strings("DEVOLVE TO"),40,8)
+    local heading=self.route.kind=="devolve" and "DEVOLVE TO" or "DIGIVOLVE TO"
+    Font.draw(Strings(heading),math.floor(80-Font.width(heading)/2),8)
     local name=(target and target.name) or self.route.target
     Font.draw(name,math.floor(80-Font.width(name)/2),20)
-    Font.draw(Strings("STAT BONUS"),40,34)
+    local types=target and target.types or {}
+    local typeText=#types>0 and table.concat(types,"/") or "NO TYPE"
+    Font.draw(typeText,math.floor(80-Font.width(typeText)/2),34)
     if not Confirm.greenShader and love.graphics.newShader then
       local ok, shader = pcall(love.graphics.newShader, [[
         vec4 effect(vec4 color, Image texture, vec2 uv, vec2 screen) {
@@ -381,13 +424,34 @@ return function(mod)
       local y=42+(row-1)*14
       local current=tonumber(self.targetStats and self.targetStats[key]) or 0
       local gain=self.award[key] or 0
-      Font.draw(LABEL[key],8,y); Font.draw(tostring(current),40,y)
-      local previousShader = love.graphics.getShader and love.graphics.getShader()
-      if Confirm.greenShader then love.graphics.setShader(Confirm.greenShader) end
-      love.graphics.setColor(0,0.72,0,1); Font.draw("("..gain..")",72,y)
-      if Confirm.greenShader then love.graphics.setShader(previousShader) end
-      PaletteFX.markTrueColor(72,y,32,8)
-      love.graphics.setColor(0,0,0,1); Font.draw(tostring(current+gain),112,y)
+      Font.draw(LABEL[key],8,y)
+      if self.route.kind == "devolve" then
+        Font.draw(tostring(current),40,y)
+        local previousShader = love.graphics.getShader and love.graphics.getShader()
+        if Confirm.greenShader then love.graphics.setShader(Confirm.greenShader) end
+        love.graphics.setColor(0,0.72,0,1); Font.draw("("..gain..")",72,y)
+        if Confirm.greenShader then love.graphics.setShader(previousShader) end
+        PaletteFX.markTrueColor(72,y,32,8)
+        love.graphics.setColor(0,0,0,1); Font.draw(tostring(current+gain),112,y)
+      else
+        -- Color the target's strongest and weakest innate attributes. The
+        -- displayed value remains its real level-1 preview, but the ranking is
+        -- based solely on the baseStats from the species registration.
+        local base = tonumber(target and target.baseStats and target.baseStats[key]) or 0
+        local previousShader = love.graphics.getShader and love.graphics.getShader()
+        if Confirm.greenShader then love.graphics.setShader(Confirm.greenShader) end
+        if self.highestBaseStat ~= self.lowestBaseStat and base == self.highestBaseStat then
+          love.graphics.setColor(0,0.72,0,1)
+        elseif self.highestBaseStat ~= self.lowestBaseStat and base == self.lowestBaseStat then
+          love.graphics.setColor(0.86,0,0,1)
+        else
+          love.graphics.setColor(0,0,0,1)
+        end
+        Font.draw(tostring(current),72,y)
+        if Confirm.greenShader then love.graphics.setShader(previousShader) end
+        PaletteFX.markTrueColor(72,y,24,8)
+        love.graphics.setColor(0,0,0,1)
+      end
     end
     Font.drawCode(Theme.cursor,self.yes and 28 or 92,120)
     Font.draw(Strings("YES"),40,120); Font.draw(Strings("NO"),104,120)
@@ -429,15 +493,7 @@ return function(mod)
   end
   function Menu:chooseEvolution(route)
     if not route.unlocked(self.mon) then show(self.game,requirementText(route)); return end
-    local targetName=self.game.data.pokemon[route.target].name
-    show(self.game,("Digivolve into\n%s?"):format(targetName),nil,{choice=function(yes)
-      if not yes then return end
-      local oldLevel=self.mon.level; self.mon.level=1
-      Evolution.evolve(self.game,self.mon,route.target,function()
-        if self.mon.species~=route.target then self.mon.level=oldLevel; return end
-        resetMon(self.game,self.mon); self.game.stack:pop()
-      end,"DIGIVOLUTION")
-    end})
+    self.game.stack:push(Confirm.new(self.game,self,route))
   end
   function Menu:chooseRoute()
     local route=self:selectedRoute()
@@ -502,7 +558,7 @@ return function(mod)
       selectedGame.stack:push(Menu.new(selectedGame,selected))
     end}
     local at=#out+1
-    for i,item in ipairs(out) do if item.action=="stats" then at=i; break end end
+    for i,item in ipairs(out) do if item.action=="stats" then at=i+1; break end end
     table.insert(out,at,entry); return out
   end)
 end

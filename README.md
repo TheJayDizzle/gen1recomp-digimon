@@ -6,7 +6,7 @@ with a Digimon-focused experience while retaining the Gen 1 style.
 
 ## Current version
 
-Version **0.1.3** is an unfinished demo. An NPC in Vermilion City marks the
+Version **0.1.4** is an unfinished demo. An NPC in Vermilion City marks the
 current end of the available content.
 
 ## Compatibility
@@ -20,9 +20,13 @@ current end of the available content.
 
 - New Digimon species, sprites, icons, moves, encounters, and trainer parties
 - Manual Digivolution and De-Digivolution with branching requirements
+- Permanent De-Digivolution stat bonuses, shown alongside base and total stats
+- Scrollable Digivolution path lists with requirement indicators
 - Reworked experience progression for repeated Digivolution cycles
 - Higher-resolution battle, party, status, and Digivolution visuals
+- Dark and Steel types plus several new moves
 - Digimon terminology and interface changes
+- A redesigned DIGI sign for Pokémon Centers
 - Reusable TMs
 
 ## Installation
@@ -41,7 +45,7 @@ intended experience.
 - Brock and Misty are available, they have champion digimon, they could hit hard
 - There could be UI issues
 - Obviously not all text is replaced, there are people talking about RATTATA, there is a SLOWBRO in Cerulean City, not important for now
-- I added 58 mons, but I don't think every one is available so far (maybe with evolution criss-cross)
+- I added 72 mons, but I don't think every one is available so far (maybe with evolution criss-cross)
 - No Digimon has a cry so far, maybe I am not even giving them any. Time will tell
 - The fossil event hasn't been altered so far, just pick one and go. I will probably just rename them later and reward Digimon for them
 - while every mon has a "DIGIDEX" entry, weight and size have not been adjusted for all of them
@@ -57,9 +61,9 @@ intended experience.
 
 ## ADDED MOD FEATURES IN THE DEMO:
 
-- new Digimon: 58 Digimon has been added and encounter tables and trainers from Pallet Town to Cerulean City (until the Rival battle on nugget bridge) have been modified
-- digivolution, inspired by modern Digimon games: No mon evolves with level anymore. There is a new sub-menu when choosing a Digimon in the Party screen the opens the Digivolution window. Every Digimon in In-Training or Rookie Level has at least two Digimon it can evolve two. There are requirements (level or stats for now) a digimon needs to fulfill in order to evolve to another level. Are the requirements not met, a red border marks the selection. The idea is that a digimon in rookie or champion level NEEDS to devolve several times, because every 5 level a devolved Digimon gets permanent bonus stats that count to digivolution. To balance that out, all digimon need 40% less experience to level up (probably will need tweaking)
-- added the Dark (SPC) and Steel (PHY) Type, as well as Crunch, Steel Wing, Metal Claw, Metal Sound and Iron Tail. Bite is now a Dark Move.
+- new Digimon: 72 Digimon have been added, with modified encounter tables and trainers extending through Vermilion City, Route 11 and Diglett's Cave
+- digivolution, inspired by modern Digimon games: No mon evolves with level anymore. There is a new sub-menu when choosing a Digimon in the Party screen the opens the Digivolution window. Every Digimon in In-Training or Rookie Level has at least two Digimon it can evolve two. There are requirements (level or stats for now) a digimon needs to fulfill in order to evolve to another level. Are the requirements not met, a red border marks the selection. The idea is that a digimon in rookie or champion level NEEDS to devolve several times, because every 5 level a devolved Digimon gets permanent bonus stats that count to digivolution. To balance that out, all digimon need 20% less experience to level up (probably will need tweaking)
+- added the Dark (SPC) and Steel (PHY) Type, as well as Crunch, Steel Wing, Metal Claw, Metal Sound, Iron Tail and Powder Snow. Bite is now a Dark Move.
 - the Salesman in the Mt. Moon Center sells a Betamon for now, will change that later in developement
 - words like "POKéMON" and "trainer" have been replaced by "DIGIMON" and "tamer"
 - every Digimon has its own party screen icon and colorful sprites

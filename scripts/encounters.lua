@@ -158,7 +158,7 @@ return function(mod)
     mod.content.encounters:patch("ROUTE_5", {
     grass = { rate = 20, slots = { 
       { level = 18, species = "GIZAMON" }, { level = 18, species = "MUCHOMON"},
-      { level = 19, species = "SUKAMON" }, { level = 17, species = "HAGURUMON"},
+      { level = 19, species = "NUMEMON" }, { level = 17, species = "HAGURUMON"},
       { level = 20, species = "GIZAMON" }, { level = 18, species = "MUCHOMON"},
       { level = 15, species = "OTAMAMON"}, { level = 19, species = "OTAMAMON"},
       { level = 17, species = "HAGURUMON" }, { level = 20, species = "FLYMON"},

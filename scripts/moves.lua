@@ -3,6 +3,10 @@ return function(mod)
   mod.content.moves:patch("BITE", {
     type = "DARK",
   })
+
+  mod.content.moves:patch("GUST", {
+    type = "FLYING",
+  })
   mod.content.move_effects:register("CRUNCH_SPECIAL_DOWN_EFFECT", {
     kind = "secondary",
     run = function(ctx)

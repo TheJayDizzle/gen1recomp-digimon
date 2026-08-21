@@ -2,6 +2,30 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.5
+
+- Added new Digimon: Veemon, Hawkmon, Numemon and Bakemon
+- Added digivolution paths and requirements for the newly introduced Digimon.
+- Made Gust a Flying move
+- Adjusted sprite size of Pagumon.
+- Replaced back facing sprite of Tanemon.
+- Replaced the GAZIMON of a lass trainer on nugget bridge with a HAWKMON
+- Replaced the AIRDRAMON of a JR_M trainer on nugget bridge with a VEEMON
+- Replaced the VEGIEMON of the Team Rocket trainer on nugget bridge with a NUMEMON
+- Replaced the NYAROMON of the rival battle at nugget bridge witha  VEEMON
+- Replaced the SUKAMON of the last Mt. Moon Team Rocket trainer with a NUMEMON
+- Replaced SUKAMON on ROUTE_5's encounter table with NUMEMON
+- Added a DV screen as third status screen (outside of battle) of a mon.
+- Added a Evolution History as a fourth status screen (outside of battle) of a mon.
+- Added a new XP overlay that displays the whole party with icons, their LVL, XP and gained XP.
+- Digimon now always obey their Tamer, regardless of level or badges.
+- Swapped STATUS and DIGIVOLV in the party submenu.
+- During Evolution Preview, the target mon's highest and lowest base stats will get marked green and red.
+- During Devolution and Evolution preview, the target mon's types will now be displayed above the stats.
+- Fixed a typo in the README.md
+- Moved the demo boundary NPC and event from Vermilion City to Route 9, east of Cerulean City.
+
+
 ## 0.1.4
 
 - Added new Digimon: Sunarizamon, Tortamon and Drimogemon
@@ -32,7 +56,7 @@ All notable changes to Digimon in Kanto are documented here.
 - Increased trainers' digimon level inside Misty gym
 - Updated dialogues of various NPCs in Vermilion and Cerulean City.
 - Moved the demo boundary NPC and event from Nugget Bridge to Vermilion City.
-- Changed the sprite for the PokéCenter, so it says "DIGIC"(enter).
+- Changed the PokéCenter sign so it says "DIGI."
 
 ## 0.1.2
 

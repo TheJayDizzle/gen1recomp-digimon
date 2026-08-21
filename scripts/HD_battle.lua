@@ -61,6 +61,7 @@ return function(mod)
     GATOMON = { centerX = 124, bottom = 54, maxSize = 56, scale = 1},
     BETAMON = { centerX = 124, bottom = 46, maxSize = 76, scale = 1},
     SEADRAMON = { centerX = 124, bottom = 46, maxSize = 50, scale = 1},
+    PAGUMON = { centerX = 124, bottom = 46, maxSize = 70, scale = 0.7},
     DEVIMON = { centerX = 124, bottom = 46, maxSize = 52, scale = 1},
     UPAMON = { centerX = 124, bottom = 46, maxSize = 52, scale = 0.6},
     MONOCHROMON = { centerX = 124, bottom = 46, maxSize = 54, scale = 0.9},
@@ -87,6 +88,10 @@ return function(mod)
     SORCERMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
     MOYJAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
     SUNARIZAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    VEEMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    HAWKMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.8},
+    BAKEMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
+    NUMEMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.7},
 
   }
 
@@ -114,6 +119,11 @@ return function(mod)
     IMPMON = { left = 6, bottom = 96, maxSize = 70, scale = 0.75},
     SUNARIZAMON = { left = 6, bottom = 96, maxSize = 70, scale = 1},
     TORTAMON = { left = 12, bottom = 96, maxSize = 64, scale = 1},
+    VEEMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
+    HAWKMON = { left = 12, bottom = 96, maxSize = 56, scale = 1},
+    BAKEMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
+    NUMEMON = { left = 6, bottom = 96, maxSize = 64, scale = 1},
+
   }
 
   local stageCanvas
@@ -126,6 +136,302 @@ return function(mod)
   local textureContext
   local sideTextures = {}
   local menuSpriteCache = setmetatable({}, { __mode = "k" })
+
+  ---------------------------------------------------------------------------
+  -- Compact experience presentation
+  ---------------------------------------------------------------------------
+  -- Experience.apply still performs every native calculation immediately.
+  -- This screen only visualizes the old-to-new EXP range while the battle
+  -- queue waits, replacing the repeated gained/grew/stat-box sequence.
+  local Experience = require("src.battle.Experience")
+  local Growth = require("src.pokemon.Growth")
+  local PartyMenu = require("src.ui.PartyMenu")
+
+  local ExpOverlay = {}
+  ExpOverlay.__index = ExpOverlay
+  ExpOverlay.isOpaque = false
+  ExpOverlay.digimonHDIcons = true
+
+  local function expSegments(game, mon, oldExp, finalExp, oldLevel, finalLevel)
+    local def = game.data.pokemon[mon.species]
+    local rate = def.growthRate
+    local rates = game.data.growth_rates
+    local cap = game.data.constants and game.data.constants.levelCap or 100
+    local segments = {}
+    local position = oldExp
+    local level = oldLevel
+
+    while position < finalExp and level <= cap do
+      local base = Growth.expForLevel(rate, level, rates)
+      local nextExp = level < cap
+        and Growth.expForLevel(rate, level + 1, rates) or math.max(base + 1, finalExp)
+      -- A save made under an older, cheaper curve can legitimately carry less
+      -- total EXP than the current curve says this level starts at. Treat the
+      -- preceding threshold as its visual floor so existing progress remains
+      -- visible; the actual saved EXP and leveling calculation stay untouched.
+      local visualBase = base
+      if position < base then
+        visualBase = Growth.expForLevel(rate, math.max(1, level - 1), rates)
+        if position < visualBase then visualBase = 0 end
+      end
+      local finish = math.min(finalExp, nextExp)
+      segments[#segments + 1] = {
+        level = level, first = position, last = finish,
+        base = visualBase, nextExp = nextExp, duration = 2.60,
+      }
+      position = finish
+      if position >= nextExp then level = level + 1 else break end
+    end
+
+    if #segments == 0 then
+      local base = Growth.expForLevel(rate, finalLevel, rates)
+      local nextExp = finalLevel < cap
+        and Growth.expForLevel(rate, finalLevel + 1, rates) or base + 1
+      -- Unchanged/non-participating party members enter this branch. Apply
+      -- the same old-save curve compatibility used by animated segments, or
+      -- their existing within-level EXP can incorrectly render as an empty
+      -- bar until they receive enough EXP to level up.
+      local visualBase = base
+      if finalExp < base then
+        visualBase = Growth.expForLevel(rate, math.max(1, finalLevel - 1), rates)
+        if finalExp < visualBase then visualBase = 0 end
+      end
+      segments[1] = { level=finalLevel, first=finalExp, last=finalExp,
+        base=visualBase, nextExp=nextExp, duration=0.25 }
+    elseif finalLevel > oldLevel
+       and finalExp == Growth.expForLevel(rate, finalLevel, rates) then
+      -- Hold the newly reset bar briefly when the award lands exactly on a
+      -- level boundary; otherwise the last visible frame would be a full bar.
+      local base = Growth.expForLevel(rate, finalLevel, rates)
+      local nextExp = finalLevel < cap
+        and Growth.expForLevel(rate, finalLevel + 1, rates) or base + 1
+      segments[#segments + 1] = { level=finalLevel, first=finalExp,
+        last=finalExp, base=base, nextExp=nextExp, duration=0.30 }
+    end
+    return segments
+  end
+
+  function ExpOverlay.new(game, party, records)
+    local entries = {}
+    for _, mon in ipairs(party) do
+      local record = records[mon]
+      local oldExp = record and record.oldExp or mon.exp
+      local oldLevel = record and record.oldLevel or mon.level
+      local finalExp = record and record.finalExp or mon.exp
+      local finalLevel = record and record.finalLevel or mon.level
+      entries[#entries + 1] = {
+        mon=mon, gained=record and record.gained or 0,
+        index=1, elapsed=0, levelFlash=0, barFlash=0,
+        segments=expSegments(game, mon, oldExp, finalExp, oldLevel, finalLevel),
+      }
+    end
+    return setmetatable({ game=game, entries=entries, speed=1,
+      boosted=false, finished=false }, ExpOverlay)
+  end
+
+  function ExpOverlay:update(dt)
+    local input = self.game.input
+    local pressed = input:wasPressed("a") or input:wasPressed("b")
+    if pressed then
+      if self.finished then
+        self.game.stack:pop()
+        return
+      elseif not self.boosted then
+        self.boosted = true
+        self.speed = 2
+      end
+    end
+
+    local allFinished = true
+    local advance = (dt or 0) * self.speed
+    for _, entry in ipairs(self.entries) do
+      entry.levelFlash = math.max(0, (entry.levelFlash or 0) - (dt or 0))
+      entry.barFlash = math.max(0, (entry.barFlash or 0) - (dt or 0))
+      entry.elapsed = entry.elapsed + advance
+      local segment = entry.segments[entry.index]
+      while segment and entry.elapsed >= segment.duration do
+        local completedLevel = segment.level
+        entry.elapsed = entry.elapsed - segment.duration
+        entry.index = entry.index + 1
+        segment = entry.segments[entry.index]
+        if segment and segment.level > completedLevel then
+          entry.levelFlash = 0.80
+          entry.barFlash = 0.35
+        end
+      end
+      if segment then allFinished = false end
+    end
+    self.finished = allFinished
+  end
+
+  function ExpOverlay:drawPanel()
+    local g = love.graphics
+    g.setColor(0, 0, 0, 1)
+    Font.drawBox(0, 0, 16, 18)
+
+    for i, entry in ipairs(self.entries) do
+      local animating = entry.index <= #entry.segments
+      local segment = entry.segments[math.min(entry.index, #entry.segments)]
+      local progress = animating
+        and math.min(1, entry.elapsed / math.max(0.01, segment.duration)) or 1
+      local shownExp = segment.first + (segment.last - segment.first) * progress
+      local span = math.max(1, segment.nextExp - segment.base)
+      local ratio = math.max(0, math.min(1, (shownExp - segment.base) / span))
+      local def = self.game.data.pokemon[entry.mon.species]
+      local name = entry.mon.nickname or def.name
+      local y = 8 + (i - 1) * 22
+
+      -- A short alternating row tint makes each level boundary noticeable
+      -- without pausing the simultaneous party-wide EXP animation.
+      if entry.levelFlash > 0
+         and math.floor(entry.levelFlash / 0.10) % 2 == 1 then
+        g.setColor(1, 0.94, 0.55, 1)
+        g.rectangle("fill", 6, y - 1, 116, 21)
+        g.setColor(0, 0, 0, 1)
+      end
+
+      local iconState = PartyMenu.digimonHDIconState
+      if iconState and iconState.drawDirectIcon then
+        iconState.drawDirectIcon(self.game, entry.mon, 5, y + 1)
+      else
+        PartyMenu.drawIcon(self.game, entry.mon, 5, y + 1, false, 0)
+      end
+      Font.draw(name, 28, y)
+
+      local levelText = ("L%d"):format(segment.level)
+      Font.draw(levelText, 28, y + 8)
+      if entry.levelFlash > 0 then
+        -- Draw this directly: the Gen 1 font maps the Unicode up-triangle to
+        -- its right-facing menu cursor on some font/charmap combinations.
+        local arrowX = 28 + Font.width(levelText) + 2
+        local arrowY = y + 9
+        g.setColor(0, 0, 0, 1)
+        g.rectangle("fill", arrowX + 2, arrowY, 1, 1)
+        g.rectangle("fill", arrowX + 1, arrowY + 1, 3, 1)
+        g.rectangle("fill", arrowX, arrowY + 2, 5, 1)
+        g.rectangle("fill", arrowX + 2, arrowY + 3, 1, 3)
+      end
+      local gainedText = ("+%d"):format(entry.gained)
+      Font.draw(gainedText, 116 - Font.width(gainedText), y + 8)
+
+      g.setColor(0, 0, 0, 1)
+      g.rectangle("fill", 28, y + 17, 88, 4)
+      g.setColor(1, 1, 1, 1)
+      g.rectangle("fill", 29, y + 18, 86, 2)
+      if entry.barFlash > 0 then
+        g.setColor(0.15, 0.85, 0.25, 1)
+      else
+        g.setColor(3 / 255, 198 / 255, 252 / 255, 1)
+      end
+      local fillWidth = math.floor(86 * ratio + 0.5)
+      if shownExp > segment.base and fillWidth == 0 then fillWidth = 1 end
+      g.rectangle("fill", 29, y + 18, fillWidth, 2)
+    end
+
+    g.setColor(1, 1, 1, 1)
+  end
+
+  -- The ordinary menu draw target is the centered 160x144 UI canvas. The
+  -- actual panel is drawn by render.hud below so it can begin at the physical
+  -- left edge of a widescreen window.
+  function ExpOverlay:draw() end
+
+  mod.hooks:wrap("render.hud", function(next, game, viewport)
+    next(game, viewport)
+    local top = game and game.stack and game.stack:top()
+    if getmetatable(top) ~= ExpOverlay or type(viewport) ~= "table" then return end
+    local screenW, screenH = tonumber(viewport.width) or 0,
+      tonumber(viewport.height) or 0
+    if screenW <= 0 or screenH <= 0 then return end
+
+    -- 128 logical pixels is two-thirds of a 192x144 4:3 display. Preserve
+    -- square pixels and cap against two-thirds on narrower/wider viewports.
+    local scale = math.min(screenH / 144, (screenW * 2 / 3) / 128)
+    local originY = (screenH - 144 * scale) / 2
+    top.digimonHDIconViewport = { x=0, y=originY, scale=scale }
+
+    local g = love.graphics
+    local oldR, oldG, oldB, oldA = g.getColor()
+    local oldShader = g.getShader and g.getShader() or nil
+    if g.setShader then g.setShader() end
+    g.push()
+    g.translate(0, originY)
+    g.scale(scale, scale)
+    top:drawPanel()
+    g.pop()
+    if g.setShader then g.setShader(oldShader) end
+    g.setColor(oldR, oldG, oldB, oldA)
+  end)
+
+  if not BattleState.digimonExpOverlayHooked then
+    BattleState.digimonExpOverlayHooked = true
+    local originalAwardExp = BattleState.awardExp
+    local originalSayNext = BattleState.sayNext
+    local originalSayNextWaitSfx = BattleState.sayNextWaitSfx
+    local originalUiNext = BattleState.uiNext
+    local originalLearnMove = BattleState.learnMove
+
+    function BattleState:awardExp(...)
+      local nativeApply = Experience.apply
+      local inMoveLearning = false
+      local suppressGainedText = false
+      local records = {}
+      local party = self:playerPartyView()
+      local overlayQueued = false
+
+      Experience.apply = function(data, mon, ...)
+        local oldExp, oldLevel = mon.exp, mon.level
+        local levels, gained = nativeApply(data, mon, ...)
+        local finalExp, finalLevel = mon.exp, mon.level
+        local record = records[mon]
+        if not record then
+          record = { oldExp=oldExp, oldLevel=oldLevel, gained=0 }
+          records[mon] = record
+        end
+        record.gained = record.gained + gained
+        record.finalExp, record.finalLevel = finalExp, finalLevel
+        if not overlayQueued then
+          overlayQueued = true
+          originalUiNext(self, function()
+            return ExpOverlay.new(self.game, party, records)
+          end)
+        end
+        suppressGainedText = true
+        return levels, gained
+      end
+      self.sayNext = function(state, text)
+        if suppressGainedText then
+          suppressGainedText = false
+          return
+        end
+        return originalSayNext(state, text)
+      end
+      self.sayNextWaitSfx = function(state, text, sfx)
+        -- Calls made by learnMove retain both their text and learning sound.
+        -- All other calls in awardExp are the repetitive grew-level notices.
+        if not inMoveLearning then return end
+        return originalSayNextWaitSfx(state, text, sfx)
+      end
+      self.uiNext = function(state, factory)
+        -- The only non-move UI queued here is the per-level StatBox.
+        if not inMoveLearning then return end
+        return originalUiNext(state, factory)
+      end
+      self.learnMove = function(state, ...)
+        inMoveLearning = true
+        local results = { originalLearnMove(state, ...) }
+        inMoveLearning = false
+        return (table.unpack or unpack)(results)
+      end
+
+      local ok, result = pcall(originalAwardExp, self, ...)
+      Experience.apply = nativeApply
+      self.sayNext, self.sayNextWaitSfx = nil, nil
+      self.uiNext, self.learnMove = nil, nil
+      if not ok then error(result, 0) end
+      return result
+    end
+  end
 
   local function graphicsReady()
     local g = love and love.graphics
@@ -177,9 +483,59 @@ return function(mod)
     local originalSummaryNew = SummaryMenu.new
     SummaryMenu.new = function(...)
       local menu = originalSummaryNew(...)
+      local states = menu.game and menu.game.stack and menu.game.stack.states or {}
+      for _, state in ipairs(states) do
+        if getmetatable(state) == BattleState then
+          menu.digimonInBattle = true
+          break
+        end
+      end
       menu.digimonFullSprite = menu.sprite
       menu.sprite = menuSizedSprite(menu.sprite)
+      menu.digimonHDIcons = true
+      menu.historyIndex = math.max(1,
+        #(type(menu.mon.digivolutionHistory) == "table"
+          and menu.mon.digivolutionHistory or {}))
       return menu
+    end
+
+    local HISTORY_COLUMNS = 4
+
+    local function history(menu)
+      local entries = type(menu.mon.digivolutionHistory) == "table"
+        and menu.mon.digivolutionHistory or nil
+      if not entries or #entries == 0 then return { menu.mon.species } end
+      return entries
+    end
+
+    -- The original status screen has two pages. Keep its A/B progression, add
+    -- the DV and evolution-history pages, and use the d-pad to inspect history.
+    function SummaryMenu:update(dt)
+      local input = self.game.input
+      if self.page == 4 then
+        local entries = history(self)
+        local index = math.max(1, math.min(self.historyIndex or #entries, #entries))
+        if input:wasPressed("left") then
+          index = math.max(1, index - 1)
+        elseif input:wasPressed("right") then
+          index = math.min(#entries, index + 1)
+        elseif input:wasPressed("up") then
+          index = math.max(1, index - HISTORY_COLUMNS)
+        elseif input:wasPressed("down") then
+          index = math.min(#entries, index + HISTORY_COLUMNS)
+        elseif input:wasPressed("a") or input:wasPressed("b") then
+          self.game.stack:pop()
+          return
+        end
+        self.historyIndex = index
+      elseif input:wasPressed("a") or input:wasPressed("b") then
+        local lastPage = self.digimonInBattle and 2 or 4
+        if self.page < lastPage then
+          self.page = self.page + 1
+        else
+          self.game.stack:pop()
+        end
+      end
     end
   end
 
@@ -525,7 +881,110 @@ return function(mod)
     SummaryMenu.digimonStageSpriteHooked = true
     local originalSummaryDraw = SummaryMenu.draw
     local PaletteFX = require("src.render.PaletteFX")
+    local HudTiles = require("src.render.HudTiles")
+    local PartyMenu = require("src.ui.PartyMenu")
+    local Theme = require("src.ui.Theme")
     local summaryGreenShader
+
+    local function summaryHPDV(dvs)
+      if dvs.hp ~= nil then return tonumber(dvs.hp) or 0 end
+      local attack = tonumber(dvs.attack) or 0
+      local defense = tonumber(dvs.defense) or 0
+      local speed = tonumber(dvs.speed) or 0
+      local special = tonumber(dvs.special) or 0
+      return (attack % 2) * 8 + (defense % 2) * 4
+        + (speed % 2) * 2 + (special % 2)
+    end
+
+    local function drawSummaryDVPage(menu)
+      local g = love.graphics
+      local mon = menu.mon
+      local def = menu.game.data.pokemon[mon.species]
+      local dvs = mon.dvs or {}
+
+      g.setColor(1, 1, 1, 1)
+      g.rectangle("fill", 0, 0, 160, 144)
+
+      -- Retain the familiar status-screen portrait and header on the new page.
+      if menu.sprite then
+        local pw, ph = menu.sprite:getDimensions()
+        local py = math.max(0, 56 - ph)
+        g.draw(menu.sprite, 8 + pw, py, 0, -1, 1)
+        if menu.spriteTrueColor then
+          PaletteFX.markTrueColor(8, py, pw, ph)
+        end
+      end
+
+      g.setColor(0, 0, 0, 1)
+      Font.draw(mon.nickname or def.name, 72, 8)
+      Font.draw("DVs", 104, 24)
+      HudTiles.statusTile(0x74, 8, 56)
+      Font.drawCode(0xF2, 16, 56)
+      Font.draw(("%03d"):format(def.dex or 0), 24, 56)
+
+      Font.drawBox(7, 5, 12, 11)
+      local rows = {
+        { "HP", summaryHPDV(dvs) },
+        { "ATTACK", tonumber(dvs.attack) or 0 },
+        { "DEFENSE", tonumber(dvs.defense) or 0 },
+        { "SPEED", tonumber(dvs.speed) or 0 },
+        { "SPECIAL", tonumber(dvs.special) or 0 },
+      }
+      for i, row in ipairs(rows) do
+        local y = 48 + (i - 1) * 16
+        Font.draw(row[1], 64, y)
+        Font.draw(("%2d"):format(row[2]), 128, y)
+      end
+      Font.draw("A/B: NEXT", 72, 128)
+      g.setColor(1, 1, 1, 1)
+    end
+
+    local function drawSummaryHistoryPage(menu)
+      local g = love.graphics
+      local entries = type(menu.mon.digivolutionHistory) == "table"
+        and menu.mon.digivolutionHistory or {}
+      if #entries == 0 then entries = { menu.mon.species } end
+      local selected = math.max(1, math.min(menu.historyIndex or #entries, #entries))
+      menu.historyIndex = selected
+      local first = math.floor((selected - 1) / 12) * 12 + 1
+      local last = math.min(#entries, first + 11)
+
+      g.setColor(1, 1, 1, 1)
+      g.rectangle("fill", 0, 0, 160, 144)
+      g.setColor(0, 0, 0, 1)
+      local title = "DIGIVOLUTION HISTORY"
+      Font.draw(title, math.floor((160 - Font.width(title)) / 2), 8)
+
+      -- Keep the history itself visually separate from the selected name.
+      g.rectangle("line", 4, 24, 152, 94)
+
+      local xs = { 12, 48, 84, 120 }
+      local ys = { 32, 64, 96 }
+      for index = first, last do
+        local slot = index - first
+        local column = slot % 4 + 1
+        local row = math.floor(slot / 4) + 1
+        local x, y = xs[column], ys[row]
+        g.setColor(0, 0, 0, 1)
+        g.rectangle("line", x - 2, y - 2, 20, 20)
+        if index == selected then
+          g.rectangle("line", x - 1, y - 1, 18, 18)
+        end
+        PartyMenu.drawIcon(menu.game, {
+          species = entries[index], hp = 1, stats = { hp = 1 },
+        }, x, y, index == selected, 0)
+        if index < #entries then
+          Font.drawCode(Theme.cursor, x + 24, y + 4)
+        end
+      end
+
+      local selectedDef = menu.game.data.pokemon[entries[selected]]
+      local name = selectedDef and selectedDef.name or tostring(entries[selected])
+      Font.draw(name, math.floor((160 - Font.width(name)) / 2), 120)
+      Font.draw("A/B: NEXT", 72, 128)
+      PaletteFX.markTrueColor(0, 0, 160, 144)
+      g.setColor(1, 1, 1, 1)
+    end
 
     local function drawSummaryStatProgress(menu)
       if menu.page ~= 1 or not (menu.mon and menu.mon.stats) then return end
@@ -576,6 +1035,20 @@ return function(mod)
 
     SummaryMenu.draw = function(self, ...)
       local args, unpackArgs = { ... }, table.unpack or unpack
+      if self.page == 3 then
+        if not submitMenuSpriteStage(self, true, 56) then
+          return drawSummaryDVPage(self)
+        end
+        love.graphics.clear(0, 0, 0, 0)
+        self.letterboxWhite = false
+        return withoutMenuPaperAndSprite(self, function()
+          return drawSummaryDVPage(self)
+        end)
+      end
+      if self.page == 4 then
+        self.letterboxWhite = true
+        return drawSummaryHistoryPage(self)
+      end
       if not submitMenuSpriteStage(self, true, 56) then
         local result = originalSummaryDraw(self, unpackArgs(args))
         drawSummaryStatProgress(self)

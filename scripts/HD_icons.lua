@@ -67,6 +67,30 @@ return function(mod)
     return image, frames
   end
 
+  -- Full-window HUDs are already drawing in their final transformed space, so
+  -- they can sample the source icon directly instead of adding a request for a
+  -- later HUD pass. This keeps HD source art sharp and avoids a one-frame-late
+  -- request when another render.hud wrapper draws after this module's pass.
+  state.drawDirectIcon = function(game, mon, x, y)
+    local image, frames = presentation(game, mon)
+    if not image then return nativeDrawIcon(game, mon, x, y, false, 0) end
+    local g = love.graphics
+    local oldR, oldG, oldB, oldA = g.getColor()
+    g.setColor(1, 1, 1, 1)
+    local iw, ih = image:getDimensions()
+    local frameH = ih / frames
+    local fit = math.min(16 / iw, 16 / frameH)
+    local dx, dy = x + (16 - iw * fit) / 2, y + 16 - frameH * fit
+    if frames > 1 then
+      local quad = love.graphics.newQuad(0, 0, iw, frameH, iw, ih)
+      g.draw(image, quad, dx, dy, 0, fit, fit)
+    else
+      g.draw(image, dx, dy, 0, fit, fit)
+    end
+    g.setColor(oldR, oldG, oldB, oldA)
+    return true
+  end
+
   state.drawIcon = function(game, mon, x, y, selected, counter, forceAlt)
     local top = game and game.stack and game.stack:top()
     local isParty = top and getmetatable(top) == PartyMenu
@@ -102,6 +126,7 @@ return function(mod)
   mod.hooks:wrap("render.hud", function(next, game, viewport)
     next(game, viewport)
     if #pending == 0 then return end
+    local top = game and game.stack and game.stack:top()
 
     local requests = pending
     pending = {}
@@ -120,6 +145,16 @@ return function(mod)
     if sx <= 0 or sy <= 0 then return end
     local gameX = math.floor((pixelW - uiw * uiScale) / 2) / dpiX
     local gameY = math.floor((pixelH - uih * uiScale) / 2) / dpiY
+    -- Full-window mod screens can provide their own logical origin and scale.
+    -- The XP overlay uses this to align HD icons with its panel at the physical
+    -- left edge instead of the centered 160x144 Game Boy canvas.
+    local customViewport = top and top.digimonHDIconViewport
+    if type(customViewport) == "table" then
+      sx = tonumber(customViewport.scale) or sx
+      sy = sx
+      gameX = tonumber(customViewport.x) or 0
+      gameY = tonumber(customViewport.y) or 0
+    end
 
     local g = love.graphics
     local oldR, oldG, oldB, oldA = g.getColor()

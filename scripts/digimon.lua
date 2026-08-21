@@ -76,9 +76,13 @@
 -- SORCERMON 67
 -- RAREMON 68
 -- MOJYAMON 69
--- SUNRIZAMON 70
+-- SUNARIZAMON 70
 -- TORTAMON 71
 -- DRIMOGEMON 72
+-- VEEMON 73
+-- HAWKMON 74
+-- NUMEMON 75
+-- BAKEMON 76
 
 return function(mod)
 
@@ -5393,6 +5397,304 @@ mod.content.pokemon:register("DRIMOGEMON", {
   frontSize = 1,
   trueColor = true,
 })
+
+-- Veemon 73
+
+VeeDex = "A small dragon with\na brave heart. It\nfaces larger foes\nwithout any fear."
+mod.content.text:register("_VeemonDexEntry", VeeDex)
+mod.content.pokemon:register("VEEMON", {
+  id = "VEEMON", name = "VEEMON",
+  dex = 73,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 26,
+    text = "_VeemonDexEntry"
+  },
+
+  types = { "DRAGON" },
+
+  baseStats = {
+    hp = 65,
+    attack = 80,
+    defense = 60,
+    speed = 75,
+    special = 40
+  },
+
+  catchRate = 140,
+  baseExp = 140,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "TACKLE",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 6,  move = "QUICK_ATTACK" },
+    { level = 10, move = "BITE" },
+    { level = 14, move = "HEADBUTT" },
+    { level = 19, move = "FURY_SWIPES" },
+    { level = 25, move = "BODY_SLAM" },
+    { level = 31, move = "SLASH" },
+    { level = 37, move = "AGILITY" },
+    { level = 44, move = "TAKE_DOWN" },
+    { level = 51, move = "DRAGON_RAGE" },
+    { level = 58, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "FLAMETHROWER",
+    "FIRE_BLAST",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/veemon.png"),
+  spriteBack = mod.assets:path("assets/veemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/veemons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Hawkmon 74
+
+HawkDex = "A proud bird with\na keen sense of duty.\nIt strikes swiftly\nfrom above."
+mod.content.text:register("_HawkmonDexEntry", HawkDex)
+mod.content.pokemon:register("HAWKMON", {
+  id = "HAWKMON", name = "HAWKMON",
+  dex = 74,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 18,
+    text = "_HawkmonDexEntry"
+  },
+
+  types = { "FLYING" },
+
+  baseStats = {
+    hp = 60,
+    attack = 70,
+    defense = 55,
+    speed = 90,
+    special = 45
+  },
+
+  catchRate = 140,
+  baseExp = 140,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "PECK",
+    "GROWL"
+  },
+
+  learnset = {
+    { level = 6,  move = "QUICK_ATTACK" },
+    { level = 10, move = "GUST" },
+    { level = 14, move = "SAND_ATTACK" },
+    { level = 19, move = "FURY_ATTACK" },
+    { level = 25, move = "WING_ATTACK" },
+    { level = 31, move = "AGILITY" },
+    { level = 37, move = "SWIFT" },
+    { level = 44, move = "DRILL_PECK" },
+    { level = 51, move = "MIRROR_MOVE" },
+    { level = 58, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "RAZOR_WIND",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "FLY",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/hawkmon.png"),
+  spriteBack = mod.assets:path("assets/hawkmonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/hawkmons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Numemon 75
+
+NumeDex = "A filthy Digimon\nwith little strength.\nIt hurls foul waste\nwhen threatened."
+mod.content.text:register("_NumemonDexEntry", NumeDex)
+mod.content.pokemon:register("NUMEMON", {
+  id = "NUMEMON", name = "NUMEMON",
+  dex = 75,
+
+  dexEntry = {
+    heightFt = 3,
+    heightIn = 3,
+    kind = "CHAMPION",
+    weight = 66,
+    text = "_NumemonDexEntry"
+  },
+
+  types = { "POISON" },
+
+  baseStats = {
+    hp = 105,
+    attack = 55,
+    defense = 70,
+    speed = 35,
+    special = 105
+  },
+
+  catchRate = 100,
+  baseExp = 145,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "POISON_GAS",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 7,  move = "SMOG" },
+    { level = 12, move = "SLUDGE" },
+    { level = 17, move = "DISABLE" },
+    { level = 22, move = "HARDEN" },
+    { level = 27, move = "BODY_SLAM" },
+    { level = 32, move = "MINIMIZE" },
+    { level = 38, move = "TOXIC" },
+    { level = 44, move = "SCREECH" },
+    { level = 50, move = "REST" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/numemon.png"),
+  spriteBack = mod.assets:path("assets/numemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/numemons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Bakemon 76
+
+BakeDex = "A ghostly Digimon\nhidden by a white\ncloth. Its true form\nis rarely ever seen."
+mod.content.text:register("_BakemonDexEntry", BakeDex)
+mod.content.pokemon:register("BAKEMON", {
+  id = "BAKEMON", name = "BAKEMON",
+  dex = 76,
+
+  dexEntry = {
+    heightFt = 5,
+    heightIn = 11,
+    kind = "CHAMPION",
+    weight = 44,
+    text = "_BakemonDexEntry"
+  },
+
+  types = { "GHOST" },
+
+  baseStats = {
+    hp = 65,
+    attack = 55,
+    defense = 50,
+    speed = 105,
+    special = 130
+  },
+
+  catchRate = 70,
+  baseExp = 175,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "LICK",
+    "CONFUSE_RAY"
+  },
+
+  learnset = {
+    { level = 7,  move = "NIGHT_SHADE" },
+    { level = 12, move = "HYPNOSIS" },
+    { level = 17, move = "DISABLE" },
+    { level = 22, move = "DREAM_EATER" },
+    { level = 27, move = "SCREECH" },
+    { level = 32, move = "PSYBEAM" },
+    { level = 38, move = "TOXIC" },
+    { level = 44, move = "PSYCHIC_M" },
+    { level = 50, move = "DOUBLE_TEAM" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "PSYCHIC_M",
+    "DREAM_EATER",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/bakemon.png"),
+  spriteBack = mod.assets:path("assets/bakemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/bakemons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
 
 -- Megadramon (how to evolve Airdramon?!)
 

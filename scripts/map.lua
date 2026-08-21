@@ -1,7 +1,7 @@
 -- Map changes for the Digimon demo.
 return function(mod)
-  local npc_text = "TEXT_VERMILION_CITY_DEMO_END"
-  local dialogue = "_VermilionCityDemoEndText"
+  local npc_text = "TEXT_ROUTE9_DEMO_END"
+  local dialogue = "_Route9DemoEndText"
 
   -- Cerulean Dialogue changes
 
@@ -36,19 +36,20 @@ return function(mod)
     "I'm getting my\nMUCHOMON to fly a\fletter to SAFFRON\nin the north!")
   
   
-  -- Place the demo guard at the city-side entrance of the long harbor bridge.
-  mod.content.maps:patch("VERMILION_CITY", {
+  -- Place the demo guard immediately before Route 9's Cut tree, east of
+  -- Cerulean City. The tree itself occupies (5, 8).
+  mod.content.maps:patch("ROUTE_9", {
     objects = {
       __append = {
         {
-          index = 7,
+          index = 11,
           movement = "STAY",
-          name = "VERMILIONCITY_DEMO_GUARD",
-          range = "UP",
+          name = "ROUTE9_DEMO_GUARD",
+          range = "LEFT",
           sprite = "SPRITE_AGATHA",
           text = npc_text,
-          x = 30,
-          y = 16,
+          x = 4,
+          y = 8,
         },
       },
     },
@@ -57,13 +58,13 @@ return function(mod)
   mod.content.text:override(dialogue,
     "This is where the\nDIGIMON demo ends!\fMore content is\ncoming soon!")
 
-  mod.content.text_pointers:patch("VermilionCity", {
+  mod.content.text_pointers:patch("Route9", {
     [npc_text] = {
       text = dialogue,
     },
   })
 
-  mod.content.map_scripts:register("VERMILION_CITY", {
+  mod.content.map_scripts:register("ROUTE_9", {
     talk = {
       [npc_text] = {
         { "face_player" },
@@ -71,19 +72,19 @@ return function(mod)
       },
     },
     onStep = function(game, ow, x, y)
-      -- Trigger from the tile immediately to the right of the guard.
-      if x ~= 31 or y ~= 16 then return false end
+      -- Trigger as the player approaches from the Cerulean (west) side.
+      if x ~= 3 or y ~= 8 then return false end
       if ow.runner:isRunning() or #ow.scriptMoves > 0 then return false end
 
       local TextBox = require("src.render.TextBox")
-      local npc = ow:npcByIndex(7)
+      local npc = ow:npcByIndex(11)
       if npc then npc:facePlayer(ow.player) end
       game.stack:push(TextBox.new(game,
         game.data.text[dialogue]
           or "This is where the\nDIGIMON demo ends!\fMore content is\ncoming soon!",
         function()
-          ow.player.facing = "up"
-          ow:scriptMove(ow.player, "up", 1)
+          ow.player.facing = "left"
+          ow:scriptMove(ow.player, "left", 1)
         end))
       return true
     end,
