@@ -2,6 +2,10 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.6
+- Overhauled the Preview Screen: Stats for every target mon are now visible at the same time as requirements for evolution
+- Changed the formula for devolution: Lower level now reward way less bonus points, while high level give more
+
 ## 0.1.5
 
 - Added new Digimon: Veemon, Hawkmon, Numemon and Bakemon

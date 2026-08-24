@@ -320,10 +320,12 @@ return function(mod)
     return out
   end
 
-  -- Levels 1-4 give 0, 5-9 give 5, 10-14 give 10, and so on, uncapped. The exact pool is distributed proportionally by DV with stable rounding. Maybe some balancing is needeed later to 
-  -- be able to compensate ultimate level stat spike
+  -- Every five levels adds the next value in a triangular progression:
+  -- 5-9 -> 1, 10-14 -> 3, 15-19 -> 6, ... 100 -> 210. The resulting
+  -- uncapped pool is distributed proportionally by DV with stable rounding.
   local function devolutionAward(mon)
-    local pool = math.floor((mon.level or 1) / 5) * 5
+    local tiers = math.floor((mon.level or 1) / 5)
+    local pool = tiers * (tiers + 1) / 2
     local award, ranked, total, used = {}, {}, 0, 0
     for _, key in ipairs(KEYS) do total = total + (tonumber(mon.dvs and mon.dvs[key]) or 0) + 1 end
     for _, key in ipairs(KEYS) do
@@ -358,6 +360,23 @@ return function(mod)
     return lowest, highest
   end
 
+  local function parsedRequirements(route)
+    local level, stats = nil, {}
+    local requirements = type(route.requirement) == "table"
+      and route.requirement or { route.requirement }
+    for _, requirement in ipairs(requirements) do
+      local text = tostring(requirement or ""):upper():match("^%s*(.-)%s*$")
+      local requiredLevel = text:match("LVL%s+MIN%s+(%d+)")
+        or text:match("LVL%s+(%d+)")
+      if requiredLevel then level = tonumber(requiredLevel) end
+      for _, key in ipairs(KEYS) do
+        local value = text:match("^" .. LABEL[key] .. "%s+(%d+)")
+        if value then stats[key] = tonumber(value) end
+      end
+    end
+    return level, stats
+  end
+
   function Confirm.new(game, menu, route)
     local mon = menu.mon
     local target = assert(game.data.pokemon[route.target],
@@ -367,10 +386,12 @@ return function(mod)
     -- devolving.
     local targetStats = Stats.calc(target, 1, mon.dvs or {}, mon.statExp)
     local lowestBaseStat, highestBaseStat = baseStatExtremes(target)
+    local requiredLevel, requiredStats = parsedRequirements(route)
     return setmetatable({ game=game, menu=menu, mon=mon, route=route,
       award=route.kind=="devolve" and devolutionAward(mon) or {},
       targetStats=targetStats, lowestBaseStat=lowestBaseStat,
-      highestBaseStat=highestBaseStat, yes=true }, Confirm)
+      highestBaseStat=highestBaseStat, requiredLevel=requiredLevel,
+      requiredStats=requiredStats, yes=true }, Confirm)
   end
   function Confirm:update()
     local input = self.game.input
@@ -381,6 +402,13 @@ return function(mod)
     elseif input:wasPressed("a") then
       Sound.play(self.game.data,"Press_AB")
       if not self.yes then self.game.stack:pop(); return end
+      if self.route.kind == "evolve" then
+        local ok, unlocked = pcall(self.route.unlocked, self.mon)
+        if not ok or not unlocked then
+          show(self.game,"Can't digivolve\nyet!")
+          return
+        end
+      end
       local oldLevel = self.mon.level
       local oldSpecies = self.mon.species
       self.game.stack:pop()
@@ -407,10 +435,16 @@ return function(mod)
     local heading=self.route.kind=="devolve" and "DEVOLVE TO" or "DIGIVOLVE TO"
     Font.draw(Strings(heading),math.floor(80-Font.width(heading)/2),8)
     local name=(target and target.name) or self.route.target
-    Font.draw(name,math.floor(80-Font.width(name)/2),20)
+    Font.draw(name,math.max(0,math.floor(80-Font.width(name)/2)),20)
     local types=target and target.types or {}
     local typeText=#types>0 and table.concat(types,"/") or "NO TYPE"
-    Font.draw(typeText,math.floor(80-Font.width(typeText)/2),34)
+    if self.route.kind=="devolve" then
+      Font.draw("BASE",32,34); Font.draw("BONUS",64,34); Font.draw("TOTAL",112,34)
+    else
+      Font.draw("BASE",40,34)
+      local reqTitle=self.requiredLevel and "REQ:L"..self.requiredLevel or "REQ"
+      Font.draw(reqTitle,110-math.floor(Font.width(reqTitle)/2),34)
+    end
     if not Confirm.greenShader and love.graphics.newShader then
       local ok, shader = pcall(love.graphics.newShader, [[
         vec4 effect(vec4 color, Image texture, vec2 uv, vec2 screen) {
@@ -447,14 +481,20 @@ return function(mod)
         else
           love.graphics.setColor(0,0,0,1)
         end
-        Font.draw(tostring(current),72,y)
+        local currentText=tostring(current)
+        local currentX=72-Font.width(currentText)
+        Font.draw(currentText,currentX,y)
         if Confirm.greenShader then love.graphics.setShader(previousShader) end
-        PaletteFX.markTrueColor(72,y,24,8)
+        PaletteFX.markTrueColor(currentX,y,Font.width(currentText),8)
         love.graphics.setColor(0,0,0,1)
+        local required=self.requiredStats[key]
+        local requiredText=required and tostring(required) or "-"
+        Font.draw(requiredText,120-Font.width(requiredText),y)
       end
     end
-    Font.drawCode(Theme.cursor,self.yes and 28 or 92,120)
-    Font.draw(Strings("YES"),40,120); Font.draw(Strings("NO"),104,120)
+    Font.draw(typeText,math.floor(80-Font.width(typeText)/2),111)
+    Font.drawCode(Theme.cursor,self.yes and 28 or 92,124)
+    Font.draw(Strings("YES"),40,124); Font.draw(Strings("NO"),104,124)
     PaletteFX.markTrueColor(0,0,160,144); love.graphics.setColor(1,1,1,1)
   end
 
@@ -492,7 +532,6 @@ return function(mod)
       math.max(1,#list-VISIBLE_PATHS+1)))
   end
   function Menu:chooseEvolution(route)
-    if not route.unlocked(self.mon) then show(self.game,requirementText(route)); return end
     self.game.stack:push(Confirm.new(self.game,self,route))
   end
   function Menu:chooseRoute()
@@ -542,11 +581,6 @@ return function(mod)
     end
     if first+max-1<#list then Font.drawCode(Theme.moreArrow,144,104) end
     if #list==0 then Font.draw(Strings("No known paths."),16,60) end
-    local selected=self:selectedRoute()
-    if selected then
-      local lines=type(selected.requirement)=="table" and selected.requirement or {requirementText(selected)}
-      Font.draw(lines[1] or "",8,116); Font.draw(lines[2] or "",8,128)
-    end
     PaletteFX.markTrueColor(0,0,160,144); love.graphics.setColor(1,1,1,1)
   end
 
