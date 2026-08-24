@@ -49,11 +49,11 @@ return function(mod)
     },
     MINOMON = {
       { target = "WORMMON", requirement = "LVL MIN 9", unlocked=function(mon) return (mon.level or 1) >= 9 end },
-      { target = "KUNEMON", requirement = { "LVL MIN 14", "SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 9 and (mon.stats.special or 0 ) > 24 end },
+      { target = "KUNEMON", requirement = { "LVL MIN 14", "SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 14 and (mon.stats.special or 0 ) > 24 end },
     },
     WORMMON = {
       { target = "STINGMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.level or 1) >= 25 end },
-      { target = "KUWAGAMON", requirement={"LVL MIN 28","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "KUWAGAMON", requirement={"LVL MIN 28","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 28 and (mon.stats.attack or 0 ) >= 60 end },
       -- IMPERIALDRAMON
     },
     KUNEMON = {
@@ -68,7 +68,7 @@ return function(mod)
     GABUMON = {
       { target = "GARURUMON", requirement="LVL 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
       { target = "LEOMON", requirement={"LVL 40","ATK 65"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 65 end },
-      { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
+      { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
     },
     MOTIMON = {
       { target = "TENTOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
@@ -77,18 +77,18 @@ return function(mod)
     },
     TENTOMON = {
       { target = "KABUTERIMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "STINGMON", requirement={"LVL MIN 25","SPD 50"}, unlocked=function(mon) return (mon.level or 1) >= 16 end },
-      { target = "KUWAGAMON", requirement={"LVL MIN 32","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "STINGMON", requirement={"LVL MIN 25","SPD 50"}, unlocked=function(mon) return (mon.level or 1) >= 25 and (mon.stats.speed or 0) >= 50 end },
+      { target = "KUWAGAMON", requirement={"LVL MIN 32","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 32 and (mon.stats.attack) >= 60 end },
     },
     GOBURIMON = {
       { target = "OGREMON", requirement="LVL MIN 28", unlocked=function(mon) return (mon.level or 1) >= 28 end },
-      { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
+      { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
       { target = "WIZARDMON", requirement={"LVL MIN 35","SPC 40"}, unlocked=function(mon) return (mon.level or 1) >= 35 and (mon.stats.special or 0) >=  40 end },
       -- Bakemon
     },
     TOKOMON = {
       { target = "PATAMON", requirement="LVL 14", unlocked=function(mon) return (mon.level or 1) >= 14 end },
-      { target = "SALAMON", requirement={"LVL 14","ATK 35"}, unlocked=function(mon) return (mon.level or 1) >= 24 and (mon.stats.attack or 1) >= 35 end },
+      { target = "SALAMON", requirement={"LVL 14","ATK 35"}, unlocked=function(mon) return (mon.level or 1) >= 14 and (mon.stats.attack or 1) >= 35 end },
     },
     PATAMON = {
       { target = "ANGEMON", requirement={"ATK 50","SPC 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 50 and (mon.stats.special or 0) >= 40 end },
@@ -99,10 +99,10 @@ return function(mod)
     YOKOMON = {
       { target = "BIYOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "MUCHOMON", requirement="LVL MIN 13", unlocked=function(mon) return (mon.level or 1) >= 13 end },
-      { target = "FLORAMON", requirement={"LVL MIN 15","SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 13 and (mon.stats.special) >= 25 end },
+      { target = "FLORAMON", requirement={"LVL MIN 15","SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 15 and (mon.stats.special) >= 25 end },
     },
     BIYOMON = {
-      { target = "BIRDRAMON", requirement="LVL MIN 35", unlocked=function(mon) return (mon.level or 1) >= 16 end },
+      { target = "BIRDRAMON", requirement="LVL MIN 35", unlocked=function(mon) return (mon.level or 1) >= 35 end },
       { target = "WIZARDMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 1) >= 40 end },
       { target = "KOKATORIMON", requirement="ATK 35", unlocked=function(mon) return (mon.stats.attack or 1) >= 35 end },
       -- Meramon
@@ -121,8 +121,8 @@ return function(mod)
       { target = "SEADRAMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
       { target = "AIRDRAMON", requirement="ATK 28", unlocked=function(mon) return (mon.stats.attack or 1) >= 28 end },
       { target = "GESOMON", requirement="SPC 35", unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
-      { target = "GEKOMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.stats.level or 1) >= 25 end },
-            { target = "DEVIMON", requirement={"ATK 40","SPC 50"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 and (mon.stats.special or 0) >= 50 end },
+      { target = "GEKOMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.level or 1) >= 25 end },
+      { target = "DEVIMON", requirement={"ATK 40","SPC 50"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 and (mon.stats.special or 0) >= 50 end },
 
     },
     PAGUMON = {
@@ -132,8 +132,8 @@ return function(mod)
       { target = "IMPMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
     },
     DEMIDEVIMON = {
-      { target = "DEVIMON", requirement="LVL MIN 40", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "ANGEMON", requirement={"LVL MIN 40","ATK 50"}, unlocked=function(mon) return (mon.level or 1) >= 34 and (mon.stats.attack or 0) >= 50 end },
+      { target = "DEVIMON", requirement="LVL MIN 40", unlocked=function(mon) return (mon.level or 1) >= 40 end },
+      { target = "ANGEMON", requirement={"LVL MIN 40","ATK 50"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 50 end },
       { target = "BAKEMON", requirement={"LVL MIN 33","SPC 47"}, unlocked=function(mon) return (mon.level or 1) >= 33 and (mon.stats.special or 0) >= 47 end },
       
     },
@@ -157,7 +157,7 @@ return function(mod)
     },
     MUSHROOMON = {
       { target = "WOODMON", requirement={"DEF 50"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 50 end },
-      { target = "VEGGIEMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 0) >= 35 end },
+      { target = "VEGIEMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 0) >= 35 end },
       { target = "TOGEMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
     },
     GAZIMON = {
@@ -184,7 +184,7 @@ return function(mod)
       { target = "GABUMON", requirement={"SPC 40"}, unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
     },
     HAGURUMON = {
-      { target = "GUARDROMON", requirement={"LVL MIN 36", "DEF 48"}, unlocked=function(mon) return (mon.level or 1 ) >= 17 and (mon.stats.defense or 0) >= 48 end },
+      { target = "GUARDROMON", requirement={"LVL MIN 36", "DEF 48"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 and (mon.stats.defense or 0) >= 48 end },
       { target = "MONOCHROMON", requirement={"DEF 30"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 30 end },
       { target = "IKKAKUMON", requirement={"LVL 32"}, unlocked=function(mon) return (mon.level or 1) >= 32 end },
       -- more steel mons necessary

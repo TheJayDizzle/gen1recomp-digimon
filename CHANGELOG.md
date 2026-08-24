@@ -2,6 +2,12 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.7
+
+- Corrected requirement syntax errors for Minomon, Wormmon, Tentomon, Tokomon, Yokomon, Biyomon, DemiDevimon, Hagurumon, Gabumon, Goburimon and Betamon.
+- Corrected a spelling typo for a digivolution target of Mushroomon.
+- Corrected a spelling issue that prevented Salamon from evolving.
+
 ## 0.1.6
 - Overhauled the Preview Screen: Stats for every target mon are now visible at the same time as requirements for evolution
 - Changed the formula for devolution: Lower level now reward way less bonus points, while high level give more
