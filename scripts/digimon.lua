@@ -83,6 +83,13 @@
 -- HAWKMON 74
 -- NUMEMON 75
 -- BAKEMON 76
+-- RENAMON 77
+-- KYUBIMON 78
+-- GOLEMON 79
+-- ANKYLOMON 80
+-- DIGMON 81
+-- LIGHDRAMON 82
+-- FLAMEDRAMON 83
 
 return function(mod)
 
@@ -5695,6 +5702,560 @@ mod.content.pokemon:register("BAKEMON", {
   trueColor = true,
 })
 
+-- Renamon 77
+
+RenaDex = "A clever Digimon\nwith keen senses. It\nmoves with such speed\nit seems to vanish."
+mod.content.text:register("_RenamonDexEntry", RenaDex)
+mod.content.pokemon:register("RENAMON", {
+  id = "RENAMON", name = "RENAMON",
+  dex = 77,
+
+  dexEntry = {
+    heightFt = 3,
+    heightIn = 3,
+    kind = "ROOKIE",
+    weight = 33,
+    text = "_RenamonDexEntry"
+  },
+
+  types = { "PSYCHIC" },
+
+  baseStats = {
+    hp = 55,
+    attack = 55,
+    defense = 45,
+    speed = 90,
+    special = 80
+  },
+
+  catchRate = 120,
+  baseExp = 145,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "QUICK_ATTACK",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 8,  move = "CONFUSION" },
+    { level = 12, move = "DOUBLE_TEAM" },
+    { level = 15, move = "FURY_SWIPES" },
+    { level = 19, move = "PSYBEAM" },
+    { level = 24, move = "SWIFT" },
+    { level = 30, move = "CONFUSE_RAY" },
+    { level = 36, move = "AGILITY" },
+    { level = 42, move = "PSYCHIC_M" },
+    { level = 49, move = "SLASH" },
+    { level = 56, move = "REFLECT" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "PSYCHIC_M",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "STRENGTH",
+    "FLASH"
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/renamon.png"),
+  spriteBack = mod.assets:path("assets/renamonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/renamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Kyubimon 78
+
+KyubiDex = "Its nine tails burn\nwith mystical fire.\nIt moves with grace\nand uncanny speed."
+mod.content.text:register("_KyubimonDexEntry", KyubiDex)
+mod.content.pokemon:register("KYUBIMON", {
+  id = "KYUBIMON", name = "KYUBIMON",
+  dex = 78,
+
+  dexEntry = {
+    heightFt = 6,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 73,
+    text = "_KyubimonDexEntry"
+  },
+
+  types = { "PSYCHIC", "FIRE" },
+
+  baseStats = {
+    hp = 70,
+    attack = 55,
+    defense = 60,
+    speed = 110,
+    special = 130
+  },
+
+  catchRate = 60,
+  baseExp = 190,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "EMBER",
+    "CONFUSION"
+  },
+
+  learnset = {
+    { level = 7,  move = "CONFUSE_RAY" },
+    { level = 12, move = "AGILITY" },
+    { level = 17, move = "PSYBEAM" },
+    { level = 22, move = "FIRE_SPIN" },
+    { level = 27, move = "AGILITY" },
+    { level = 32, move = "FLAMETHROWER" },
+    { level = 38, move = "REFLECT" },
+    { level = 44, move = "PSYCHIC_M" },
+    { level = 50, move = "FIRE_BLAST" },
+    { level = 57, move = "SWIFT" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "FLAMETHROWER",
+    "FIRE_BLAST",
+    "PSYCHIC_M",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/kyubimon.png"),
+  spriteBack = mod.assets:path("assets/kyubimonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/kyubimons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Golemon 79
+
+GoleDex = "A giant made from\nstone and earth. Its\nheavy fists can crush\nsolid rock with ease."
+mod.content.text:register("_GolemonDexEntry", GoleDex)
+mod.content.pokemon:register("GOLEMON", {
+  id = "GOLEMON", name = "GOLEMON",
+  dex = 79,
+
+  dexEntry = {
+    heightFt = 9,
+    heightIn = 10,
+    kind = "CHAMPION",
+    weight = 661,
+    text = "_GolemonDexEntry"
+  },
+
+  types = { "ROCK", "GROUND" },
+
+  baseStats = {
+    hp = 90,
+    attack = 125,
+    defense = 110,
+    speed = 30,
+    special = 70
+  },
+
+  catchRate = 55,
+  baseExp = 185,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "POUND",
+    "DEFENSE_CURL"
+  },
+
+  learnset = {
+    { level = 7,  move = "ROCK_THROW" },
+    { level = 12, move = "MEGA_PUNCH" },
+    { level = 17, move = "HARDEN" },
+    { level = 22, move = "DIG" },
+    { level = 27, move = "ROCK_SLIDE" },
+    { level = 32, move = "BODY_SLAM" },
+    { level = 38, move = "EARTHQUAKE" },
+    { level = 44, move = "MEGA_KICK" },
+    { level = 50, move = "STRENGTH" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MEGA_PUNCH",
+    "MEGA_KICK",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/golemon.png"),
+  spriteBack = mod.assets:path("assets/golemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/golemons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Ankylomon 80
+
+AnkyloDex = "Its armored body is\ncovered in hard spikes.\nIt charges foes with\ntremendous force."
+mod.content.text:register("_AnkylomonDexEntry", AnkyloDex)
+mod.content.pokemon:register("ANKYLOMON", {
+  id = "ANKYLOMON", name = "ANKYLOMON",
+  dex = 80,
+
+  dexEntry = {
+    heightFt = 9,
+    heightIn = 10,
+    kind = "CHAMPION",
+    weight = 661,
+    text = "_AnkylomonDexEntry"
+  },
+
+  types = { "GROUND", "STEEL" },
+
+  baseStats = {
+    hp = 95,
+    attack = 100,
+    defense = 135,
+    speed = 30,
+    special = 65
+  },
+
+  catchRate = 60,
+  baseExp = 185,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "TACKLE",
+    "DEFENSE_CURL"
+  },
+
+  learnset = {
+    { level = 7,  move = "HORN_ATTACK" },
+    { level = 12, move = "DIG" },
+    { level = 17, move = "HARDEN" },
+    { level = 22, move = "BODY_SLAM" },
+    { level = 27, move = "IRON_TAIL" },
+    { level = 32, move = "ROCK_SLIDE" },
+    { level = 38, move = "EARTHQUAKE" },
+    { level = 44, move = "TAKE_DOWN" },
+    { level = 50, move = "SKULL_BASH" },
+    { level = 57, move = "HORN_DRILL" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "IRON_TAIL",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SKULL_BASH",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/ankylomon.png"),
+  spriteBack = mod.assets:path("assets/ankylomonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/ankylomons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Digmon 81
+
+DigDex = "Its powerful drills\ntear through the earth.\nEven solid stone\ncannot stop it."
+mod.content.text:register("_DigmonDexEntry", DigDex)
+mod.content.pokemon:register("DIGMON", {
+  id = "DIGMON", name = "DIGMON",
+  dex = 81,
+
+  dexEntry = {
+    heightFt = 9,
+    heightIn = 10,
+    kind = "CHAMPION",
+    weight = 661,
+    text = "_DigmonDexEntry"
+  },
+
+  types = { "GROUND", "STEEL" },
+
+  baseStats = {
+    hp = 85,
+    attack = 105,
+    defense = 120,
+    speed = 55,
+    special = 60
+  },
+
+  catchRate = 60,
+  baseExp = 185,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "HORN_ATTACK",
+    "SAND_ATTACK"
+  },
+
+  learnset = {
+    { level = 7,  move = "DIG" },
+    { level = 12, move = "FURY_ATTACK" },
+    { level = 17, move = "ROCK_THROW" },
+    { level = 22, move = "METAL_CLAW" },
+    { level = 27, move = "ROCK_SLIDE" },
+    { level = 32, move = "TAKE_DOWN" },
+    { level = 38, move = "EARTHQUAKE" },
+    { level = 44, move = "SWORDS_DANCE" },
+    { level = 50, move = "HORN_DRILL" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "EARTHQUAKE",
+    "FISSURE",
+    "DIG",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SWORDS_DANCE",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/digmon.png"),
+  spriteBack = mod.assets:path("assets/digmonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/digmons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Lighdramon 82
+
+LighdraDex = "It races like a\nbolt of lightning.\nFew can keep pace\nwith its great speed."
+mod.content.text:register("_LighdramonDexEntry", LighdraDex)
+mod.content.pokemon:register("LIGHDRAMON", {
+  id = "LIGHDRAMON", name = "LIGHDRAMON",
+  dex = 82,
+
+  dexEntry = {
+    heightFt = 6,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 165,
+    text = "_LighdramonDexEntry"
+  },
+
+  types = { "ELECTRIC" },
+
+  baseStats = {
+    hp = 70,
+    attack = 75,
+    defense = 65,
+    speed = 125,
+    special = 100,
+  },
+
+  catchRate = 60,
+  baseExp = 190,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "THUNDERSHOCK",
+    "QUICK_ATTACK"
+  },
+
+  learnset = {
+    { level = 7,  move = "LEER" },
+    { level = 12, move = "THUNDER_WAVE" },
+    { level = 17, move = "DOUBLE_KICK" },
+    { level = 22, move = "SWIFT" },
+    { level = 27, move = "THUNDERBOLT" },
+    { level = 32, move = "AGILITY" },
+    { level = 38, move = "TAKE_DOWN" },
+    { level = 44, move = "DOUBLE_TEAM" },
+    { level = 50, move = "THUNDER" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "THUNDERBOLT",
+    "THUNDER",
+    "THUNDER_WAVE",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "FLASH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/lighdramon.png"),
+  spriteBack = mod.assets:path("assets/lighdramonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/lighdramons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Flamedramon 83
+
+FlamedraDex = "Its blazing armor\nburns with great heat.\nIt charges into battle\nwithout hesitation."
+mod.content.text:register("_FlamedramonDexEntry", FlamedraDex)
+mod.content.pokemon:register("FLAMEDRAMON", {
+  id = "FLAMEDRAMON", name = "FLAMEDRAMON",
+  dex = 83,
+
+  dexEntry = {
+    heightFt = 5,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 132,
+    text = "_FlamedramonDexEntry"
+  },
+
+  types = { "FIRE", "FIGHTING" },
+
+  baseStats = {
+    hp = 80,
+    attack = 115,
+    defense = 75,
+    speed = 95,
+    special = 60
+  },
+
+  catchRate = 60,
+  baseExp = 190,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "EMBER",
+    "KARATE_CHOP"
+  },
+
+  learnset = {
+    { level = 7,  move = "QUICK_ATTACK" },
+    { level = 12, move = "LOW_KICK" },
+    { level = 17, move = "FIRE_PUNCH" },
+    { level = 22, move = "DOUBLE_KICK" },
+    { level = 27, move = "FLAMETHROWER" },
+    { level = 32, move = "BODY_SLAM" },
+    { level = 38, move = "SUBMISSION" },
+    { level = 44, move = "AGILITY" },
+    { level = 50, move = "FIRE_BLAST" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MEGA_PUNCH",
+    "MEGA_KICK",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "FLAMETHROWER",
+    "FIRE_BLAST",
+    "RAGE",
+    "SEISMIC_TOSS",
+    "SUBMISSION",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/flamedramon.png"),
+  spriteBack = mod.assets:path("assets/flamedramonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/flamedramons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
 
 -- Megadramon (how to evolve Airdramon?!)
 
@@ -5758,10 +6319,6 @@ mod.content.pokemon:register("BAKEMON", {
 
 -- ExVeemon (Level?)
 
--- Poromon
-
--- Hawkmon
-
 -- Halsmon
 
 -- Aquilamon
@@ -5781,8 +6338,6 @@ mod.content.pokemon:register("BAKEMON", {
 -- Shellmon
 
 -- Andromon
-
--- Bakemon
 
 -- Phantomon
 pokemonRegistry.register = registerPokemon

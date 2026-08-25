@@ -92,6 +92,13 @@ return function(mod)
     HAWKMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.8},
     BAKEMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.75},
     NUMEMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.7},
+    RENAMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.7},
+    KYUBIMON = { centerX = 124, bottom = 46, maxSize = 64, scale = 0.9},
+    GOLEMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    LIGHDRAMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    FLAMEDRAMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    DIGMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    ANKYLOMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
 
   }
 
@@ -123,6 +130,13 @@ return function(mod)
     HAWKMON = { left = 12, bottom = 96, maxSize = 56, scale = 1},
     BAKEMON = { left = 0, bottom = 96, maxSize = 70, scale = 1},
     NUMEMON = { left = 6, bottom = 96, maxSize = 64, scale = 1},
+    RENAMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
+    KYUBIMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
+    FLAMEDRAMON = { left = 12, bottom = 96, maxSize = 64, scale = 0.8},
+    LIGHDRAMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
+    ANKYLOMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
+    DIGMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
+    GOLEMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
 
   }
 

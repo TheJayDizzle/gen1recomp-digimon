@@ -26,6 +26,7 @@ end
 -- Load order matters: growth and species data must exist before the systems
 -- that refer to registered Digimon, moves, encounters, or UI assets.
 loadScript("growth.lua")()
+loadScript("items.lua")(mod)
 loadScript("digimon.lua")(mod)
 loadScript("digivolution.lua")(mod)
 loadScript("encounters.lua")(mod)

@@ -110,7 +110,8 @@ return function(mod)
     NYAROMON = {
       { target = "SALAMON", requirement="LVL MIN 14", unlocked=function(mon) return (mon.level or 1) >= 14 end },
       { target = "CHUUMON", requirement="ATK 15", unlocked=function(mon) return (mon.stats.attack or 1) >= 15 end },
-      { target = "SUNARIZAMON", requirement="DEF 25", unlocked=function(mon) return (mon.stats.defense or 1) >= 25 end },
+      { target = "SUNARIZAMON", requirement="DEF 35", unlocked=function(mon) return (mon.stats.defense or 1) >= 35 end },
+      { target = "RENAMON", requirement="SPC 30", unlocked=function(mon) return (mon.stats.special or 1) >= 30 end },
     },
     SALAMON = {
       { target = "GATOMON", requirement="LVL MIN 31", unlocked=function(mon) return (mon.level or 1) >= 31 end },
@@ -140,7 +141,7 @@ return function(mod)
     GOTSUMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
       { target = "OGREMON", requirement={"ATK 30 "}, unlocked=function(mon) return (mon.stats.attack or 0) >= 30 end },
-      -- Golemon
+      { target = "GOLEMON", requirement={"DEF 44 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 44 end },
     },
     UPAMON = {
       { target = "ARMADILLOMON", requirement={"LVL MIN 18"}, unlocked=function(mon) return (mon.level or 1) >= 18 end },
@@ -151,9 +152,12 @@ return function(mod)
     ARMADILLOMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
       { target = "GREYMON", requirement={" ATK 45"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 45 end },
-      { target = "DRIMOGEMON", requirement={"LVL MIN 33"}, unlocked=function(mon) return (mon.level or 0) >= 33 end },
+      { target = "ANKYLOMON", requirement={"LVL MIN 34"}, unlocked=function(mon) return (mon.level or 0) >= 34 end },
+      { target = "DIGMON", requirement={"EGG OF KWNLDG."}, requiredItem="EGG_OF_KWNLDG", unlocked=function(_, game)
+          return game ~= nil
+            and (((game.save.inventory or {})["EGG_OF_KWNLDG"] or 0) > 0)
+        end },
       -- Golemon
-      -- Eggvolutions
     },
     MUSHROOMON = {
       { target = "WOODMON", requirement={"DEF 50"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 50 end },
@@ -187,6 +191,11 @@ return function(mod)
       { target = "GUARDROMON", requirement={"LVL MIN 36", "DEF 48"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 and (mon.stats.defense or 0) >= 48 end },
       { target = "MONOCHROMON", requirement={"DEF 30"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 30 end },
       { target = "IKKAKUMON", requirement={"LVL 32"}, unlocked=function(mon) return (mon.level or 1) >= 32 end },
+      { target = "DIGMON", requirement={"LVL MIN 35", "EGG OF KWNLDG."}, requiredItem="EGG_OF_KWNLDG", unlocked=function(mon, game)
+          return (mon.level or 1) >= 35
+            and game ~= nil
+            and (((game.save.inventory or {})["EGG_OF_KWNLDG"] or 0) > 0)
+        end },
       -- more steel mons necessary
     },
     LALAMON = {
@@ -210,16 +219,25 @@ return function(mod)
       -- Bakemon
     },
     SUNARIZAMON = {
-    --  { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
+      { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
       { target = "TORTAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
+      { target = "GOLEMON", requirement={"DEF 44 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 44 end },
     },
     VEEMON = {
-    --  { target = "LIGHDRAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
+      { target = "LIGHDRAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
       { target = "DRIMOGEMON", requirement={"HP 60"}, unlocked=function(mon) return (mon.stats.hp or 0 ) >= 60 end },
+      { target = "FLAMEDRAMON", requirement={"EGG OF COURAGE."}, requiredItem="EGG_OF_COURAGE", unlocked=function(_, game)
+          return game ~= nil
+            and (((game.save.inventory or {})["EGG_OF_COURAGE"] or 0) > 0)
+        end },
     },
     HAWKMON = {
-      { target = "KOKATORIMON", requirement={"LVL MIN 30","ATK 35"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.attack) >= 35 end },
+      { target = "KOKATORIMON", requirement={"LVL MIN 30","ATK 35"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.attack or 0) >= 35 end },
       { target = "KIWIMON", requirement={"SPD 45"}, unlocked=function(mon) return (mon.stats.speed or 0 ) >= 45 end },
+    },
+    RENAMON = {
+      { target = "KYUBIMON", requirement={"LVL MIN 25","SPC 42"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 and (mon.stats.special or 0) >= 42 end },
+      { target = "GATOMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
     },
 
   }
@@ -300,7 +318,8 @@ return function(mod)
     local out = {}
     for _, route in ipairs(ROUTES[species] or {}) do
       out[#out+1] = { kind="evolve", target=route.target,
-        requirement=route.requirement, unlocked=route.unlocked }
+        requirement=route.requirement, requiredItem=route.requiredItem,
+        unlocked=route.unlocked }
     end
     return out
   end
@@ -387,11 +406,14 @@ return function(mod)
     local targetStats = Stats.calc(target, 1, mon.dvs or {}, mon.statExp)
     local lowestBaseStat, highestBaseStat = baseStatExtremes(target)
     local requiredLevel, requiredStats = parsedRequirements(route)
+    local requiredItem = route.requiredItem
+      and game.data.items[route.requiredItem] or nil
     return setmetatable({ game=game, menu=menu, mon=mon, route=route,
       award=route.kind=="devolve" and devolutionAward(mon) or {},
       targetStats=targetStats, lowestBaseStat=lowestBaseStat,
       highestBaseStat=highestBaseStat, requiredLevel=requiredLevel,
-      requiredStats=requiredStats, yes=true }, Confirm)
+      requiredStats=requiredStats, requiredItem=requiredItem,
+      yes=true }, Confirm)
   end
   function Confirm:update()
     local input = self.game.input
@@ -403,7 +425,7 @@ return function(mod)
       Sound.play(self.game.data,"Press_AB")
       if not self.yes then self.game.stack:pop(); return end
       if self.route.kind == "evolve" then
-        local ok, unlocked = pcall(self.route.unlocked, self.mon)
+        local ok, unlocked = pcall(self.route.unlocked, self.mon, self.game)
         if not ok or not unlocked then
           show(self.game,"Can't digivolve\nyet!")
           return
@@ -432,18 +454,25 @@ return function(mod)
     love.graphics.setColor(1,1,1,1); love.graphics.rectangle("fill",0,0,160,144)
     love.graphics.setColor(0,0,0,1)
     local target=self.game.data.pokemon[self.route.target]
-    local heading=self.route.kind=="devolve" and "DEVOLVE TO" or "DIGIVOLVE TO"
-    Font.draw(Strings(heading),math.floor(80-Font.width(heading)/2),8)
     local name=(target and target.name) or self.route.target
-    Font.draw(name,math.max(0,math.floor(80-Font.width(name)/2)),20)
+    Font.draw(name,math.max(0,math.floor(80-Font.width(name)/2)),8)
+    if self.requiredItem then
+      local itemRequirement=(self.requiredItem.name or self.route.requiredItem).." REQ!"
+      Font.draw(itemRequirement,
+        math.max(0,math.floor(80-Font.width(itemRequirement)/2)),20)
+    end
     local types=target and target.types or {}
     local typeText=#types>0 and table.concat(types,"/") or "NO TYPE"
     if self.route.kind=="devolve" then
-      Font.draw("BASE",32,34); Font.draw("BONUS",64,34); Font.draw("TOTAL",112,34)
+      Font.draw("BASE",32,34); Font.draw("BONUS",68,34); Font.draw("TOTAL",112,34)
     else
-      Font.draw("BASE",40,34)
-      local reqTitle=self.requiredLevel and "REQ:L"..self.requiredLevel or "REQ"
-      Font.draw(reqTitle,110-math.floor(Font.width(reqTitle)/2),34)
+      Font.draw("BASE",32,34)
+      local reqTitle="REQ"
+      if self.requiredLevel then
+        reqTitle="REQ:LV"..self.requiredLevel
+        if (self.mon.level or 1)<self.requiredLevel then reqTitle=reqTitle.." !" end
+      end
+      Font.draw(reqTitle,112-math.floor(Font.width(reqTitle)/2),34)
     end
     if not Confirm.greenShader and love.graphics.newShader then
       local ok, shader = pcall(love.graphics.newShader, [[
@@ -482,14 +511,19 @@ return function(mod)
           love.graphics.setColor(0,0,0,1)
         end
         local currentText=tostring(current)
-        local currentX=72-Font.width(currentText)
+        local currentX=48-math.floor(Font.width(currentText)/2)
         Font.draw(currentText,currentX,y)
         if Confirm.greenShader then love.graphics.setShader(previousShader) end
         PaletteFX.markTrueColor(currentX,y,Font.width(currentText),8)
         love.graphics.setColor(0,0,0,1)
         local required=self.requiredStats[key]
         local requiredText=required and tostring(required) or "-"
-        Font.draw(requiredText,120-Font.width(requiredText),y)
+        local requiredX=112-math.floor(Font.width(requiredText)/2)
+        Font.draw(requiredText,requiredX,y)
+        if required
+          and (tonumber(self.mon.stats and self.mon.stats[key]) or 0)<required then
+          Font.draw("!",requiredX+Font.width(requiredText)+8,y)
+        end
       end
     end
     Font.draw(typeText,math.floor(80-Font.width(typeText)/2),111)
@@ -569,7 +603,7 @@ return function(mod)
       if i==index then
         Font.drawCode(Theme.cursor,0,y)
         local w=math.min(152,Font.width(name)+28)
-        if route.unlocked(self.mon) then outline(6,y-1,w,17,0,0,0) else outline(6,y-1,w,17,0.85,0,0) end
+        if route.unlocked(self.mon, self.game) then outline(6,y-1,w,17,0,0,0) else outline(6,y-1,w,17,0.85,0,0) end
       end
     end
     if first>1 then

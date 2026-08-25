@@ -1,5 +1,6 @@
 return function(mod)
 
+  -- Icy Wind
   mod.content.moves:patch("BITE", {
     type = "DARK",
   })

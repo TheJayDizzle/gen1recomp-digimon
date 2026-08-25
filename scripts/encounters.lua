@@ -12,6 +12,18 @@ return function(mod)
     -- avg lvl 28.5  })
   })
 
+    mod.content.encounters:register("DIGLETTS_CAVE_1F", {
+    grass = { rate = 20, slots = {
+      { level = 27, species = "SUNARIZAMON" }, { level = 29, species = "SUNARIZAMON" },
+      { level = 31, species = "SUNARIZAMON" }, { level = 28, species = "SUNARIZAMON" },
+      { level = 30, species = "SUNARIZAMON" }, { level = 21, species = "SUNARIZAMON" },
+      { level = 24, species = "SUNARIZAMON" }, { level = 33, species = "TORTAMON" },
+      { level = 25, species = "SUNARIZAMON" }, { level = 37, species = "TORTAMON" },
+    } },
+    -- avg lvl 28.5  })
+  })
+
+
 
   -- MT MOON: Gotsumon, Pagumon, Goburimon, Mushmon, Gazimon, DemiDevimon, Upamon
   mod.content.encounters:patch("MT_MOON_1F", {

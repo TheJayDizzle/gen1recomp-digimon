@@ -2,6 +2,17 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.8
+- Added new Digimon: Renamon, Kyubimon, Golemon, Digmon, Ankylomon, Lighdramon and Flamedramon
+- Added digivolution paths and requirements for the newly introduced Digimon.
+- Increased the required defense for Nyaromon's evolution to Sunarizamon from 25 to 35
+- Added some additional fallback values to digivolution syntax.
+- Adjusted the back sprite of Mojyamon.
+- Expanded Diglett’s Cave with a new floor and modified its existing map.
+- Added two Digi Armor Eggs (currently one obtainable).
+- Corrected some spacing issues in the (d)evolution screen.
+- Added a visual warning if a stat or level requirement for evolution isn't met.
+
 ## 0.1.7
 
 - Corrected requirement syntax errors for Minomon, Wormmon, Tentomon, Tokomon, Yokomon, Biyomon, DemiDevimon, Hagurumon, Gabumon, Goburimon and Betamon.
