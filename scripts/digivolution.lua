@@ -22,34 +22,36 @@ return function(mod)
       { target = "LALAMON", requirement={"LVL MIN 16","SPC 33"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.special or 0) >= 33 end },
     },
     PALMON = {
-      { target = "TOGEMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
+      { target = "TOGEMON", requirement={"ATK 40", "SPD 40" }, unlocked=function(mon) return (mon.stats.attack or 1) >= 40 and (mon.stats.speed or 0) >= 40 end },
       { target = "KIWIMON", requirement="ATK 44", unlocked=function(mon) return (mon.stats.attack or 1) >= 44 end },
       { target = "VEGIEMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
     },
     KOROMON = {
       { target = "AGUMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
-      { target = "BETAMON", requirement={ "LVL MIN 16", "SPD 30" }, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.speed or 0) > 29 end },
+      { target = "BETAMON", requirement={ "LVL MIN 16", "SPD 30" }, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.speed or 0) >= 30 end },
       { target = "OTAMAMON", requirement={"LVL MIN 16", "ATK 20"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.attack) >= 20 end },
+      { target = "CANDLEMON", requirement={"SPC 40"}, unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
     },    
     AGUMON = {
-      { target = "GREYMON", requirement="LVL 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
+      { target = "GREYMON", requirement="ATK 50", unlocked=function(mon) return (mon.stats.attack or 0) >= 50 end },
       { target = "MONOCHROMON", requirement="DEF 55", unlocked=function(mon) return  (mon.stats.defense or 0) >= 55 end },
       -- TYRANNOMON
     },
     BUKAMON = {
       { target = "GOMAMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
-      { target = "OTAMAMON", requirement={"LVL MIN 16", "ATK 20"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.attack) >= 20 end },
+      { target = "OTAMAMON", requirement={"LVL MIN 16", "ATK 25"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.attack) >= 25 end },
       { target = "GIZAMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
     },
     GOMAMON = {
       { target = "IKKAKUMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "GESOMON", requirement={"LVL MIN 28","SPC 35"}, unlocked=function(mon) return (mon.level or 1) >= 28 and (mon.stats.special) >= 35 end },
-      { target = "SEADRAMON", requirement={"HP 55", "SPC 40"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 55 and (mon.stats.special or 0) >= 40 end },
-      { target = "RAREMON", requirement={"HP 75"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 75 end },
+      { target = "GESOMON", requirement={"LVL MIN 28","SPC 50"}, unlocked=function(mon) return (mon.level or 1) >= 28 and (mon.stats.special) >= 50 end },
+      { target = "SEADRAMON", requirement={"HP 75", "SPC 55"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 75 and (mon.stats.special or 0) >= 55 end },
+      { target = "RAREMON", requirement={"HP 95"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 95 end },
     },
     MINOMON = {
       { target = "WORMMON", requirement = "LVL MIN 9", unlocked=function(mon) return (mon.level or 1) >= 9 end },
-      { target = "KUNEMON", requirement = { "LVL MIN 14", "SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 14 and (mon.stats.special or 0 ) > 24 end },
+      { target = "KUNEMON", requirement = { "LVL MIN 14", "SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 14 and (mon.stats.special or 0 ) >= 25 end },
+      { target = "KOKUWAMON", requirement = { "LVL MIN 16", "SPC 45"}, unlocked=function(mon) return (mon.level or 1) >= 16 and (mon.stats.special or 0 ) >= 45 end },
     },
     WORMMON = {
       { target = "STINGMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.level or 1) >= 25 end },
@@ -57,33 +59,37 @@ return function(mod)
       -- IMPERIALDRAMON
     },
     KUNEMON = {
-      { target = "FLYMON", requirement="LVL MIN 22", unlocked=function(mon) return (mon.level or 1) >= 22 end },
-      { target = "SUKAMON", requirement="SPC 33", unlocked=function(mon) return (mon.stats.special or 0) >= 33 end },
+      { target = "FLYMON", requirement="LVL MIN 26", unlocked=function(mon) return (mon.level or 1) >= 26 end },
+      { target = "SUKAMON", requirement="SPC 43", unlocked=function(mon) return (mon.stats.special or 0) >= 43 end },
     },
     TSUNOMON = {
       { target = "GABUMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "GIZAMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
+      { target = "ELECMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 1) >= 40 end },
+      { target = "BEARMON", requirement="ATK 35", unlocked=function(mon) return (mon.stats.attack or 1) >= 35 end },
 
     },
     GABUMON = {
-      { target = "GARURUMON", requirement="LVL 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "LEOMON", requirement={"LVL 40","ATK 65"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 65 end },
+      { target = "GARURUMON", requirement="SPC 70", unlocked=function(mon) return (mon.stats.special or 0) >= 70 end },
+      { target = "LEOMON", requirement={"LVL 40","ATK 85"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 85 end },
       { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
+      { target = "GRIZZLYMON", requirement={"ATK 55","HP 85"}, unlocked=function(mon) return (mon.stats.attack or 1) >= 55 and (mon.stats.hp or 0 ) >= 85 end },
     },
     MOTIMON = {
       { target = "TENTOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "KUNEMON", requirement="LVL MIN 10", unlocked=function(mon) return (mon.level or 1) >= 10 end },
       { target = "HAGURUMON", requirement="DEF 35", unlocked=function(mon) return (mon.stats.defense or 0) >= 35 end },
+      { target = "KOKUWAMON", requirement="ATK 40", unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
     },
     TENTOMON = {
-      { target = "KABUTERIMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "STINGMON", requirement={"LVL MIN 25","SPD 50"}, unlocked=function(mon) return (mon.level or 1) >= 25 and (mon.stats.speed or 0) >= 50 end },
-      { target = "KUWAGAMON", requirement={"LVL MIN 32","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 32 and (mon.stats.attack) >= 60 end },
+      { target = "KABUTERIMON", requirement={"LVL MIN 25","SPD 50"}, unlocked=function(mon) return (mon.level or 1) >= 25 and (mon.stats.speed or 0) >= 50 end },
+      { target = "STINGMON", requirement={"SPD 75"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 75 end },
+      { target = "KUWAGAMON", requirement={"LVL MIN 32","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 32 and (mon.stats.attack or 0) >= 60 end },
     },
     GOBURIMON = {
       { target = "OGREMON", requirement="LVL MIN 28", unlocked=function(mon) return (mon.level or 1) >= 28 end },
       { target = "FRIGIMON", requirement={"HP 65","SPC 50"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 65 and (mon.stats.special or 0) >=  50 end },
-      { target = "WIZARDMON", requirement={"LVL MIN 35","SPC 40"}, unlocked=function(mon) return (mon.level or 1) >= 35 and (mon.stats.special or 0) >=  40 end },
+      { target = "WIZARDMON", requirement={"LVL MIN 35","SPC 75"}, unlocked=function(mon) return (mon.level or 1) >= 35 and (mon.stats.special or 0) >=  75 end },
       -- Bakemon
     },
     TOKOMON = {
@@ -91,67 +97,67 @@ return function(mod)
       { target = "SALAMON", requirement={"LVL 14","ATK 35"}, unlocked=function(mon) return (mon.level or 1) >= 14 and (mon.stats.attack or 1) >= 35 end },
     },
     PATAMON = {
-      { target = "ANGEMON", requirement={"ATK 50","SPC 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 50 and (mon.stats.special or 0) >= 40 end },
-      { target = "DEVIMON", requirement={"ATK 40","SPC 50"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 and (mon.stats.special or 0) >= 50 end },
+      { target = "ANGEMON", requirement={"ATK 60","SPC 60"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 60 and (mon.stats.special or 0) >= 60 end },
+      { target = "DEVIMON", requirement={"ATK 60","SPC 70"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 60 and (mon.stats.special or 0) >= 70 end },
       { target = "AIRDRAMON", requirement={"LVL 30"}, unlocked=function(mon) return (mon.level or 1) >= 30 end },
       -- Eggvolutions
     },
     YOKOMON = {
       { target = "BIYOMON", requirement="LVL MIN 16", unlocked=function(mon) return (mon.level or 1) >= 16 end },
       { target = "MUCHOMON", requirement="LVL MIN 13", unlocked=function(mon) return (mon.level or 1) >= 13 end },
-      { target = "FLORAMON", requirement={"LVL MIN 15","SPC 25"}, unlocked=function(mon) return (mon.level or 1) >= 15 and (mon.stats.special) >= 25 end },
+      { target = "FLORAMON", requirement={"LVL MIN 15","SPC 30"}, unlocked=function(mon) return (mon.level or 1) >= 15 and (mon.stats.special) >= 30 end },
     },
     BIYOMON = {
       { target = "BIRDRAMON", requirement="LVL MIN 35", unlocked=function(mon) return (mon.level or 1) >= 35 end },
       { target = "WIZARDMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 1) >= 40 end },
       { target = "KOKATORIMON", requirement="ATK 35", unlocked=function(mon) return (mon.stats.attack or 1) >= 35 end },
-      -- Meramon
+      { target = "MERAMON", requirement="SPC 60", unlocked=function(mon) return (mon.stats.special or 0) >= 60 end },
     },
     NYAROMON = {
       { target = "SALAMON", requirement="LVL MIN 14", unlocked=function(mon) return (mon.level or 1) >= 14 end },
-      { target = "CHUUMON", requirement="ATK 15", unlocked=function(mon) return (mon.stats.attack or 1) >= 15 end },
-      { target = "SUNARIZAMON", requirement="DEF 35", unlocked=function(mon) return (mon.stats.defense or 1) >= 35 end },
-      { target = "RENAMON", requirement="SPC 30", unlocked=function(mon) return (mon.stats.special or 1) >= 30 end },
+      { target = "CHUUMON", requirement="ATK 27", unlocked=function(mon) return (mon.stats.attack or 1) >= 27 end },
+      { target = "SUNARIZAMON", requirement="DEF 45", unlocked=function(mon) return (mon.stats.defense or 1) >= 45 end },
+      { target = "RENAMON", requirement="SPC 40", unlocked=function(mon) return (mon.stats.special or 1) >= 40 end },
     },
     SALAMON = {
       { target = "GATOMON", requirement="LVL MIN 31", unlocked=function(mon) return (mon.level or 1) >= 31 end },
-      { target = "LEOMON", requirement={"HP 45","ATK 45"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 45 and (mon.stats.attack or 0) >= 45 end },
+      { target = "LEOMON", requirement={"HP 75","ATK 65"}, unlocked=function(mon) return (mon.stats.hp or 1) >= 75 and (mon.stats.attack or 0) >= 65 end },
+      { target = "GRIZZLYMON", requirement={"ATK 55","HP 85"}, unlocked=function(mon) return (mon.stats.attack or 1) >= 55 and (mon.stats.hp or 0 ) >= 85 end },
     },
     -- GATOMON -- Eggvolutions
     BETAMON = {
       { target = "SEADRAMON", requirement="LVL MIN 34", unlocked=function(mon) return (mon.level or 1) >= 34 end },
-      { target = "AIRDRAMON", requirement="ATK 28", unlocked=function(mon) return (mon.stats.attack or 1) >= 28 end },
-      { target = "GESOMON", requirement="SPC 35", unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
+      { target = "AIRDRAMON", requirement="ATK 48", unlocked=function(mon) return (mon.stats.attack or 1) >= 48 end },
+      { target = "GESOMON", requirement="SPC 45", unlocked=function(mon) return (mon.stats.special or 1) >= 45 end },
       { target = "GEKOMON", requirement="LVL MIN 25", unlocked=function(mon) return (mon.level or 1) >= 25 end },
-      { target = "DEVIMON", requirement={"ATK 40","SPC 50"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 and (mon.stats.special or 0) >= 50 end },
-
     },
     PAGUMON = {
       { target = "DEMIDEVIMON", requirement={"LVL MIN 19","SPC 30"}, unlocked=function(mon) return (mon.level or 1) >= 19 and (mon.stats.special or 0) >= 30 end },
-      { target = "GOBURIMON", requirement={"LVL MIN 13","ATK 30"}, unlocked=function(mon) return (mon.level or 1) >= 13 and (mon.stats.attack or 0) >= 30 end },
+      { target = "GOBURIMON", requirement={"LVL MIN 13","ATK 40"}, unlocked=function(mon) return (mon.level or 1) >= 13 and (mon.stats.attack or 0) >= 40 end },
       { target = "GAZIMON", requirement={"LVL MIN 15"}, unlocked=function(mon) return (mon.level or 1) >= 15 end },
-      { target = "IMPMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 1) >= 35 end },
+      { target = "IMPMON", requirement={"SPC 45"}, unlocked=function(mon) return (mon.stats.special or 1) >= 45 end },
     },
     DEMIDEVIMON = {
       { target = "DEVIMON", requirement="LVL MIN 40", unlocked=function(mon) return (mon.level or 1) >= 40 end },
-      { target = "ANGEMON", requirement={"LVL MIN 40","ATK 50"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 50 end },
-      { target = "BAKEMON", requirement={"LVL MIN 33","SPC 47"}, unlocked=function(mon) return (mon.level or 1) >= 33 and (mon.stats.special or 0) >= 47 end },
+      { target = "ANGEMON", requirement={"LVL MIN 40","ATK 60"}, unlocked=function(mon) return (mon.level or 1) >= 40 and (mon.stats.attack or 0) >= 60 end },
+      { target = "BAKEMON", requirement={"LVL MIN 33","SPD 57"}, unlocked=function(mon) return (mon.level or 1) >= 33 and (mon.stats.speed or 0) >= 57 end },
+      { target = "SOULMON", requirement={"LVL MIN 33","SPC 57"}, unlocked=function(mon) return (mon.level or 1) >= 33 and (mon.stats.special or 0) >= 57 end },
       
     },
     GOTSUMON = {
-      { target = "MONOCHROMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
-      { target = "OGREMON", requirement={"ATK 30 "}, unlocked=function(mon) return (mon.stats.attack or 0) >= 30 end },
-      { target = "GOLEMON", requirement={"DEF 44 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 44 end },
+      { target = "MONOCHROMON", requirement={"LVL MIN 28"}, unlocked=function(mon) return (mon.level or 1) >= 28 end },
+      { target = "OGREMON", requirement={"ATK 65 "}, unlocked=function(mon) return (mon.stats.attack or 0) >= 65 end },
+      { target = "GOLEMON", requirement={"DEF 55 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 55 end },
     },
     UPAMON = {
       { target = "ARMADILLOMON", requirement={"LVL MIN 18"}, unlocked=function(mon) return (mon.level or 1) >= 18 end },
       { target = "WORMMON", requirement={"LVL MIN 12"}, unlocked=function(mon) return (mon.level or 1) >= 12 end },
-      { target = "GAZIMON", requirement="SPD 25", unlocked=function(mon) return (mon.stats.speed or 1) >= 25 end },
-      { target = "SUNARIZAMON", requirement="DEF 25", unlocked=function(mon) return (mon.stats.defense or 1) >= 25 end },
+      { target = "GAZIMON", requirement="SPD 35", unlocked=function(mon) return (mon.stats.speed or 1) >= 35 end },
+      { target = "SUNARIZAMON", requirement="DEF 40", unlocked=function(mon) return (mon.stats.defense or 1) >= 40 end },
     },
     ARMADILLOMON = {
       { target = "MONOCHROMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
-      { target = "GREYMON", requirement={" ATK 45"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 45 end },
+      { target = "DRIMOGEMON", requirement={"ATK 60"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 60 end },
       { target = "ANKYLOMON", requirement={"LVL MIN 34"}, unlocked=function(mon) return (mon.level or 0) >= 34 end },
       { target = "DIGMON", requirement={"EGG OF KWNLDG."}, requiredItem="EGG_OF_KWNLDG", unlocked=function(_, game)
           return game ~= nil
@@ -160,39 +166,38 @@ return function(mod)
       -- Golemon
     },
     MUSHROOMON = {
-      { target = "WOODMON", requirement={"DEF 50"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 50 end },
-      { target = "VEGIEMON", requirement={"SPC 35"}, unlocked=function(mon) return (mon.stats.special or 0) >= 35 end },
-      { target = "TOGEMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
+      { target = "WOODMON", requirement={"DEF 60"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 60 end },
+      { target = "VEGIEMON", requirement={"SPC 52"}, unlocked=function(mon) return (mon.stats.special or 0) >= 52 end },
+      { target = "TOGEMON", requirement={"ATK 55","SPD 60"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 55 and (mon.stats.speed or 0) >= 60 end },
     },
     GAZIMON = {
-      { target = "GARURUMON", requirement={"SPC 40"}, unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
-      { target = "LEOMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
-      { target = "SORCERMON", requirement={"LVL MIN 32", "SPC 36"}, unlocked=function(mon) return (mon.level or 1) >= 32 and (mon.stats.special or 0) >= 36 end },
+      { target = "GARURUMON", requirement={"SPC 70"}, unlocked=function(mon) return (mon.stats.special or 0) >= 70 end },
+      { target = "LEOMON", requirement={"ATK 60"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 60 end },
+      { target = "SORCERMON", requirement={"LVL MIN 32"}, unlocked=function(mon) return (mon.level or 1) >= 32 end },
     },
     CHUUMON = {
-      { target = "SUKAMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1) >= 25 end },
-      { target = "OGREMON", requirement={"ATK 55"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 55 end },
-      { target = "RAREMON", requirement={"HP 65"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 65 end },
-      { target = "NUMEMON", requirement={"LVL MIN 20"}, unlocked=function(mon) return (mon.level or 1) >= 20 end },
+      { target = "SUKAMON", requirement={"LVL MIN 26"}, unlocked=function(mon) return (mon.level or 1) >= 26 end },
+      { target = "BEARMON", requirement={"ATK 60"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 60 end },
+      { target = "RAREMON", requirement={"HP 95"}, unlocked=function(mon) return (mon.stats.hp or 0) >= 95 end },
+      { target = "NUMEMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
       
       -- Monzaemon
     },    
     MUCHOMON = {
       { target = "KOKATORIMON", requirement={"LVL MIN 24"}, unlocked=function(mon) return (mon.level or 1) >= 24 end },
-      { target = "BIRDRAMON", requirement={"SPC 45"}, unlocked=function(mon) return (mon.stats.special or 0) >= 45 end },
+      { target = "BIRDRAMON", requirement={"SPC 55"}, unlocked=function(mon) return (mon.stats.special or 0) >= 55 end },
       { target = "AIRDRAMON", requirement={"LVL MIN 27"}, unlocked=function(mon) return (mon.level or 1) >= 27 end },
     },
     KAPURIMON = {
       { target = "HAGURUMON", requirement={"LVL MIN 17"}, unlocked=function(mon) return (mon.level or 1 ) >= 17 end },
-      { target = "SALAMON", requirement={"ATK 25"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 25 end },
+      { target = "SALAMON", requirement={"ATK 45"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 45 end },
       { target = "GABUMON", requirement={"SPC 40"}, unlocked=function(mon) return (mon.stats.special or 0) >= 40 end },
     },
     HAGURUMON = {
-      { target = "GUARDROMON", requirement={"LVL MIN 36", "DEF 48"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 and (mon.stats.defense or 0) >= 48 end },
-      { target = "MONOCHROMON", requirement={"DEF 30"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 30 end },
-      { target = "IKKAKUMON", requirement={"LVL 32"}, unlocked=function(mon) return (mon.level or 1) >= 32 end },
-      { target = "DIGMON", requirement={"LVL MIN 35", "EGG OF KWNLDG."}, requiredItem="EGG_OF_KWNLDG", unlocked=function(mon, game)
-          return (mon.level or 1) >= 35
+      { target = "GUARDROMON", requirement={"LVL MIN 36", "DEF 58"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 and (mon.stats.defense or 0) >= 58 end },
+      { target = "MONOCHROMON", requirement={"DEF 50"}, unlocked=function(mon) return (mon.stats.defense or 0) >= 50 end },
+      { target = "DIGMON", requirement={"LVL MIN 30", "EGG OF KWNLDG."}, requiredItem="EGG_OF_KWNLDG", unlocked=function(mon, game)
+          return (mon.level or 1) >= 30
             and game ~= nil
             and (((game.save.inventory or {})["EGG_OF_KWNLDG"] or 0) > 0)
         end },
@@ -205,39 +210,82 @@ return function(mod)
     },
     FLORAMON = {
       { target = "KIWIMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
-      { target = "VEGIEMON", requirement={"SPC 38"}, unlocked=function(mon) return (mon.stats.special or 0) >= 38 end },
+      { target = "VEGIEMON", requirement={"SPC 48"}, unlocked=function(mon) return (mon.stats.special or 0) >= 48 end },
     },
     OTAMAMON = {
       { target = "GEKOMON", requirement={"LVL MIN 25"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 end },
-      { target = "RAREMON", requirement={"LVL MIN 30", "HP 75"}, unlocked=function(mon) return (mon.level) >= 30 and (mon.stats.hp or 0) >= 75 end },
-      { target = "IKKAKUMON", requirement={"ATK 40"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 40 end },
+      { target = "RAREMON", requirement={"LVL MIN 30", "HP 95"}, unlocked=function(mon) return (mon.level) >= 30 and (mon.stats.hp or 0) >= 95 end },
+      { target = "IKKAKUMON", requirement={"ATK 65"}, unlocked=function(mon) return (mon.stats.attack or 0) >= 65 end },
     },
     IMPMON = {
-      { target = "WIZARDMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
-      { target = "SORCERMON", requirement={"LVL MIN 36", "SPC 50"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.special or 0) >=  50 end },
-      { target = "DEVIMON", requirement={"SPD 40", "SPC 45"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 40 and (mon.stats.special or 0) >= 45 end },
-      -- Bakemon
+      { target = "WIZARDMON", requirement={"LVL MIN 36", "SPD 60"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.speed or 0) >= 60 end },
+      { target = "SORCERMON", requirement={"LVL MIN 36", "SPC 60"}, unlocked=function(mon) return (mon.level or 1) >= 36 and (mon.stats.special or 0) >= 60 end },
+      { target = "DEVIMON", requirement={"SPD 70", "SPC 75"}, unlocked=function(mon) return (mon.stats.speed or 0) >= 70 and (mon.stats.special or 0) >= 75 end },
+      { target = "BAKEMON", requirement={"LVL MIN 28"}, unlocked=function(mon) return (mon.level or 1 ) >= 28 end },
     },
     SUNARIZAMON = {
-      { target = "ANKYLOMON", requirement={"DEF 45"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 45 end },
+      { target = "ANKYLOMON", requirement={"DEF 65"}, unlocked=function(mon) return (mon.stats.defense or 0 ) >= 65 end },
       { target = "TORTAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
-      { target = "GOLEMON", requirement={"DEF 44 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 44 end },
+      { target = "GOLEMON", requirement={"DEF 55 "}, unlocked=function(mon) return (mon.stats.defense or 0) >= 55 end },
     },
     VEEMON = {
-      { target = "LIGHDRAMON", requirement={"LVL MIN 36"}, unlocked=function(mon) return (mon.level or 1 ) >= 36 end },
-      { target = "DRIMOGEMON", requirement={"HP 60"}, unlocked=function(mon) return (mon.stats.hp or 0 ) >= 60 end },
+      { target = "GREYMON", requirement={"ATK 55"}, unlocked=function(mon) return (mon.stats.attack or 0 ) >= 55 end },
+      { target = "DRIMOGEMON", requirement={"HP 76"}, unlocked=function(mon) return (mon.stats.hp or 0 ) >= 76 end },
       { target = "FLAMEDRAMON", requirement={"EGG OF COURAGE."}, requiredItem="EGG_OF_COURAGE", unlocked=function(_, game)
           return game ~= nil
             and (((game.save.inventory or {})["EGG_OF_COURAGE"] or 0) > 0)
         end },
+      { target = "LIGHDRAMON", requirement={"EGG OF FRNDSH."}, requiredItem="EGG_OF_FRNDSH", unlocked=function(_, game)
+        return game ~= nil
+          and (((game.save.inventory or {})["EGG_OF_FRNDSH"] or 0) > 0)
+      end },
     },
     HAWKMON = {
-      { target = "KOKATORIMON", requirement={"LVL MIN 30","ATK 35"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.attack or 0) >= 35 end },
+      { target = "KOKATORIMON", requirement={"LVL MIN 30","ATK 50"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.attack or 0) >= 50 end },
       { target = "KIWIMON", requirement={"SPD 45"}, unlocked=function(mon) return (mon.stats.speed or 0 ) >= 45 end },
     },
     RENAMON = {
-      { target = "KYUBIMON", requirement={"LVL MIN 25","SPC 42"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 and (mon.stats.special or 0) >= 42 end },
+      { target = "KYUBIMON", requirement={"LVL MIN 25","SPC 47"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 and (mon.stats.special or 0) >= 47 end },
       { target = "GATOMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
+      { target = "GRIZZLYMON", requirement = { "HP 80", "ATK 50"}, unlocked=function(mon) return (mon.stats.hp or 0 ) >= 80 and (mon.stats.attack or 0 ) >= 50 end },
+    },
+    KOKUWAMON = {
+      { target = "KUWAGAMON", requirement={"LVL MIN 25","SPC 55"}, unlocked=function(mon) return (mon.level or 1 ) >= 25 and (mon.stats.special or 0) >= 55 end },
+      { target = "KABUTERIMON", requirement={"LVL MIN 33","SPD 70"}, unlocked=function(mon) return (mon.level or 1 ) >= 33 and (mon.stats.speed or 0) >= 70 end },
+      { target = "GUARDROMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
+      -- Tankmon
+    },
+    ELECMON = {
+      { target = "LEOMON", requirement={"ATK 50","SPD 55"}, unlocked=function(mon) return (mon.stats.attack or 1 ) >= 50 and (mon.stats.speed or 0) >= 55 end },
+      { target = "GARURUMON", requirement={"SPC 60"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 60 end },
+      -- Tyrannomon
+    },
+
+    CANDLEMON = {
+      { target = "BAKEMON", requirement={"LVL MIN 28"}, unlocked=function(mon) return (mon.level or 1 ) >= 28 end },
+      { target = "DEVIMON", requirement={"ATK 60", "SPC 65"}, unlocked=function(mon) return (mon.stats.attack or 0 ) >= 60 and (mon.stats.special or 0 ) >= 65 end },
+      { target = "SOULMON", requirement={"LVL MIN 30"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 end },
+      { target = "MERAMON", requirement={"SPC 70"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 70 end },
+    },
+    BEARMON = {
+      { target = "GRIZZLYMON", requirement={"LVL MIN 28"}, unlocked=function(mon) return (mon.level or 1 ) >= 28 end },
+      { target = "KYUBIMON", requirement={"LVL MIN 30", "SPC 65"}, unlocked=function(mon) return (mon.level or 1 ) >= 30 and (mon.stats.special or 0 ) >= 65 end },
+      { target = "MERAMON", requirement={"SPC 66"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 66 end },
+    },
+    PUNIMON = {
+      { target = "TSUNOMON", requirement={"SPC 22"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 22 end },
+      { target = "NYAROMON", requirement={"LVL MIN 10", "ATK 22"}, unlocked=function(mon) return (mon.level or 1 ) >= 10 and (mon.stats.attack or 0 ) >= 22 end },
+      { target = "MOTIMON", requirement={"SPC 15"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 15 end },
+    },
+    BOTAMON = {
+      { target = "KOROMON", requirement={"LVL MIN 16"}, unlocked=function(mon) return (mon.level or 1 ) >= 16 end },
+      { target = "KAPURIMON", requirement={"LVL MIN 10"}, unlocked=function(mon) return (mon.level or 1 ) >= 10 end },
+      { target = "VEEMON", requirement={"LVL MIN 20"}, unlocked=function(mon) return (mon.level or 1 ) >= 20 end },
+    },
+    POYOMON = {
+      { target = "TOKOMON", requirement={"LVL MIN 18"}, unlocked=function(mon) return (mon.level or 1 ) >= 18 end },
+      { target = "BUKAMON", requirement={"SPD 19", "ATK 21"}, unlocked=function(mon) return (mon.stats.speed or 1 ) >= 19 and (mon.stats.attack or 0 ) >= 21 end },
+      { target = "YOKOMON", requirement={"SPC 24"}, unlocked=function(mon) return (mon.stats.special or 0 ) >= 24 end },
     },
 
   }
@@ -247,7 +295,7 @@ return function(mod)
     SNIMON = { "WORMMON", "KUNEMON" },
     -- SALAMON = {"WANYAMON"},
     WOODMON = { "PALMON" },
-    -- MOJYAMON = {"RENAMON"},
+    MOJYAMON = {"RENAMON"},
 
   }
 
@@ -462,7 +510,11 @@ return function(mod)
         math.max(0,math.floor(80-Font.width(itemRequirement)/2)),20)
     end
     local types=target and target.types or {}
-    local typeText=#types>0 and table.concat(types,"/") or "NO TYPE"
+    local displayTypes={}
+    for _,typeId in ipairs(types) do
+      displayTypes[#displayTypes+1]=tostring(typeId):gsub("_TYPE$","")
+    end
+    local typeText=#displayTypes>0 and table.concat(displayTypes,"/") or "NO TYPE"
     if self.route.kind=="devolve" then
       Font.draw("BASE",32,34); Font.draw("BONUS",68,34); Font.draw("TOTAL",112,34)
     else

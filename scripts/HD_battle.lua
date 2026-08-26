@@ -99,7 +99,16 @@ return function(mod)
     FLAMEDRAMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
     DIGMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
     ANKYLOMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
-
+    KOKUWAMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.75},
+    ELECMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.75},
+    BEARMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.75},
+    GRIZZLYMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.8},
+    CANDLEMON = { centerX = 124, bottom = 50, maxSize = 64, scale = 0.6},
+    MERAMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    SOULMON = { centerX = 124, bottom = 54, maxSize = 64, scale = 0.9},
+    PUNIMON = { centerX = 124, bottom = 50, maxSize = 64, scale = 0.6},
+    BOTAMON = { centerX = 124, bottom = 50, maxSize = 64, scale = 0.6},
+    POYOMON = { centerX = 124, bottom = 50, maxSize = 64, scale = 0.6},
   }
 
   -- Per-species layout for the player's back-facing battle sprite. These
@@ -137,7 +146,16 @@ return function(mod)
     ANKYLOMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
     DIGMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
     GOLEMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.9},
-
+    KOKUWAMON = { left = 12, bottom = 96, maxSize = 64, scale = 0.8},
+    ELECMON = { left = 12, bottom = 96, maxSize = 64, scale = 0.8},
+    BEARMON = { left = 12, bottom = 96, maxSize = 64, scale = 0.8},
+    GRIZZLYMON = { left = 6, bottom = 96, maxSize = 64, scale = 0.8},
+    CANDLEMON = { left = 12, bottom = 96, maxSize = 46, scale = 0.9},
+    MERAMON = { left = 12, bottom = 96, maxSize = 56, scale = 0.9},
+    SOULMON = { left = 12, bottom = 96, maxSize = 64, scale = 0.9},
+    PUNIMON = { left = 12, bottom = 96, maxSize = 46, scale = 0.9},
+    BOTAMON = { left = 12, bottom = 96, maxSize = 46, scale = 0.9},
+    POYOMON = { left = 12, bottom = 96, maxSize = 46, scale = 0.9},
   }
 
   local stageCanvas

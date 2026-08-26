@@ -90,6 +90,16 @@
 -- DIGMON 81
 -- LIGHDRAMON 82
 -- FLAMEDRAMON 83
+-- KOKUWAMON 84
+-- ELECMON 85
+-- BEARMON 86
+-- GRIZZLYMON 87
+-- CANDLEMON 88
+-- MERAMIN 89
+-- SOULMON 90
+-- PUNIMON 91
+-- BOTAMON 92
+-- POYOMON 93
 
 return function(mod)
 
@@ -182,8 +192,26 @@ mod.content.pokemon:patch("GOLEM", {dex = 227})
 mod.content.pokemon:patch("PONYTA", {dex = 228})
 mod.content.pokemon:patch("RAPIDASH", {dex = 229})
 mod.content.pokemon:patch("SLOWPOKE", {dex = 230}) -- 79
-
-
+mod.content.pokemon:patch("SLOWBRO", {dex = 231})
+mod.content.pokemon:patch("MAGNEMITE", {dex = 232})
+mod.content.pokemon:patch("MAGNETON", {dex = 233})
+mod.content.pokemon:patch("FARFETCHD", {dex = 234})
+mod.content.pokemon:patch("DODUO", {dex = 235}) 
+mod.content.pokemon:patch("DODRIO", {dex = 236})
+mod.content.pokemon:patch("SEEL", {dex = 237})
+mod.content.pokemon:patch("DEWGONG", {dex = 238})
+mod.content.pokemon:patch("GRIMER", {dex = 239})
+mod.content.pokemon:patch("MUK", {dex = 240})
+mod.content.pokemon:patch("SHELLDER", {dex = 241})
+mod.content.pokemon:patch("CLOYSTER", {dex = 242}) -- 71
+mod.content.pokemon:patch("GASTLY", {dex = 243})
+mod.content.pokemon:patch("HAUNTER", {dex = 244})
+mod.content.pokemon:patch("GENGAR", {dex = 245}) 
+mod.content.pokemon:patch("ONIX", {dex = 246})
+mod.content.pokemon:patch("DROWZEE", {dex = 247})
+mod.content.pokemon:patch("HYPNO", {dex = 248})
+mod.content.pokemon:patch("KRABBY", {dex = 249})
+mod.content.pokemon:patch("KINGLER", {dex = 250}) -- 99
 
 
 
@@ -1473,10 +1501,10 @@ mod.content.pokemon:register("TENTOMON", {
     types = { "BUG", "ELECTRIC"},
     baseStats =
     { hp = 63,
-      attack = 71,
+      attack = 60,
       defense = 50,
       speed = 90,
-      special = 62 },
+      special = 70 },
       catchRate = 110,
       baseExp = 142,
       growthRate = "MEDIUM_SLOW",
@@ -5653,8 +5681,8 @@ mod.content.pokemon:register("BAKEMON", {
     hp = 65,
     attack = 55,
     defense = 50,
-    speed = 105,
-    special = 130
+    speed = 130,
+    special = 105
   },
 
   catchRate = 70,
@@ -5718,7 +5746,7 @@ mod.content.pokemon:register("RENAMON", {
     text = "_RenamonDexEntry"
   },
 
-  types = { "PSYCHIC" },
+  types = { "PSYCHIC_TYPE" },
 
   baseStats = {
     hp = 55,
@@ -5796,7 +5824,7 @@ mod.content.pokemon:register("KYUBIMON", {
     text = "_KyubimonDexEntry"
   },
 
-  types = { "PSYCHIC", "FIRE" },
+  types = { "PSYCHIC_TYPE", "FIRE" },
 
   baseStats = {
     hp = 70,
@@ -6251,6 +6279,733 @@ mod.content.pokemon:register("FLAMEDRAMON", {
   spriteBack = mod.assets:path("assets/flamedramonb.png"),
   icon = {
     image = mod.assets:path("assets/icons/flamedramons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Kokuwamon 84
+
+KokuwaDex = "Its metal jaws can\nstore electricity.\nIt releases the charge\nwhen danger is near."
+mod.content.text:register("_KokuwamonDexEntry", KokuwaDex)
+mod.content.pokemon:register("KOKUWAMON", {
+  id = "KOKUWAMON", name = "KOKUWAMON",
+  dex = 84,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 33,
+    text = "_KokuwamonDexEntry"
+  },
+
+  types = { "BUG", "ELECTRIC" },
+
+  baseStats = {
+    hp = 55,
+    attack = 65,
+    defense = 75,
+    speed = 60,
+    special = 50
+  },
+
+  catchRate = 160,
+  baseExp = 120,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "THUNDERSHOCK",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 6,  move = "VICEGRIP" },
+    { level = 10, move = "THUNDER_WAVE" },
+    { level = 14, move = "STRING_SHOT" },
+    { level = 19, move = "METAL_CLAW" },
+    { level = 25, move = "TWINEEDLE" },
+    { level = 31, move = "SCREECH" },
+    { level = 37, move = "THUNDERBOLT" },
+    { level = 44, move = "SLASH" },
+    { level = 51, move = "AGILITY" },
+    { level = 58, move = "THUNDER" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "THUNDERBOLT",
+    "THUNDER",
+    "THUNDER_WAVE",
+    "METAL_CLAW",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "FLASH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/kokuwamon.png"),
+  spriteBack = mod.assets:path("assets/kokuwamonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/kokuwamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Elecmon 85
+
+ElecDex = "Its fur stores a\npowerful charge. It\nfires electricity\nwhen alarmed."
+mod.content.text:register("_ElecmonDexEntry", ElecDex)
+mod.content.pokemon:register("ELECMON", {
+  id = "ELECMON", name = "ELECMON",
+  dex = 85,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 33,
+    text = "_ElecmonDexEntry"
+  },
+
+  types = { "ELECTRIC" },
+
+  baseStats = {
+    hp = 60,
+    attack = 65,
+    defense = 50,
+    speed = 80,
+    special = 60
+  },
+
+  catchRate = 160,
+  baseExp = 125,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "THUNDERSHOCK",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 6,  move = "QUICK_ATTACK" },
+    { level = 10, move = "THUNDER_WAVE" },
+    { level = 14, move = "BITE" },
+    { level = 19, move = "SWIFT" },
+    { level = 25, move = "THUNDERBOLT" },
+    { level = 31, move = "SCREECH" },
+    { level = 37, move = "AGILITY" },
+    { level = 44, move = "TAKE_DOWN" },
+    { level = 51, move = "THUNDER" },
+    { level = 58, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "THUNDERBOLT",
+    "THUNDER",
+    "THUNDER_WAVE",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "FLASH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/elecmon.png"),
+  spriteBack = mod.assets:path("assets/elecmonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/elecmons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Bearmon 86
+
+BearDex = "A tough little fighter\nthat trains each day.\nIts strong fists can\nfell larger foes."
+mod.content.text:register("_BearmonDexEntry", BearDex)
+mod.content.pokemon:register("BEARMON", {
+  id = "BEARMON", name = "BEARMON",
+  dex = 86,
+
+  dexEntry = {
+    heightFt = 3,
+    heightIn = 3,
+    kind = "ROOKIE",
+    weight = 44,
+    text = "_BearmonDexEntry"
+  },
+
+  types = { "FIGHTING" },
+
+  baseStats = {
+    hp = 65,
+    attack = 80,
+    defense = 60,
+    speed = 65,
+    special = 40
+  },
+
+  catchRate = 160,
+  baseExp = 125,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "SCRATCH",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 6, move = "FOCUS_ENERGY" },
+    { level = 10, move = "KARATE_CHOP" },
+    { level = 14, move = "FURY_SWIPES" },
+    { level = 19, move = "LOW_KICK" },
+    { level = 24, move = "MEGA_PUNCH" },
+    { level = 30, move = "SEISMIC_TOSS" },
+    { level = 36, move = "BODY_SLAM" },
+    { level = 42, move = "SUBMISSION" },
+    { level = 49, move = "TAKE_DOWN" },
+    { level = 56, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MEGA_PUNCH",
+    "MEGA_KICK",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "SEISMIC_TOSS",
+    "SUBMISSION",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SUBSTITUTE",
+    "CUT",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/bearmon.png"),
+  spriteBack = mod.assets:path("assets/bearmonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/bearmons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Grizzlymon 87
+
+GrizzlyDex = "A mighty fighter\nwith crushing strength.\nIts heavy blows can\nshatter solid stone."
+mod.content.text:register("_GrizzlymonDexEntry", GrizzlyDex)
+mod.content.pokemon:register("GRIZZLYMON", {
+  id = "GRIZZLYMON", name = "GRIZZLYMON",
+  dex = 87,
+
+  dexEntry = {
+    heightFt = 7,
+    heightIn = 10,
+    kind = "CHAMPION",
+    weight = 287,
+    text = "_GrizzlymonDexEntry"
+  },
+
+  types = { "FIGHTING" },
+
+  baseStats = {
+    hp = 100,
+    attack = 120,
+    defense = 90,
+    speed = 70,
+    special = 45
+  },
+
+  catchRate = 60,
+  baseExp = 185,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "KARATE_CHOP",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 7,  move = "LOW_KICK" },
+    { level = 12, move = "FURY_SWIPES" },
+    { level = 17, move = "MEGA_PUNCH" },
+    { level = 22, move = "FOCUS_ENERGY" },
+    { level = 27, move = "BODY_SLAM" },
+    { level = 32, move = "SEISMIC_TOSS" },
+    { level = 38, move = "SUBMISSION" },
+    { level = 44, move = "ROCK_SLIDE" },
+    { level = 50, move = "MEGA_KICK" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MEGA_PUNCH",
+    "MEGA_KICK",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "RAGE",
+    "SEISMIC_TOSS",
+    "SUBMISSION",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "ROCK_SLIDE",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/grizzlymon.png"),
+  spriteBack = mod.assets:path("assets/grizzlymonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/grizzlymons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Candlemon 88
+
+CandleDex = "A living flame burns\nabove its small body.\nIt grows brighter in\ndark, lonely places."
+mod.content.text:register("_CandlemonDexEntry", CandleDex)
+mod.content.pokemon:register("CANDLEMON", {
+  id = "CANDLEMON", name = "CANDLEMON",
+  dex = 88,
+
+  dexEntry = {
+    heightFt = 2,
+    heightIn = 7,
+    kind = "ROOKIE",
+    weight = 18,
+    text = "_CandlemonDexEntry"
+  },
+
+  types = { "FIRE", "GHOST" },
+
+  baseStats = {
+    hp = 55,
+    attack = 40,
+    defense = 50,
+    speed = 65,
+    special = 95
+  },
+
+  catchRate = 160,
+  baseExp = 125,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "EMBER",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 6,  move = "SMOG" },
+    { level = 10, move = "NIGHT_SHADE" },
+    { level = 14, move = "CONFUSE_RAY" },
+    { level = 19, move = "FIRE_SPIN" },
+    { level = 25, move = "HYPNOSIS" },
+    { level = 31, move = "FLAMETHROWER" },
+    { level = 37, move = "MINIMIZE" },
+    { level = 44, move = "FIRE_BLAST" },
+    { level = 51, move = "SCREECH" },
+    { level = 58, move = "TOXIC" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "FLAMETHROWER",
+    "FIRE_BLAST",
+    "PSYCHIC_M",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/candlemon.png"),
+  spriteBack = mod.assets:path("assets/candlemonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/candlemons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Meramon 89
+
+MeraDex = "Its entire body is\nmade of raging fire.\nThe hotter it burns,\nthe stronger it gets."
+mod.content.text:register("_MeramonDexEntry", MeraDex)
+mod.content.pokemon:register("MERAMON", {
+  id = "MERAMON", name = "MERAMON",
+  dex = 89,
+
+  dexEntry = {
+    heightFt = 6,
+    heightIn = 7,
+    kind = "CHAMPION",
+    weight = 154,
+    text = "_MeramonDexEntry"
+  },
+
+  types = { "FIRE" },
+
+  baseStats = {
+    hp = 75,
+    attack = 90,
+    defense = 65,
+    speed = 90,
+    special = 105
+  },
+
+  catchRate = 60,
+  baseExp = 185,
+  growthRate = "MEDIUM_FAST",
+
+  level1Moves = {
+    "EMBER",
+    "LEER"
+  },
+
+  learnset = {
+    { level = 7,  move = "SMOG" },
+    { level = 12, move = "FIRE_PUNCH" },
+    { level = 17, move = "RAGE" },
+    { level = 22, move = "FIRE_SPIN" },
+    { level = 27, move = "BODY_SLAM" },
+    { level = 32, move = "FLAMETHROWER" },
+    { level = 38, move = "TAKE_DOWN" },
+    { level = 44, move = "AGILITY" },
+    { level = 50, move = "FIRE_BLAST" },
+    { level = 57, move = "DOUBLE_EDGE" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MEGA_PUNCH",
+    "MEGA_KICK",
+    "BODY_SLAM",
+    "TAKE_DOWN",
+    "DOUBLE_EDGE",
+    "FLAMETHROWER",
+    "FIRE_BLAST",
+    "RAGE",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SWIFT",
+    "SUBSTITUTE",
+    "STRENGTH",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/meramon.png"),
+  spriteBack = mod.assets:path("assets/meramonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/meramons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Soulmon 90
+
+SoulDex = "It hides beneath a\nlarge black hat. Its\nstrange magic chills\nthose who draw near."
+mod.content.text:register("_SoulmonDexEntry", SoulDex)
+mod.content.pokemon:register("SOULMON", {
+  id = "SOULMON", name = "SOULMON",
+  dex = 90,
+
+  dexEntry = {
+    heightFt = 5,
+    heightIn = 11,
+    kind = "CHAMPION",
+    weight = 44,
+    text = "_SoulmonDexEntry"
+  },
+
+  types = { "GHOST" },
+
+  baseStats = {
+    hp = 65,
+    attack = 50,
+    defense = 55,
+    speed = 95,
+    special = 160
+  },
+
+  catchRate = 60,
+  baseExp = 185,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "LICK",
+    "CONFUSE_RAY"
+  },
+
+  learnset = {
+    { level = 7,  move = "NIGHT_SHADE" },
+    { level = 12, move = "HYPNOSIS" },
+    { level = 17, move = "DISABLE" },
+    { level = 22, move = "DREAM_EATER" },
+    { level = 27, move = "CONFUSION" },
+    { level = 32, move = "SMOG" },
+    { level = 38, move = "PSYBEAM" },
+    { level = 44, move = "MINIMIZE" },
+    { level = 50, move = "PSYCHIC_M" },
+    { level = 57, move = "TOXIC" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "PSYCHIC_M",
+    "DREAM_EATER",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "REFLECT",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/soulmon.png"),
+  spriteBack = mod.assets:path("assets/soulmonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/soulmons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Punimon 91
+
+PuniDex = "A tiny Digimon with\nsoft, jellylike skin.\nIts small horns are\nstill growing."
+mod.content.text:register("_PunimonDexEntry", PuniDex)
+mod.content.pokemon:register("PUNIMON", {
+  id = "PUNIMON", name = "PUNIMON",
+  dex = 91,
+
+  dexEntry = {
+    heightFt = 1,
+    heightIn = 0,
+    kind = "BABY",
+    weight = 2,
+    text = "_PunimonDexEntry"
+  },
+
+  types = { "NORMAL" },
+
+  baseStats = {
+    hp = 40,
+    attack = 25,
+    defense = 30,
+    speed = 30,
+    special = 25
+  },
+
+  catchRate = 220,
+  baseExp = 35,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "TACKLE",
+    "GROWL"
+  },
+
+  learnset = {
+    { level = 7,  move = "TAIL_WHIP" },
+    { level = 13, move = "QUICK_ATTACK" },
+    { level = 19, move = "DEFENSE_CURL" },
+    { level = 25, move = "HEADBUTT" },
+    { level = 31, move = "REST" },
+  },
+
+  tmhm = {
+    "TOXIC",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/punimon.png"),
+  spriteBack = mod.assets:path("assets/punimonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/punimons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Botamon 92
+
+BotaDex = "A tiny Digimon with\nsoft black fur. It\nblows small bubbles\nwhen frightened."
+mod.content.text:register("_BotamonDexEntry", BotaDex)
+mod.content.pokemon:register("BOTAMON", {
+  id = "BOTAMON", name = "BOTAMON",
+  dex = 92,
+
+  dexEntry = {
+    heightFt = 1,
+    heightIn = 0,
+    kind = "BABY",
+    weight = 2,
+    text = "_BotamonDexEntry"
+  },
+
+  types = { "NORMAL" },
+
+  baseStats = {
+    hp = 40,
+    attack = 20,
+    defense = 25,
+    speed = 30,
+    special = 35
+  },
+
+  catchRate = 220,
+  baseExp = 30,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "BUBBLE"
+  },
+
+  learnset = {
+    { level = 7,  move = "GROWL" },
+    { level = 13, move = "TACKLE" },
+    { level = 19, move = "SMOKESCREEN" },
+    { level = 25, move = "REST" },
+  },
+
+  tmhm = {
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/botamon.png"),
+  spriteBack = mod.assets:path("assets/botamonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/botamons.png"),
+    frames = 1,
+  },
+  frontSize = 1,
+  trueColor = true,
+})
+
+-- Poyomon 93
+
+PoyoDex = "It drifts through the\nwater like a bubble.\nIts soft body is light\nand easily carried."
+mod.content.text:register("_PoyomonDexEntry", PoyoDex)
+mod.content.pokemon:register("POYOMON", {
+  id = "POYOMON", name = "POYOMON",
+  dex = 93,
+
+  dexEntry = {
+    heightFt = 1,
+    heightIn = 0,
+    kind = "BABY",
+    weight = 2,
+    text = "_PoyomonDexEntry"
+  },
+
+  types = { "WATER" },
+
+  baseStats = {
+    hp = 35,
+    attack = 20,
+    defense = 20,
+    speed = 35,
+    special = 40
+  },
+
+  catchRate = 220,
+  baseExp = 30,
+  growthRate = "MEDIUM_SLOW",
+
+  level1Moves = {
+    "BUBBLE"
+  },
+
+  learnset = {
+    { level = 7,  move = "GROWL" },
+    { level = 13, move = "SUPERSONIC" },
+    { level = 19, move = "WATER_GUN" },
+    { level = 25, move = "REST" },
+  },
+
+  tmhm = {
+    "BUBBLEBEAM",
+    "WATER_GUN",
+    "MIMIC",
+    "DOUBLE_TEAM",
+    "BIDE",
+    "REST",
+    "SUBSTITUTE",
+  },
+
+  evolutions = {},
+
+  spriteFront = mod.assets:path("assets/poyomon.png"),
+  spriteBack = mod.assets:path("assets/poyomonb.png"),
+  icon = {
+    image = mod.assets:path("assets/icons/poyomons.png"),
     frames = 1,
   },
   frontSize = 1,

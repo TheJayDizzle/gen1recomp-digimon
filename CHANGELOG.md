@@ -2,6 +2,32 @@
 
 All notable changes to Digimon in Kanto are documented here.
 
+## 0.1.9
+
+- Added new Digimon: Kokuwamon, Elecmon, Bearmon, Grizzlymon, Candlemon, Meramon, Soulmon, Punimon, Botamon and Poyomon.
+- Added digivolution paths and requirements for the newly introduced Digimon.
+- Added a new zone: Cerulean Gardens
+- Added a new item: Digi Egg of Friendship
+- Made Route 7/8/9/10/12, Rock Tunnel, Lavender Town, Celadon City accessible, replaced encounter tables and trainer's mons
+- Pokemon Tower is accessible, but SILPH SCOPE is not yet obtainable (Trainers in there have not been edited!)
+- Fixed a colission issue in Diglett's Cave.
+- Fixed a wording issue with Psychic Type in Evo Preview.
+- Fixed an issue that caused the new floor in Diglett's cave to not play music.
+- The new floor in Diglett's cave is now dark and needs flash.
+- Removed Ikkakumon from Hagurumon's evolution path.
+- Removed Devimon from Betamon's evolution path.
+- Replaced Greymon with Drimogemon in Armadillomon's evolution path.
+- Changed the requirement for Lighdramon in Veemon's evolution path to need the digi egg of friendship.
+- Added Greymon to Veemon's evolution path.
+- Increased some values of evolution requirements.
+- Adjusted almost all levels of encounter tables and trainers after Mt. Moon.
+- Edited encounter tables of some routes.
+- Replaced some Pokémon of trainers on nugget bridge, route 25 and route 6.
+- Adjusted Tentomon's values: ATK 70 -> 60, SPC 60 -> 70.
+- Adjusted Bakemon's values: SPD 105 -> 130, SPC 130 -> 105.
+- Moved some Pokemon dex entries so that Digimon have place.
+- Moved Demo NPC to Celadon Market Floor 5 and Game Corner to prevent further progression.
+
 ## 0.1.8
 - Added new Digimon: Renamon, Kyubimon, Golemon, Digmon, Ankylomon, Lighdramon and Flamedramon
 - Added digivolution paths and requirements for the newly introduced Digimon.

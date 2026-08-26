@@ -15,4 +15,12 @@ return function(mod)
     keyItem = true,
     tossable = false,
   })
+    
+    mod.content.items:register("EGG_OF_FRNDSH", {
+    id = "EGG_OF_FRNDSH",
+    name = "EGG OF FRNDSH.",
+    price = 0,
+    keyItem = true,
+    tossable = false,
+  })
 end
